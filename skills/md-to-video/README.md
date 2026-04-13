@@ -13,7 +13,7 @@
 
 ```bash
 # 通过 skill-store 安装（推荐）
-manage_skills(action="install", repo="mofa-org/mofa-skills/md-to-video")
+manage_skills(action="install", repo="cnbison/lbc-skills/tree/main/skills/md-to-video")
 
 # 或手动安装
 # 将整个 skill-output/md-to-video 目录复制到 ~/.octos/profiles/<profile>/data/skills/

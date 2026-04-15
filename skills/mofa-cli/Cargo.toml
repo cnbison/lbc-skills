@@ -1,0 +1,28 @@
+[package]
+name = "mofa"
+version = "0.1.1"
+edition = "2021"
+
+[lib]
+name = "mofa_lib"
+path = "src/lib.rs"
+
+[[bin]]
+name = "mofa"
+path = "src/main.rs"
+
+[dependencies]
+reqwest = { version = "0.12", features = ["blocking", "rustls-tls", "json"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.8"
+clap = { version = "4", features = ["derive"] }
+zip = "2"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "gif", "webp"] }
+base64 = "0.22"
+chrono = "0.4"
+rayon = "1.10"
+eyre = "0.6"
+color-eyre = "0.6"
+walkdir = "2"
+sha2 = "0.10"

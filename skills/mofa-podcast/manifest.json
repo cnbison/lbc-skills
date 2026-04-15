@@ -1,0 +1,51 @@
+{
+  "name": "mofa-podcast",
+  "version": "0.4.5",
+  "author": "hagency",
+  "description": "Multi-speaker podcast generation with TTS voice synthesis and audio assembly",
+  "timeout_secs": 1800,
+  "requires_network": true,
+  "requires": {
+    "bins": ["ominix-api"],
+    "os": ["darwin"]
+  },
+  "tools": [
+    {
+      "name": "podcast_voices",
+      "description": "List all available voices for podcast speakers. Shows preset (built-in) voices and any saved custom/cloned voices. Call this when helping the user choose voices for their speakers.",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "podcast_generate",
+      "spawn_only": true,
+      "spawn_only_message": "SUCCESS: Podcast generation is now running in background. Voice segments are being generated and will be assembled into the final audio file. The audio file will be automatically delivered when ready.",
+      "description": "Generate the full podcast audio from an approved markdown script. Parses all speaker lines, generates TTS for each segment (built-in voices first, then cloned to minimize model switching), concatenates in timeline order with pauses, and outputs a single final audio file. This runs in background — do NOT wait for it.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "script": {
+            "type": "string",
+            "description": "The full markdown podcast script content. Must contain [Character - voice, emotion] formatted lines."
+          },
+          "script_path": {
+            "type": "string",
+            "description": "Path to the markdown script file. Alternative to providing script content directly."
+          },
+          "output_dir": {
+            "type": "string",
+            "description": "Directory for output files. Defaults to skill-output/mofa-podcast/"
+          }
+        }
+      }
+    }
+  ],
+  "binaries": {
+    "darwin-aarch64": {
+      "url": "",
+      "sha256": ""
+    }
+  }
+}

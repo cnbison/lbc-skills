@@ -1,0 +1,75 @@
+[meta]
+name = "opensource"
+display_name = "Open Source (Cute Whale)"
+description = "Lavender gradient, cute cartoon whale watermark, consulting wireframes"
+category = "consulting"
+tags = ["open-source", "community", "bilingual"]
+
+[variants]
+default = "normal"
+
+[variants.normal]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Light purple gradient — from pale lavender-white (#F8F5FC) at top-left to soft lavender (#EAE0F5) at bottom-right. Elegant, soft, not too saturated — think frosted lilac glass. In the background, VERY FAINTLY visible (like a ghosted watermark at 5-8% opacity), include a cute CARTOON WHALE sketch — a round, chubby, friendly little whale falling gracefully downward with tiny sparkles and stars rising beneath it. The whale is hand-drawn style with soft round curves, a small happy eye, a gentle smile, and tiny flippers — kawaii-adjacent but still professional. Drawn in faint lavender-gray pencil lines (#C4B5D9 at 6-8% opacity). Positioned in the right half of the slide. The whale should NOT compete with the content — just a charming ghosted watermark.
+
+TYPOGRAPHY: Manrope font (geometric modern sans-serif, clean and rounded) for ALL English text. Noto Sans SC font (clean Chinese sans-serif, matching weight) for ALL Chinese text. Clean, professional, highly legible.
+
+TITLE RULES:
+- Title font size MUST be ≤24pt. If the title is long, shrink to 20pt or 18pt to fit.
+- If the Chinese translation is SHORT (≤8 characters), put English and Chinese on ONE line separated by " | " — e.g. "The AGI Implication | AGI的启示"
+- If the Chinese translation is LONG (>8 characters), use TWO lines: English title on line 1, Chinese title on line 2 in slightly smaller text.
+- Subtitle (if any) goes below the title in medium gray, ~14-16pt.
+
+ILLUSTRATION STYLE (CRITICAL):
+ALL diagrams use sophisticated MONOCHROME WIREFRAME SKETCH illustration:
+- Medium gray (#666666 to #888888) line art ONLY — NO color fills, NO heavy gradients
+- DETAILED icons with character: gear teeth clearly drawn, building columns visible, brain with neural connections, shield emblems detailed, screens show content
+- Consistent line weight throughout (~1.5-2px equivalent)
+- Hand-drawn/sketch quality but CLEAN and READABLE — like a senior designer's concept whiteboard sketch
+- Arrows are clean with proper arrowheads
+- Labels in clean UPPERCASE Manrope gray text, positioned near their icons
+- Generous white space inside each card — diagrams should breathe, not feel cramped
+
+The light purple gradient background should be VISIBLE — cards are white so they contrast against the soft lavender background. The overall color feeling is elegant purple/lavender.
+
+CRITICAL: Premium consulting deck aesthetic (McKinsey / Bain style) with hand-drawn concept sketches — intellectual, sophisticated, monochrome diagrams on elegant light purple background.
+
+"""
+
+[variants.data]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Light purple gradient — from pale lavender-white (#F8F5FC) at top-left to soft lavender (#EAE0F5) at bottom-right. Very subtle, clean. Minimal or NO whale watermark on this slide — keep the background clean for data readability.
+
+TYPOGRAPHY: Manrope font (geometric modern sans-serif) for ALL English text. Noto Sans SC for ALL Chinese text. Clean, professional, highly legible.
+
+TITLE RULES:
+- Title font size MUST be ≤24pt. If the title is long, shrink to 20pt or 18pt to fit.
+- If the Chinese translation is SHORT (≤8 characters), put English and Chinese on ONE line separated by " | "
+- If the Chinese translation is LONG (>8 characters), use TWO lines: English title on line 1, Chinese title on line 2 in slightly smaller text.
+
+DATA-DENSE SLIDE: This slide contains dense data tables or comparison matrices. PRIORITIZE data presentation clarity above all else. Reduce or remove decorative sketch elements. Use clean table layouts with maximum readability. Data > decoration. Tables should have clear headers, aligned columns, generous spacing, and alternating subtle row shading for readability. Only keep minimal wireframe accents that aid comprehension (small icons in table cells OK), never at the expense of data legibility.
+
+Premium consulting deck aesthetic — clean, intellectual, data-forward.
+
+"""
+
+[variants.cover]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Dark purple gradient — from deep midnight purple (#1A0F40) at top-left to rich purple (#3D2580) at bottom-right. Rich, elegant, dramatic.
+
+In the right half of the slide, include a VISIBLE cute CARTOON WHALE — a round, chubby, friendly whale falling gracefully downward through the dark purple space. The whale is drawn in light lavender/purple wireframe lines (#C4B5D9, #E8DFF5) at ~20-30% opacity with a hand-drawn, sketch quality. It has soft round body curves, a small happy eye, a gentle upturned mouth, and tiny flippers. Small sparkles, stars, and luminous particles rise upward beneath the falling whale (representing "一鲸落万物生" — when a whale falls, all things flourish). The whale is charming and cute — like an indie game illustration or gentle children's book art — but still sophisticated enough for a consulting deck.
+
+TYPOGRAPHY: Manrope font (geometric modern sans-serif) for English. Noto Sans SC for Chinese. On dark background, text should be white or very light lavender.
+
+The LEFT 40% of the slide should be relatively clear for text content. The whale sketch occupies the RIGHT 60%.
+
+Premium, dramatic, cinematic but still intellectual and clean.
+
+"""
+

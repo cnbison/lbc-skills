@@ -1,0 +1,79 @@
+[meta]
+name = "nordic-minimal"
+display_name = "Nordic Minimal"
+description = "Pure white, black text, single red accent, Muji/IKEA-inspired restraint"
+category = "minimal"
+tags = ["minimal", "Scandinavian", "clean"]
+
+[variants]
+default = "normal"
+
+[variants.normal]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Pure white (#FFFFFF) or very faint warm gray (#FAFAFA). Absolutely clean — no gradients, no textures, no patterns, no watermarks. Just pristine white space.
+
+TYPOGRAPHY: Inter or Helvetica Neue for ALL text. Noto Sans SC (clean Chinese sans-serif, matching weight) for ALL Chinese text. Extreme typographic discipline.
+- Title: font-weight 700, color pure black (#000000), 28-32pt, left-aligned
+- Body text: font-weight 300, color dark charcoal (#333333), 16-18pt
+- Secondary text: font-weight 300, color medium gray (#888888), 14pt
+- Numbers/stats: font-weight 700, color #D4382C (Scandinavian red), 48-64pt
+
+DESIGN RULES (CRITICAL):
+- EXTREME WHITESPACE — at least 100px margins on all sides. Content should feel like it's floating in open space. Less is more.
+- Single accent color: Scandinavian red (#D4382C) — used ONLY for key numbers, one highlight word, or a single thin line. Never more than 10% of the visual area.
+- NO illustrations, NO icons, NO decorative elements, NO shadows, NO gradients on anything
+- If data needs visual separation, use only: thin hairline rules (0.5px, #E0E0E0), generous spacing, or subtle alternating white/#F5F5F5 rows
+- Content cards: NO borders, NO shadows — separate content areas with whitespace alone, or at most a single thin left border in red (#D4382C, 2px)
+- Everything aligned to a strict grid. Mathematical precision in spacing.
+- Think: Muji product catalog, Kinfolk magazine, Dieter Rams "less but better"
+
+CRITICAL: This must feel like a Scandinavian design studio's internal presentation — austere, confident, every element earning its place. The white space IS the design. If it doesn't feel empty enough, remove more.
+
+"""
+
+[variants.data]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Pure white (#FFFFFF). Clean and unadorned.
+
+TYPOGRAPHY: Inter or Helvetica Neue for English. Noto Sans SC for Chinese. Extreme clarity.
+- Title: font-weight 700, color pure black (#000000), 24-28pt, left-aligned
+- Table headers: font-weight 700, color black, 14-16pt
+- Table body: font-weight 300, color #333333, 14-16pt
+- Highlight numbers: font-weight 700, color #D4382C (Scandinavian red)
+
+DATA-DENSE SLIDE RULES:
+- Tables use the absolute minimum visual structure: thin hairline rules (#E0E0E0, 0.5px) for row/column separation
+- NO heavy borders, NO colored headers, NO cell backgrounds except very subtle alternating rows (#FAFAFA)
+- Column alignment is critical — numbers right-aligned, text left-aligned
+- Generous row height and column spacing for readability
+- Comparison highlights: use red (#D4382C) text or a single red dot indicator — never color fills
+- If showing pricing: display numbers prominently in red, context in gray
+
+CRITICAL: Data should speak for itself. The design disappears — only information remains. Bloomberg Terminal minimalism meets Swiss typography.
+
+"""
+
+[variants.cover]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Pure black (#000000). Solid, absolute, dramatic.
+
+TYPOGRAPHY: Inter or Helvetica Neue for English. Noto Sans SC for Chinese.
+- Main title: font-weight 700, pure white (#FFFFFF), 48-56pt, left-aligned, positioned in the left half
+- Subtitle: font-weight 300, medium gray (#888888), 20-24pt, below title
+- NO other text, NO decorations, NO logos
+
+DESIGN:
+- The RIGHT side of the slide has ONE single design element: a large thin-line geometric shape in Scandinavian red (#D4382C) — such as a circle outline (2px stroke), or a single vertical line, or a simple cross mark. Just ONE shape, large scale, mathematically placed.
+- The contrast of black background + white text + single red geometric element creates maximum visual impact with minimum elements.
+- At least 60% of the slide should be empty black space.
+
+CRITICAL: Absolute minimalism. Black, white, red. Three elements only: background, text, one geometric accent. Nothing else.
+
+"""
+

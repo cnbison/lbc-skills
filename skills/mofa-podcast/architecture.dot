@@ -1,0 +1,50 @@
+// SPDX-License-Identifier: Apache-2.0
+
+// MoFA Podcast Pipeline
+// 4-step: gather → script → review → produce
+//
+// User describes a podcast topic. The pipeline collects speaker/genre/length
+// preferences, expands content into a multi-speaker script with emotion and
+// BGM cues, pauses for user review, then orchestrates TTS generation and
+// audio assembly into a final MP3.
+//
+// Tool contract:
+//   podcast_voices    — list available voices (preset + cloned)
+//   podcast_generate  — parse script, generate all TTS segments, concatenate, output MP3
+//   read_file         — read generated script for review
+//   write_file        — save the expanded script to disk
+
+digraph mofa_podcast {
+    graph [label="MoFA Podcast Pipeline", default_model="strong"]
+
+    gather [
+        prompt="You are a podcast production assistant. Collect the following from the user before proceeding. If the user already provided some info in their message, confirm it and ask only for what's missing.\n\n1. **Topic / source content** — What is this podcast about? Accept a topic description, pasted text, or a URL.\n2. **Number of speakers** — 1 to 5. Validate: reject if >5.\n3. **Speaker definitions** — For each speaker, collect:\n   - Character name (e.g. Alice, 小明, Host)\n   - Voice: a built-in preset OR a cloned voice name. Call podcast_voices to show available voices so the user can pick.\n4. **Genre / style** — Suggest options: drama, news, talk-show, interview, storytelling, debate, or let the user describe their own (e.g. '三人闲聊', '科技播客').\n5. **Target length** — How long? e.g. 3min, 5min, 10min, 30min.\n\nOnce all 5 fields are collected, output a structured summary in this exact format:\n\n```config\nTOPIC: <topic or pasted content>\nSPEAKERS: <count>\nSPEAKER_1: <name> | <voice> | <built-in or clone>\nSPEAKER_2: <name> | <voice> | <built-in or clone>\n...\nGENRE: <genre>\nLENGTH: <minutes>min\n```\n\nDo NOT proceed until you have all fields confirmed by the user.",
+        label="Gather",
+        tools="podcast_voices",
+        timeout_secs="120"
+    ]
+
+    script [
+        prompt="You are an expert podcast scriptwriter. You have received a structured config block with topic, speakers, genre, and target length.\n\nYour job: expand the user's topic into a complete, production-ready podcast script in markdown.\n\n## Rules\n\n1. **Word count** — Target ~150 words per minute of podcast. A 10-min podcast ≈ 1500 words of dialogue.\n2. **Speaker lines** — Every dialogue line MUST start with:\n   `[CharacterName - voice_persona, emotion]`\n   - voice_persona: the exact voice name from config (e.g. `vivian`, `ryan`, `clone:sarah`)\n   - emotion: one of: calm, excited, serious, warm, angry, sad, cheerful, dramatic, curious, thoughtful\n3. **BGM cues** — Insert background music markers:\n   `[BGM: description — fade_type, duration]`\n   - Use at: intro, transitions between segments, outro\n   - fade_type: fade-in, fade-out, crossfade\n   - These are placeholders; actual music files are added later\n4. **Pause cues** — Insert `[PAUSE: Ns]` for dramatic pauses (1-3 seconds)\n5. **Structure** — Include a proper arc:\n   - Opening / intro with BGM\n   - Main discussion (2-4 segments)\n   - Transitions between segments\n   - Closing / outro with BGM\n6. **Genre matching** — Match the tone to the genre:\n   - drama: theatrical, emotional beats, tension\n   - news: formal, factual, anchor-style\n   - talk-show: casual, banter, humor\n   - interview: Q&A format, probing questions\n   - storytelling: narrative, descriptive, immersive\n   - debate: opposing viewpoints, structured arguments\n7. **Language** — Match the language of the user's topic. If Chinese topic, write Chinese script. If English, write English.\n\n## Output Format\n\nWrite the script as a markdown file. Start with metadata:\n\n```markdown\n# <Podcast Title>\n\n**Genre**: <genre> | **Duration**: ~<N> min | **Speakers**: <count>\n\n| Character | Voice | Type |\n|-----------|-------|------|\n| <name> | <voice> | <built-in/clone> |\n\n---\n\n[BGM: Upbeat intro music — fade-in, 5s]\n\n[Host - vivian, cheerful] Welcome to ...\n\n...\n```\n\nSave the script using write_file to `skill-output/mofa-podcast/script.md`.\n\nAfter saving, output the FULL script text so the user can review it.",
+        label="Script",
+        tools="write_file",
+        timeout_secs="300"
+    ]
+
+    review [
+        prompt="You are a podcast production coordinator. The script has been generated and shown to the user.\n\nAsk the user: **\"Script is ready for review. Would you like to:**\n1. ✅ **Approve** — proceed to generate audio\n2. ✏️ **Edit** — tell me what to change (speakers, emotions, content, length)\n3. ❌ **Cancel** — stop here\n\nIf the user requests edits:\n- Read the current script with read_file from `skill-output/mofa-podcast/script.md`\n- Make the requested changes\n- Save the updated script with write_file\n- Show the changes and ask for approval again\n\nRepeat until the user approves or cancels.\n\nWhen approved, output exactly: `APPROVED: skill-output/mofa-podcast/script.md`\nWhen cancelled, output exactly: `CANCELLED`",
+        label="Review",
+        tools="read_file,write_file",
+        timeout_secs="300"
+    ]
+
+    produce [
+        prompt="You are a podcast production engineer. The user has approved the script.\n\nYour job: call the podcast_generate tool to produce the final podcast audio.\n\n1. Call podcast_generate with script_path pointing to the approved script file:\n   ```json\n   {\"script_path\": \"skill-output/mofa-podcast/script.md\"}\n   ```\n   Do NOT read the file and pass its content — use script_path instead, it is much more reliable.\n2. The tool will:\n   - Parse all dialogue lines and extract speaker/voice/emotion/text\n   - Generate TTS for each segment (built-in voices first, then cloned)\n   - Concatenate all segments in timeline order with natural pauses\n   - Output a single MP3 file\n3. The tool returns the output file path. Report completion to the user.\n\nIf generation fails for any segment, report which segment failed and why.",
+        label="Produce",
+        tools="podcast_generate,read_file",
+        goal_gate="true",
+        timeout_secs="1800"
+    ]
+
+    gather -> script -> review -> produce
+}

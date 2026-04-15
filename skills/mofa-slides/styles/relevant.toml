@@ -1,0 +1,122 @@
+[meta]
+name = "relevant"
+display_name = "Relevant 睿类文特"
+description = "Ultra-minimal egg-head character, extreme white space, Muji-level restraint"
+category = "brand"
+tags = ["minimal", "character", "bilingual"]
+
+[variants]
+default = "front"
+
+[variants.front]
+prompt = """
+Create a greeting card image. 1080x1920 pixels, 9:16 PORTRAIT format (taller than wide).
+
+This is a greeting card for the brand "Relevant / 睿类文特". The visual identity centers on an ultra-minimal geometric character. Read EVERY detail carefully:
+
+BACKGROUND: Pure white (#FFFFFF) or very faint warm gray (#FAFAFA). Absolutely clean — no gradients, no textures, no patterns. Pristine emptiness. At least 60% of the card should be pure empty background.
+
+THE CHARACTER — "蛋头小人" (Egg-Head Figure):
+- HEAD: A simple gray (#9E9E9E to #BDBDBD) OVAL / EGG shape, slightly taller than wide. Smooth, clean outline, subtle shadow to give gentle 3D volume. Like a real egg — simple, organic, perfect.
+- BODY: A soft peach / flesh-toned (#E8C4B0 to #DEB59B) TRIANGULAR or rounded-triangle shape directly below the head. Like a simplified torso/body — wider at the bottom, narrower at the top where it meets the head. Smooth, soft edges, not sharp geometric.
+- NO FACE: Absolutely NO eyes, NO mouth, NO nose, NO eyebrows, NO facial features of any kind. The head is a blank egg. This is CRITICAL — the character's emotion is expressed ENTIRELY through body posture, tilt of the head, and accessories/props.
+- SIZE: The character should be prominent but not overwhelming — about 30-40% of the card height.
+- POSTURE can convey emotion: head tilted slightly = curiosity or warmth; leaning forward = eagerness; standing straight = calm confidence; two characters side by side (one larger, one smaller) = parent and child.
+
+ACCESSORIES & FESTIVE ELEMENTS (the ONE pop of color):
+- The character can wear or hold ONE simple accessory that provides the card's emotional context and its ONLY strong color accent.
+- For New Year: a small red (#D4382C) scarf, or holding a tiny red lantern, or a single red flower tucked beside the body, or a small red envelope.
+- The accessory should be as geometrically simple as the character itself — a scarf is just a flowing shape, a lantern is a simple oval with a line.
+- This single color accent against the gray + peach + white is what creates visual impact. Maximum 5-8% of the card area.
+
+TYPOGRAPHY: Clean modern sans-serif font (Helvetica Neue, Inter, or Noto Sans SC for Chinese).
+- Main text: warm charcoal (#333333), medium weight, 28-36pt equivalent. Positioned below or beside the character with generous spacing.
+- Secondary text: light gray (#999999), light weight, smaller.
+- Text should be SHORT — one sentence, warm and conversational.
+- Can mix Chinese and English naturally if appropriate (the brand is bilingual).
+
+COMPOSITION: Centered or slightly off-center. The character floats in white space. Text below. Everything breathes. Mathematical precision in spacing — every millimeter is intentional. Think: Muji catalog meets character design.
+
+CRITICAL: This must feel like a premium brand's holiday card — the kind of card that a design studio sends to clients. The simplicity is the luxury. The faceless character makes the viewer project their own emotions. Less is everything.
+
+"""
+
+[variants.greeting]
+prompt = """
+Create a greeting card image. 1080x1920 pixels, 9:16 PORTRAIT format (taller than wide).
+
+This is a TEXT-FOCUSED greeting card for "Relevant / 睿类文特". The egg-head character appears as a small accent.
+
+BACKGROUND: Pure white (#FFFFFF). Nothing else. Clean.
+
+THE CHARACTER — small accent version:
+- A SMALL egg-head figure (gray oval head + peach body) at the top or bottom of the card, occupying only 15-20% of card height.
+- NO facial features. Maybe wearing one tiny festive accessory (red scarf, small flower).
+- Can be in a gentle pose: slightly tilted head, or two small figures side by side.
+
+TYPOGRAPHY (the hero):
+- Main greeting text: warm charcoal (#333333), clean sans-serif font, large and prominent. 36-48pt equivalent.
+- The text is warm, conversational, short. 1-3 lines maximum.
+- Secondary text or brand mark: light gray (#999999), smaller.
+- Text is the MAIN FOCUS of this card. Centered, with generous line spacing.
+
+COMPOSITION: Text-dominant. Small character as visual anchor. Massive white space. The card should feel like it has MORE empty space than content — that's the point.
+
+CRITICAL: The text carries the emotion. The character provides brand identity. The white space provides elegance. Nothing competes for attention.
+
+"""
+
+[variants.scene]
+prompt = """
+Create a greeting card image. 1080x1920 pixels, 9:16 PORTRAIT format (taller than wide).
+
+This is a SCENIC greeting card for "Relevant / 睿类文特" where the egg-head character is placed in a minimal environment.
+
+BACKGROUND: Pure white (#FFFFFF) or very faint warm gray. The "scene" is created with MINIMAL elements — not a full illustrated environment.
+
+THE CHARACTER in a scene:
+- The egg-head figure (gray oval head + peach body, NO facial features) is the focal point.
+- The "scene" is suggested with just 1-2 additional minimal elements:
+  - A simple geometric ground line or shadow
+  - ONE nature element: a single branch with a few red berries, a minimal tree silhouette, falling petals (just 3-5 simple shapes), a crescent moon (simple arc)
+  - Snow: a few simple white/light gray circles on the ground
+- The scene elements use the same ultra-minimal geometric language as the character — simple shapes, clean edges, flat or very subtly shaded.
+- Color palette: gray + peach (character) + ONE accent color (red #D4382C for New Year, or soft green, or golden). The accent appears in both the character's accessory AND the scene element.
+- 50%+ white space. The scene is SUGGESTED, not fully rendered.
+
+TYPOGRAPHY: Minimal text — 2-6 characters or a short phrase. Clean sans-serif. Warm charcoal color. Placed unobtrusively.
+
+COMPOSITION: The character is small in the scene (about 20-25% of card height), giving a sense of quiet solitude in a vast white space. The scene element provides context. Together they tell a small, quiet story.
+
+CRITICAL: This is poetic minimalism — a haiku in visual form. The egg-head character standing alone under a branch with red berries, in a sea of white, says more than a full illustration ever could. Restraint is the entire point.
+
+"""
+
+[variants.festive]
+prompt = """
+Create a greeting card image. 1080x1920 pixels, 9:16 PORTRAIT format (taller than wide).
+
+This is a FESTIVE greeting card for "Relevant / 睿类文特" — bold Chinese New Year style with strong color.
+
+BACKGROUND: Rich Chinese red (#B22222), solid flat fill. NO gradients, NO textures, NO patterns. Pure, solid, dignified red.
+
+DO NOT draw the egg-head character or any human/character figures. The brand logo will be composited separately in post-production.
+
+TYPOGRAPHY (the hero — center stage):
+- Main greeting: LARGE bold golden yellow (#FFD700) text, clean modern sans-serif font (Noto Sans SC or similar). 48-72pt equivalent. This is the visual focal point of the entire card.
+- Secondary text: slightly muted gold (#DAA520), smaller weight.
+- Text placed at the vertical CENTER of the card (the C position). Centered horizontally.
+- ALL TEXT IN CHINESE ONLY.
+
+DECORATIVE ELEMENTS (1-2 only, high contrast):
+- Use elements that create STRONG contrast against the red + gold: white (#FFFFFF), deep green (#1B5E20), or black.
+- Elements enter from the edges of the card (like Chinese painting composition) — branches, leaves, flowers growing in from corners.
+- Each element is small, occupying less than 10% of the card area. Ultra-minimal 2D flat geometric style.
+- Possible elements: white plum blossoms on a branch, dark green bamboo leaves, white pine needles, a tiny white geometric bird.
+
+COMPOSITION: Text dominates the center. Decorative elements at corners/edges create visual frame. Logo area at the bottom center must be left clear. Bold, festive, but still restrained and elegant — luxury Chinese New Year card, not a supermarket flyer.
+
+CRITICAL: The red is confident. The gold is luminous. The white/green accents are precise. This is Relevant's festive face — the same design intelligence applied to celebration. Less is still more, even in red and gold.
+
+"""
+

@@ -1,0 +1,19 @@
+{
+  "name": "mofa",
+  "version": "0.1.1",
+  "tools": [],
+  "binaries": {
+    "darwin-aarch64": {
+      "url": "https://github.com/mofa-org/mofa-skills/releases/download/v1.0.1/mofa-darwin-aarch64.tar.gz"
+    },
+    "darwin-x86_64": {
+      "url": "https://github.com/mofa-org/mofa-skills/releases/download/v1.0.1/mofa-darwin-x86_64.tar.gz"
+    },
+    "linux-x86_64": {
+      "url": "https://github.com/mofa-org/mofa-skills/releases/download/v1.0.1/mofa-linux-x86_64.tar.gz"
+    },
+    "windows-x86_64": {
+      "url": "https://github.com/mofa-org/mofa-skills/releases/download/v1.0.1/mofa-windows-x86_64.tar.gz"
+    }
+  }
+}

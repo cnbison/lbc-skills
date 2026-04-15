@@ -1,0 +1,127 @@
+[meta]
+name = "eu-wireframe"
+display_name = "EU Wireframe"
+description = "Clean white background, EU blue and red dual accents, large wireframe line-art illustrations, institutional premium"
+category = "institutional"
+tags = ["EU", "wireframe", "blue", "institutional", "European"]
+
+[variants]
+default = "normal"
+
+[variants.normal]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Clean white to very light warm gray gradient. Professional, institutional, premium. Subtle watermark: faint geometric pattern inspired by European architecture (Bauhaus clean lines, Dutch De Stijl grid) at 3-5% opacity.
+
+TYPOGRAPHY RULES:
+- Use Manrope font (geometric, modern, rounded sans-serif)
+- Slide titles: bold, large, deep dark blue-gray, top-left aligned
+- Section headers: bold, medium size, deep blue (#003399)
+- Body text: light weight, medium gray, left-aligned
+- Large stat numbers: geometric sans-serif bold, very large, EU blue (#003399) or accent red (#C7000B)
+- ALL TEXT IN ENGLISH.
+
+CRITICAL — NO PROMPT LEAK:
+- NEVER render formatting instructions as visible text
+- NEVER show font sizes, hex codes, pixel dimensions, or CSS-like notation on the slide
+- If you see instructions like "bold" or "blue accent", apply them visually — do NOT print them as text
+- NO PAGE NUMBERS anywhere on the slide
+
+ILLUSTRATION STYLE:
+Every slide MUST have LARGE, DETAILED WIREFRAME illustrations:
+- WIREFRAME LINE ART style — clean outlines, no solid fills, no photo-realism
+- Line color: deep blue-gray to warm charcoal, line weight about 1.5-2px
+- TWO ACCENT COLORS: EU blue (#003399) highlights on European/global elements, red (#C7000B) highlights on tech/engine elements
+- Illustrations should be LARGE SCENE COMPOSITIONS occupying about 35-40% of the slide
+- Mix of tech elements (circuit traces, server racks, API nodes) and cultural elements (European landmarks as abstract wireframes, clean architectural geometry)
+- Clean, premium, institutional — like an EU Commission tech report
+- NO solid color fills, NO gradients on illustrations — pure line art with blue and red accents
+
+LAYOUT:
+- Cards: white background, thin left border in EU blue or red, completely FLAT — no shadow, no rounded corners
+- Tables: clean borders, alternating white/very-light-blue rows, EU blue header row
+- 0.5 inch minimum margins. Clean spacing.
+- Dual-accent aesthetic: red for tech/engine, blue for strategy/Europe.
+
+"""
+
+[variants.cover]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Rich gradient from deep EU blue (#003399) at top to warm dark blue-charcoal at bottom. Premium, confident, international.
+
+TYPOGRAPHY RULES:
+- Use Manrope (geometric rounded sans-serif)
+- Title: very large, bold, pure white, center-aligned
+- Subtitle: medium size, light weight, warm gold (#D4A843) color
+- ALL TEXT IN ENGLISH.
+
+CRITICAL — NO PROMPT LEAK:
+- NEVER render formatting instructions as visible text on the slide
+- NO PAGE NUMBERS
+
+ILLUSTRATION STYLE:
+- LARGE detailed WIREFRAME illustration at 15-20% opacity as atmospheric background
+- Abstract bridge or arch silhouette as central motif — geometric, not realistic
+- Interconnected network nodes flowing across the structure
+- EU blue accent on one side, red accent on the other — bridging two worlds
+- European architectural wireframe hints (arches, clean geometry) blended with tech elements
+- Elegant, bold, international
+
+"""
+
+[variants.data]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Very light warm gray to white. Clean, corporate, institutional.
+
+TYPOGRAPHY RULES:
+- Use Manrope (geometric rounded sans-serif)
+- Title: bold, large, deep blue-gray, top-left aligned
+- Table headers: bold, white text on EU blue (#003399) background
+- Table body: light weight, medium gray
+- Stat numbers: geometric sans-serif bold, very large, EU blue or accent red (#C7000B)
+- ALL TEXT IN ENGLISH.
+
+CRITICAL — NO PROMPT LEAK:
+- NEVER render formatting instructions as visible text
+- NEVER show font sizes, hex codes, pixel dimensions
+- NO PAGE NUMBERS
+
+DATA DISPLAY:
+- Tables: clean borders, alternating white/light blue rows, EU BLUE header row (not red)
+- Stat callouts: large numbers with small labels below
+- Cards with thin EU blue or red left border, completely FLAT
+- Comparison: tech items in red accent, strategy items in blue accent
+
+ILLUSTRATION STYLE:
+Even data slides need PROMINENT WIREFRAME illustrations — tech diagrams with blue and red dual accents.
+
+"""
+
+[variants.section]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Soft gradient from EU blue (#003399) to lighter azure blue (#4A90D9). NOT dark/black — bright, confident European blue. Like looking at a clear Mediterranean sky.
+
+TYPOGRAPHY RULES:
+- Part number: medium size, warm gold (#D4A843) color, above the title
+- Section title: very large, bold, pure white
+- Section subtitle: medium, lighter weight, semi-transparent white
+- ALL TEXT IN ENGLISH.
+
+CRITICAL — NO PROMPT LEAK:
+- NEVER render formatting instructions as visible text
+- NO PAGE NUMBERS
+
+ILLUSTRATION STYLE:
+- Abstract wireframe scene at 10-15% opacity — blend of European architectural elements (EU star ring, clean Bauhaus geometry) and tech nodes
+- Warm gold accent stars or nodes scattered
+- Bright, optimistic, international — NOT dark, NOT moody
+- Clean, blue, forward-looking
+
+"""

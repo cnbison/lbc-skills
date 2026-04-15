@@ -1,0 +1,117 @@
+[meta]
+name = "gobi"
+display_name = "GOBI Conference"
+description = "Azure-gold-aqua tech conference palette, Manrope headings, lavender gradient overlays, beijing2025 style"
+category = "conference"
+tags = ["conference", "tech", "open-source", "community"]
+
+[variants]
+default = "normal"
+
+[variants.cover]
+prompt = """
+Create a presentation slide image. 3840x2160 pixels, 16:9 landscape format. HIGH RESOLUTION 4K.
+
+BACKGROUND: Deep charcoal (#1C1D24) with a subtle diagonal gradient overlay of soft lavender (rgba(209,178,251,0.35)) blending across the surface — ethereal, conference stage feel. Very subtle geometric pattern of thin connected lines and nodes in muted blue (#2B74FF at 10% opacity) suggesting a tech network.
+
+TYPOGRAPHY:
+- English text: Manrope font (geometric modern sans-serif), font-weight 600-700
+- Chinese text: Source Han Serif CN (elegant Chinese serif)
+- Title: LARGE, centered vertically and horizontally, color white (#FFFFFF), 72-80pt, font-weight 700, letter-spacing tight
+- Subtitle/tagline: Below title, color rgba(255,255,255,0.82), 28-32pt, font-weight 400
+- Date/location line: Small capsule or line below subtitle, color rgba(255,255,255,0.9), font-weight 600, letter-spacing 0.05em
+- ALL TEXT must be PIXEL-PERFECT and exactly as specified
+
+DESIGN ELEMENTS:
+- A subtle gradient sweep from azure blue (#2B74FF at 20%) on the left to aqua green (#00C896 at 15%) on the right, very low opacity, blended into the dark background
+- Thin accent line or dot cluster in osmanthus gold (#FFC640) as a small decorative element near the title — NOT overwhelming
+- Clean, premium, dark-stage conference aesthetic — think Apple keynote meets open-source summit
+- NO logos, NO photos, NO 3D elements, NO busy patterns
+- Generous whitespace, strong visual hierarchy
+
+"""
+
+[variants.normal]
+prompt = """
+Create a presentation slide image. 3840x2160 pixels, 16:9 landscape format. HIGH RESOLUTION 4K.
+
+BACKGROUND: Very light ice-blue (#EFF5FF) to pale blue-white (#F1F6FF) subtle radial gradient. Clean, airy, modern conference style.
+
+TYPOGRAPHY:
+- English text: Manrope font (geometric modern sans-serif)
+- Chinese text: Source Han Serif CN (elegant Chinese serif)
+- Title: Dark charcoal (#1C1D24), font-weight 700, 36-40pt
+- Section headers: Dark charcoal (#1C1D24), font-weight 600, 24-28pt
+- Body text: Muted charcoal (rgba(28,29,36,0.75)), font-weight 400, 16-18pt, line-height 1.5
+- Accent numbers/stats: Azure blue (#2B74FF), font-weight 700
+- ALL TEXT must be PIXEL-PERFECT and exactly as specified
+
+DESIGN SYSTEM:
+- Primary accent: Azure blue (#2B74FF) for highlights, key numbers, active elements, underlines
+- Secondary accent: Osmanthus gold (#FFC640) for badges, callouts, or secondary emphasis
+- Tertiary accent: Aqua green (#00C896) for positive indicators, success states, or chart elements
+- Cards/panels: White (#FFFFFF) fill with very thin 1px border in soft blue-gray (#E5ECF7), rounded 12px corners. NO drop shadows.
+- Decorative: Very subtle thin-line geometric patterns (connected nodes, small circles) in cool gray (#C4CFDC) at 30% opacity, placed in margins/corners only — never distracting
+- Button/CTA style elements: Rounded pill shape with gradient fill from azure (#2B74FF) to aqua (#00C896)
+- Stat/KPI numbers: Large bold azure (#2B74FF), with small muted label text below
+- Generous whitespace, institutional authority, modern tech conference feel
+- NO logos, NO photos, NO 3D elements, NO heavy shadows
+
+"""
+
+[variants.data]
+prompt = """
+Create a presentation slide image. 3840x2160 pixels, 16:9 landscape format. HIGH RESOLUTION 4K.
+
+BACKGROUND: Pale blue-white (#F1F6FF) clean and minimal.
+
+TYPOGRAPHY:
+- English text: Manrope font (geometric modern sans-serif)
+- Chinese text: Source Han Serif CN (elegant Chinese serif)
+- Title: Dark charcoal (#1C1D24), font-weight 700, 36-40pt
+- Data labels: Muted charcoal (rgba(28,29,36,0.75)), font-weight 400
+- Key numbers: Azure blue (#2B74FF), font-weight 700, LARGE (48-64pt)
+- ALL TEXT must be PIXEL-PERFECT and exactly as specified
+
+DATA VISUALIZATION PALETTE (use these colors in order for charts, graphs, and data elements):
+1. Azure blue (#2B74FF) — primary data color
+2. Aqua green (#00C896) — secondary data color
+3. Osmanthus gold (#FFC640) — tertiary data color
+4. Sky glow blue (#8BD2FF) — quaternary data color
+5. Soft lavender (#B2AEDF) — quinary data color
+
+DESIGN RULES:
+- Charts use clean flat colors from the palette above, NO gradients on data elements
+- Thin 1px grid lines in (#E5ECF7), NO heavy borders
+- Cards: White fill, 1px (#E5ECF7) border, 12px rounded corners
+- Table headers: Light beige-blue (#E5ECF7) background with dark text
+- Clean vector-style data visualization — think Deloitte or McKinsey annual report
+- Generous margins (80px+), content should breathe
+- NO 3D charts, NO drop shadows, NO decorative clutter
+
+"""
+
+[variants.warm]
+prompt = """
+Create a presentation slide image. 3840x2160 pixels, 16:9 landscape format. HIGH RESOLUTION 4K.
+
+BACKGROUND: Dark charcoal (#1C1D24) — rich, cinematic, conference keynote atmosphere.
+
+TYPOGRAPHY:
+- English text: Manrope font (geometric modern sans-serif)
+- Chinese text: Source Han Serif CN (elegant Chinese serif)
+- Title: White (#FFFFFF), font-weight 700, 40-48pt
+- Body text: Soft white (rgba(255,255,255,0.82)), font-weight 400, 18-20pt
+- Accent text: Osmanthus gold (#FFC640) for key phrases or callouts
+- ALL TEXT must be PIXEL-PERFECT and exactly as specified
+
+DESIGN ELEMENTS:
+- Accent gradient: Subtle diagonal sweep from azure (#2B74FF at 15%) to aqua (#00C896 at 10%) in one corner
+- Gold (#FFC640) used sparingly for emphasis — a thin underline, a badge, a highlighted word
+- Cards on dark: Semi-transparent white (rgba(255,255,255,0.05)) fill with thin border (rgba(255,255,255,0.15)), 12px rounded
+- Decorative: Very subtle constellation-like dot pattern in sky blue (#8BD2FF at 15%) in background margins
+- Premium dark-mode conference aesthetic — authoritative, forward-looking
+- NO logos, NO photos, NO 3D elements
+- Generous whitespace even on dark backgrounds
+
+"""

@@ -1,0 +1,60 @@
+digraph FmArchitecture {
+    graph [label="MoFA FM Voice Skill Architecture", fontsize=14, fontname="Helvetica"]
+    node [shape=box, fontname="Helvetica", fontsize=10]
+    edge [fontname="Helvetica", fontsize=9]
+
+    // Entry
+    User [label="User Request\n(TTS / Clone)", shape=ellipse, fillcolor=lightblue, style=filled]
+    Entry [label="Entry Agent\n• Select voice\n• Choose language", fillcolor=lightyellow, style=filled]
+
+    // Voice Selection
+    VoiceType [label="Voice Type", shape=diamond, fillcolor=lightyellow, style=filled]
+    Preset [label="Preset Voices\n(vivian, ryan, serena...)", fillcolor=lightgreen, style=filled]
+    Custom [label="Custom Voice\nUser upload 3-10s", fillcolor=lightgreen, style=filled]
+
+    // Voice Management
+    SaveVoice [label="Save Voice\nfm_voice_save", fillcolor=lightyellow, style=filled]
+    ListVoice [label="List Voices\nfm_voice_list", fillcolor=lightyellow, style=filled]
+    DeleteVoice [label="Delete Voice\nfm_voice_delete", fillcolor=lightyellow, style=filled]
+
+    // TTS Engine
+    TTS [label="TTS Engine\nfm_tts", fillcolor=lightcyan, style=filled]
+
+    // OminiX API
+    Ominix [label="OminiX-MLX API\nApple Silicon", shape=cylinder, fillcolor=lightcyan, style=filled]
+
+    // Endpoints
+    PresetEndpoint [label="POST /v1/audio/speech\n(CustomVoice model)", fillcolor=lightgreen, style=filled]
+    CloneEndpoint [label="POST /v1/audio/speech/clone\n(Base + ECAPA-TDNN)", fillcolor=lightgreen, style=filled]
+
+    // Output
+    Output [label="WAV Audio\n(16-bit PCM, 24kHz)", shape=ellipse, fillcolor=lightblue, style=filled]
+
+    // Config
+    Config [label="OMINIX_API_URL\nlocalhost:8080", shape=note, fillcolor=lightgray, style=filled]
+
+    // Edges
+    User -> Entry
+    Entry -> VoiceType
+
+    VoiceType -> Preset [label="preset"]
+    VoiceType -> Custom [label="custom"]
+
+    Custom -> SaveVoice
+    SaveVoice -> ListVoice [style=dashed]
+    ListVoice -> DeleteVoice [style=dashed]
+
+    Preset -> TTS
+    Custom -> TTS
+    ListVoice -> TTS
+
+    TTS -> Ominix
+
+    Ominix -> PresetEndpoint [label="preset"]
+    Ominix -> CloneEndpoint [label="custom"]
+
+    PresetEndpoint -> Output
+    CloneEndpoint -> Output
+
+    Ominix -> Config [style=dashed, color=gray]
+}

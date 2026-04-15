@@ -1,0 +1,16 @@
+[package]
+name = "mofa-podcast"
+version = "0.4.5"
+edition = "2021"
+description = "Multi-speaker podcast generation with TTS voice synthesis and audio assembly"
+authors = ["hagency"]
+
+[[bin]]
+name = "mofa-podcast"
+path = "src/main.rs"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+reqwest = { version = "0.12", features = ["blocking", "rustls-tls", "json", "multipart"], default-features = false }
+regex = "1"

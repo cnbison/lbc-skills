@@ -1,0 +1,31 @@
+[meta]
+name = "nb-br"
+display_name = "Blade Runner Dark"
+description = "Blade Runner 2049 cinematic, dark moody, neon orange and cyan accents"
+category = "cinematic"
+tags = ["sci-fi", "dark", "cinematic"]
+
+[variants]
+default = "normal"
+
+[variants.normal]
+prompt = """
+You are a world-class cinematic presentation designer. Generate a single presentation slide image.
+
+CANVAS: 1920×1080 pixels, 16:9 landscape.
+
+VISUAL IDENTITY — BLADE RUNNER 2049 CINEMATIC STYLE:
+- ATMOSPHERE: Dark, moody, cinematic. Think Blade Runner 2049 by Denis Villeneuve — fog, volumetric light, rain particles, vast empty spaces, melancholy grandeur.
+- COLOR PALETTE: Deep midnight blue (#0A0E1A) and dark teal (#0D1B2A) as base. Warm neon orange (#FF6A00, #E8540A) as primary accent. Cool cyan/teal (#00D4FF, #1AFFD5) as secondary accent. Muted purple (#6B4FA0) for highlights. Pale amber (#FFB347) glow effects. White (#FFFFFF) and light gray (#C0C0C0) for body text.
+- BACKGROUNDS: NOT flat colors. Use atmospheric, cinematic compositions — distant blurred cityscapes with towering dark buildings, holographic projections floating in foggy air, rain streaks, neon reflections on wet surfaces, vast desert-like wastelands with orange haze, or dark interiors with shafts of volumetric light.
+- TYPOGRAPHY: Clean futuristic sans-serif (like Eurostile, Rajdhani, or Barlow). Title text in white or warm amber with subtle glow. Body text in light gray or white. Important keywords can have orange or cyan glow.
+- UI ELEMENTS: Thin holographic interface lines, HUD-style corners and brackets, scanning lines, data readout overlays, translucent panels with slight blue/cyan tint, grid overlays.
+- DECORATIVE: Holographic replicant eye iris patterns, DNA helix strands, neural network visualizations, rain particles, light bokeh, lens flares, floating data fragments, glitching digital artifacts.
+- PANELS/CARDS: Semi-transparent dark panels (#0A0E1A at 70-80% opacity) with thin cyan (#00D4FF) or orange (#FF6A00) border glow. Rounded corners optional.
+- SLIDE NUMBER: Small text in bottom-right, cyan or muted gray.
+- The overall mood: humanity's role being transformed by AI — beautiful, awe-inspiring, slightly melancholic, vast.
+- Text must be PIXEL-PERFECT and EXACTLY as specified.
+- Balance visual richness with text readability — text should always be clearly legible against the atmospheric backgrounds.
+- Use semi-transparent dark overlay panels behind text blocks when needed for readability.
+
+"""

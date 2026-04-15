@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "name": "mofa-fm-api-docs",
+  "routes": [
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}

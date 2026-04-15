@@ -1,0 +1,116 @@
+[meta]
+name = "lingnan"
+display_name = "岭南画派 (Lingnan School)"
+description = "Vibrant watercolor washes, flowers and birds, bold freehand brushwork, warm subtropical colors — the Lingnan school of Chinese painting"
+category = "artistic"
+tags = ["chinese", "lingnan", "watercolor", "岭南", "国画", "花鸟"]
+
+[variants]
+default = "normal"
+
+[variants.normal]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+ARTISTIC IDENTITY — LINGNAN SCHOOL (岭南画派) PAINTING STYLE:
+The Lingnan school is known for combining Chinese ink tradition with Western watercolor vibrancy. Bold, colorful, alive with the lush energy of subtropical South China.
+
+BACKGROUND: Warm ivory-cream (#F5F0E5) resembling fine rice paper, with a subtle warm undertone. NOT cold white.
+
+ILLUSTRATION STYLE (CRITICAL):
+- VIBRANT WATERCOLOR WASHES — the hallmark of Lingnan painting. Rich, saturated but not garish:
+  * Deep vermillion red (#CC3333, #D4443C) for flowers, accents
+  * Lush jade green (#3A7D44, #5BA068) for leaves and foliage
+  * Warm golden yellow (#D4A029, #C9922E) for sunlit elements
+  * Soft indigo (#4A5D8A) and ink black (#1A1A1A) for branches and structure
+  * Pale washes of pink (#F0C5C5), light green (#C8DFC5), soft blue (#C5D5E8) for backgrounds
+- SUBJECTS: Flowers (木棉花 kapok, 荔枝 lychee, 三角梅 bougainvillea, 兰花 orchid), birds (白鹭 egret, 翠鸟 kingfisher, 画眉 hwamei), tropical plants, banana leaves, bamboo, goldfish
+- BRUSHWORK: Bold and expressive — large sweeping wet-on-wet washes for leaves and petals, with precise dark ink lines for branches and details. The interplay of 工笔 (fine brush) detail and 写意 (freehand) expression
+- Ink splatter and controlled bleed at wash edges — shows the living quality of watercolor on paper
+- Small red seal stamp (印章) in vermillion (#C23B22)
+
+TYPOGRAPHY:
+- Chinese text in Kai/Song style — classical but clear
+- English text in clean serif (Georgia, Garamond)
+- Title: deep ink black (#1A1A1A) or dark vermillion (#8B1A1A), confident and bold
+- Body text: warm charcoal (#3D3530)
+- Text should complement the painting, not fight it — placed in clear areas
+
+LAYOUT:
+- Asymmetric composition following Chinese painting principles
+- Illustration elements flow from edges INWARD — a branch of kapok flowers sweeping in from the top-right corner, leaves draping from the left edge
+- Content area in the center-left is kept clear for text
+- The painting elements frame the content rather than sitting in boxes
+
+MOOD: Lush, warm, alive — the subtropical vitality of Guangdong. Bold yet elegant, vibrant yet refined.
+
+"""
+
+[variants.cover]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+ARTISTIC IDENTITY — LINGNAN SCHOOL COVER SLIDE:
+A dramatic, immersive painting composition.
+
+BACKGROUND: Warm rice paper (#F5F0E5) with a large-scale Lingnan-style watercolor painting spanning most of the slide.
+
+COMPOSITION: A bold Lingnan painting dominates — perhaps:
+- A branch of blooming kapok flowers (木棉) with an egret (白鹭) perched, against a misty mountain backdrop
+- Lychee branches heavy with fruit, a kingfisher diving
+- Tropical banana leaves with morning dew, bougainvillea cascading
+
+The painting uses the full Lingnan palette: rich reds, jade greens, golden yellows, deep ink blacks. Bold wet-on-wet washes create atmosphere. Fine ink lines define structure.
+
+TITLE AREA: Left or bottom portion kept clearer for text. Title in dark ink or deep red, large and commanding. Subtitle in warm charcoal.
+
+Red seal stamp near the painting signature area.
+
+MOOD: Like walking into a gallery of Lingnan masters — Gao Jianfu (高剑父), Zhao Shao'ang (赵少昂). Bold, colorful, alive.
+
+"""
+
+[variants.data]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+ARTISTIC IDENTITY — LINGNAN SCHOOL DATA SLIDE:
+Data-focused slide that maintains the Lingnan vitality.
+
+BACKGROUND: Warm rice paper (#F5F0E5), clean.
+
+DATA PRESENTATION:
+- Tables and charts use ink brush lines as borders — slightly organic, hand-painted feel
+- Section headers accented with small watercolor wash strokes — a red wash above key headers, green wash highlighting important columns
+- Data text in warm charcoal (#3D3530), headers in deep ink black
+- Key metrics can be highlighted with a vermillion red (#CC3333) watercolor circle or underline wash
+
+DECORATIVE ELEMENTS (RESTRAINED):
+- One corner or edge has a small Lingnan-style element: a spray of orchid leaves, a small bird, a few bamboo stalks
+- Thin watercolor wash border along one edge — a gradient from jade green to golden yellow
+- These elements are SMALL (occupying <15% of slide) and do NOT overlap data
+
+Red seal stamp in corner.
+
+PRIORITY: Data clarity first. The Lingnan character comes through in the warm color palette, brush-stroke borders, and small corner illustrations.
+
+"""
+
+[variants.warm]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+ARTISTIC IDENTITY — LINGNAN SCHOOL WARM VARIANT:
+A softer, more atmospheric version with emphasis on watercolor wash backgrounds.
+
+BACKGROUND: Instead of plain paper, use a LARGE SOFT WATERCOLOR WASH as the background — pale golden (#F5E6C8) blending into soft pink (#F5D5D0) and cream. Like a Lingnan landscape painting viewed through morning mist. Very light, atmospheric, dreamy.
+
+ILLUSTRATION: Faint ink outlines of Lingnan subjects (flowers, birds, architecture) emerge from the wash — like a painting just beginning to form. NOT fully detailed — more suggestive, atmospheric.
+
+CONTENT AREAS: White or near-white translucent panels (#FFFFFF at 85% opacity) float over the watercolor wash, containing text and diagrams. Panels have thin ink-brush borders.
+
+TYPOGRAPHY: Same as normal variant — classical Chinese fonts, serif English, warm charcoal text.
+
+MOOD: Dreamy, poetic — like looking at Guangzhou through the morning mist rising from the Pearl River.
+
+"""

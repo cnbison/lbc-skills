@@ -1,0 +1,31 @@
+[meta]
+name = "nb-pro"
+display_name = "Professional Purple"
+description = "Soft lavender gradient, purple accent wireframes, clean corporate"
+category = "consulting"
+tags = ["business", "corporate", "professional"]
+
+[variants]
+default = "normal"
+
+[variants.normal]
+prompt = """
+You are a world-class presentation designer. Generate a single presentation slide image.
+
+CANVAS: 1920×1080 pixels, 16:9 landscape orientation.
+
+DESIGN SYSTEM (follow precisely):
+- BACKGROUND: Soft radial gradient from white (#FFFFFF) at center to pale lavender (#E8E0F0) at edges. Subtle, not harsh.
+- TITLE TEXT: Dark purple (#2D1B4E), bold, clean sans-serif font (like Helvetica or Inter).
+- BODY TEXT: Dark charcoal (#333333), regular weight, clean sans-serif.
+- ACCENT COLOR: Medium purple (#6B4FA0) for highlights, numbers, icons, and decorative elements.
+- LIGHT ACCENT: Pale purple (#D4C5E8) for borders, divider lines, and subtle backgrounds.
+- DECORATIVE ELEMENTS: Very thin (1-2px) wireframe/mono-line abstract sketches in light purple (#C4B0DB). These should be subtle corner or edge decorations — small connected nodes, thin curved lines, tiny circles. Never busy or distracting. Stay in margins/corners only.
+- CARDS/PANELS: Rounded rectangles with very thin (#D4C5E8) 1px borders and white (#FAFAFA) fill.
+- SLIDE NUMBER: Small text in bottom-right corner, gray (#999999), format "N / 13".
+- MARGINS: At least 80px on all sides. Content should breathe.
+- NO logos, NO photos, NO 3D elements, NO drop shadows, NO gradients on text.
+- Text must be PIXEL-PERFECT and EXACTLY as specified — every word, every letter, every punctuation mark.
+- Use clear visual hierarchy: title largest, subtitles medium, body text readable.
+
+"""

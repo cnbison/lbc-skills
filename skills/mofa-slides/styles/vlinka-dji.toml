@@ -1,0 +1,120 @@
+[meta]
+name = "vlinka-dji"
+display_name = "VLINKA DJI"
+description = "Dark cinematic, gradient grays, dramatic product lighting, cyan accents"
+category = "product"
+tags = ["product", "DJI", "cinematic", "dark"]
+
+[variants]
+default = "feature"
+normal = "feature"  # alias
+
+[variants.cover]
+prompt = """
+Create a presentation slide image. 1920x1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Rich gradient from dark charcoal (#1A1A1E) at top to medium-dark gray (#2A2A30) at bottom, with a subtle warm-cool shift — slightly cooler (blue-gray) at the top, slightly warmer at bottom. NOT flat black. Think DJI Mavic 3 product page — sophisticated dark grays with depth and dimension. Subtle radial light bloom in center-right area.
+
+TYPOGRAPHY: Clean modern sans-serif font (like Inter or SF Pro Display). ALL text in white (#FFFFFF) or light gray (#B0B8C4). Accent text and key numbers in electric cyan (#00D4FF). Text should be minimal and impactful — think DJI product launch keynote. NO page numbers or slide counts.
+
+PRODUCT RENDERING (if reference image provided):
+- Re-render the product from the reference image with DRAMATIC STUDIO LIGHTING
+- Strong cyan/blue rim light from behind, creating a glowing edge outline
+- Soft key light from top-left revealing surface detail
+- Product floating with a subtle reflection on a dark glossy surface below
+- Cinematic depth of field — product sharp, background atmospheric gradient
+- Keep the product's EXACT form factor, proportions, and design details faithful to the reference
+- The product should look like a premium consumer electronics hero shot
+
+ATMOSPHERE: Subtle lens flare or light leak in cyan. Faint particle effects or light rays. Premium, cinematic, high-tech. Think DJI Mavic product page. DO NOT include any page numbers or slide numbers.
+
+LAYOUT: Generous negative space. Do NOT fill the entire slide. Let the product and text breathe. Apple Keynote level spacing.
+
+"""
+
+[variants.hero]
+prompt = """
+Create a presentation slide image. 1920x1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Smooth gradient from dark charcoal (#18181C) top-left to medium-dark gray (#282830) bottom-right. Subtle directional lighting — a soft gradient bloom behind the product area. NOT flat/pure black — use layered dark grays with depth. Like DJI's product pages.
+
+TYPOGRAPHY: Clean modern sans-serif (Inter/SF Pro style). White (#FFFFFF) for headlines, light gray (#8892A0) for body text. Key specs and numbers in electric cyan (#00D4FF). VERY minimal text — max 2-3 lines. Large, bold headline. DJI product launch aesthetic. NO page numbers.
+
+PRODUCT RENDERING (if reference image provided):
+- Place the product from the reference image as the HERO — large, commanding, in the right 60% of the slide
+- DRAMATIC rim lighting: strong cyan (#00D4FF) edge light from behind/side creating a glowing silhouette effect
+- Soft diffused key light revealing surface texture and details
+- Subtle reflection on glossy dark surface below the product
+- Keep ALL product details exactly as shown in reference — form factor, buttons, grilles, logos, colors
+- Professional product photography quality — like a DJI or Apple product page hero shot
+
+TEXT PLACEMENT: Left 35% of slide. Headline top-left, aligned left. Body text below in smaller size. Clean vertical alignment.
+
+ATMOSPHERE: Subtle cyan glow emanating from product. Faint light particles. Premium, clean, cinematic. NO slide numbers anywhere.
+
+"""
+
+[variants.feature]
+prompt = """
+Create a presentation slide image. 1920x1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Gradient from dark charcoal (#1C1C22) at top to slightly lighter dark gray (#252530) at bottom. Subtle depth — not flat. Optional very faint diagonal light streak or gradient bloom in one area for visual interest. Like DJI's specification pages.
+
+TYPOGRAPHY: Clean modern sans-serif (Inter/SF Pro style). White (#FFFFFF) for headlines and labels. Light gray (#8892A0) for descriptions. Electric cyan (#00D4FF) for spec numbers, stats, and accent highlights. Clean, structured layout. NO page numbers.
+
+CONTENT LAYOUT:
+- Section headline at top-left in white, bold, ~28pt equivalent
+- 2-4 feature items arranged cleanly — either in a row or 2x2 grid
+- Each feature: thin cyan icon or accent + white label + gray description
+- Thin cyan lines (#00D4FF at 40% opacity) as subtle separators or accent elements
+- If product image provided, show it smaller in one corner with subtle rim lighting
+- Generous spacing between elements — never cramped
+
+ICON STYLE: Minimal line icons in cyan or white. Thin stroke weight. Modern, geometric.
+
+ATMOSPHERE: Dark, professional, premium. Layered gradient background with subtle depth. DJI spec-sheet aesthetic. NO slide numbers.
+
+"""
+
+[variants.scene]
+prompt = """
+Create a presentation slide image. 1920x1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Dark environmental scene — like a dimly lit modern conference room or classroom. Dark walls with subtle warm-cool gradient lighting. Moody, cinematic atmosphere. NOT bright daylight — think evening or controlled studio lighting. Background should use shaded grays and subtle gradients, not flat black.
+
+TYPOGRAPHY: Clean modern sans-serif. White text with subtle drop shadow for legibility against the scene. Minimal text — a headline and maybe 1-2 lines. NO page numbers.
+
+PRODUCT IN CONTEXT:
+- If reference image provided, show the product installed in its natural environment
+- Subtle cyan (#00D4FF) glow emanating from the product or its LED indicators
+- The product should be clearly visible but integrated into the scene naturally
+- Dramatic lighting: dark room with strategic spotlights and ambient glow
+- The scene should feel real but elevated — like an architectural visualization render
+
+ATMOSPHERE: Cinematic, moody, premium. Cool color temperature. Gradient shadows with selective illumination. Think high-end architectural photography. NO slide numbers.
+
+"""
+
+[variants.data]
+prompt = """
+Create a presentation slide image. 1920x1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Gradient from dark charcoal (#1A1A1E) to medium-dark (#222228). Subtle radial gradient bloom in center. NOT flat black — use layered grays with depth and sophistication. Like DJI's data/infographic pages.
+
+TYPOGRAPHY: Clean modern sans-serif (Inter/SF Pro style).
+- HERO STATS: Very large numbers (60-80pt equivalent) in electric cyan (#00D4FF), bold
+- STAT LABELS: Smaller text below each number in light gray (#8892A0)
+- Section headline in white (#FFFFFF), top-left, bold
+- NO page numbers or slide counts
+
+LAYOUT:
+- 2-4 large stat callouts arranged in a clean row or grid
+- Each stat: big cyan number + small gray label below
+- Generous spacing between stats
+- Optional: thin cyan line or dot separator between stat groups
+- No product images needed — pure data impact
+
+ATMOSPHERE: Clean, bold, data-forward. Gradient dark background with depth. The numbers should be the hero. NO slide numbers anywhere.
+
+"""
+

@@ -1,0 +1,126 @@
+[meta]
+name = "industrial-agent"
+display_name = "Industrial Agent"
+description = "Dark navy-blue tech background, copper-gold titles, orange accents, mixed hand-drawn sketch and glowing tech node illustrations"
+category = "industry"
+tags = ["industrial", "dark", "tech", "navy", "copper", "investment-bank"]
+
+[variants]
+default = "normal"
+
+[variants.normal]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Dark navy-blue to steel-blue gradient. Subtle circuit board grid pattern at 8-10% opacity. Faint geometric tech lines and node dots in background. Professional industry analysis aesthetic.
+
+TYPOGRAPHY RULES:
+- Slide titles: LARGE bold copper-gold color text, top-left or center-top
+- Section headers: medium bold, warm gold or bright orange
+- Body text: clean white or light gray, left-aligned
+- Large stat numbers: bold, orange or copper-gold, very large
+- Table headers: orange background with white text
+
+CRITICAL — NO PROMPT LEAK, NO PAGE NUMBERS, NO HEADERS/FOOTERS:
+- NEVER render formatting instructions as visible text
+- NEVER show font sizes, hex codes, pixel dimensions, or CSS notation on the slide
+- ABSOLUTELY NO page numbers, slide numbers, or any numbering anywhere on the slide
+- NO header text, NO footer text, NO watermarks
+- NO extra decorative text that is not part of the slide content
+
+ILLUSTRATION STYLE:
+Every slide MUST have detailed illustrations — NOT tiny icons.
+- MIXED STYLE: hand-drawn pencil sketch art for traditional/historical elements (tractors, factories, machines) AND modern glowing tech illustrations for AI/digital elements (neural networks, server nodes, agent icons, data flows)
+- Hand-drawn elements: charcoal pencil sketch style, detailed line art, warm sepia tones
+- Tech elements: glowing cyan-blue and orange nodes, connected by luminous data flow lines, isometric 3D server/platform diagrams
+- Illustrations should be LARGE, occupying 35-40% of the slide
+- Think: premium industry analysis report meets industrial technology showcase
+
+LAYOUT:
+- Cards/boxes: dark semi-transparent backgrounds with thin orange or gold borders
+- Flow diagrams: rounded boxes connected by orange arrows
+- Bottom insight bars: gold/orange bordered boxes with key takeaway text
+- Clean spacing, 0.5 inch minimum margins
+
+"""
+
+[variants.cover]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Dark navy-blue to steel-blue gradient. Subtle circuit board grid pattern at 8-10% opacity. Premium, bold, tech-forward.
+
+TYPOGRAPHY RULES:
+- Title: VERY LARGE bold copper-gold color, center-aligned
+- Subtitle: medium size, warm gold, center-aligned below title
+- Tagline: smaller, white or light gray
+
+CRITICAL — NO PROMPT LEAK:
+- NEVER render formatting instructions as visible text on the slide
+- NO page numbers
+
+ILLUSTRATION STYLE:
+- LEFT SIDE: hand-drawn pencil sketch of traditional industrial equipment (e.g. factory, engine, machine tool) in charcoal/sepia tones
+- RIGHT SIDE: modern glowing tech illustration with AI agent nodes, data flows, robotic systems in cyan-blue and orange glow
+- CENTER: a timeline arrow connecting the two worlds (traditional → AI-powered)
+- Large, atmospheric, occupying full slide background at 60-70% opacity
+
+LAYOUT:
+- Date and author info at bottom in small light gray text
+- Premium investment banking report aesthetic
+
+"""
+
+[variants.data]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Dark navy-blue to steel-blue gradient. Subtle circuit board grid pattern at 8-10% opacity.
+
+TYPOGRAPHY RULES:
+- Slide titles: LARGE bold copper-gold color text, top-left
+- Table headers: orange background with white text
+- Table body: alternating dark navy and slightly lighter navy rows, white text
+- Large stat numbers: bold, orange or copper-gold
+
+CRITICAL — NO PROMPT LEAK:
+- NEVER render formatting instructions as visible text
+- NO page numbers
+
+ILLUSTRATION STYLE:
+- Data-focused slides may use small supporting illustrations
+- Charts/diagrams in orange and cyan-blue color scheme
+- Glowing connection lines between data points
+- Hand-drawn sketch elements as accent decorations (e.g. small factory, gear in corner)
+
+LAYOUT:
+- Tables: dark background, orange header row, clean white text
+- Cards: semi-transparent dark boxes with orange left borders
+- Bottom insight bar with gold border for key takeaways
+- Clean, professional, data-dense but readable
+
+"""
+
+[variants.section]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Deep dark navy, almost black, with subtle glowing circuit patterns. Premium, atmospheric.
+
+TYPOGRAPHY RULES:
+- Part label: small, bright orange, uppercase
+- Main title: VERY LARGE, bold, pure white, center-aligned
+- Subtitle: medium, warm gold, center-aligned below title
+
+CRITICAL — NO PROMPT LEAK:
+- NEVER render formatting instructions as visible text
+- NO page numbers
+
+ILLUSTRATION STYLE:
+- Full-bleed atmospheric background illustration
+- Abstract glowing tech elements: hexagonal nodes, data streams, neural network patterns
+- Mixed with faint hand-drawn industrial sketches at low opacity
+- Warm orange and cool cyan-blue glow accents
+- Cinematic, bold, section-divider energy
+
+"""

@@ -1,0 +1,145 @@
+{
+  "name": "mofa-fm",
+  "version": "0.4.5",
+  "author": "hagency",
+  "description": "Voice management and TTS with custom voice cloning via ominix-api",
+  "timeout_secs": 1800,
+  "requires_network": true,
+  "requires": {
+    "bins": [
+      "ominix-api"
+    ],
+    "os": [
+      "darwin"
+    ]
+  },
+  "install": [
+    {
+      "id": "ominix-api",
+      "kind": "cargo",
+      "crate": "ominix-api",
+      "bins": [
+        "ominix-api"
+      ],
+      "label": "OminiX API server (Apple Silicon TTS inference)",
+      "os": [
+        "darwin"
+      ]
+    }
+  ],
+  "dependencies": {
+    "ominix-api": {
+      "version": "1.0.0",
+      "repo": "https://github.com/OminiX-ai/OminiX-MLX",
+      "crate": "ominix-api",
+      "features": [
+        "tts"
+      ],
+      "description": "Local inference server for Qwen3 TTS with voice cloning on Apple Silicon"
+    },
+    "ominix-mlx": {
+      "version": "1.0.0",
+      "repo": "https://github.com/OminiX-ai/OminiX-MLX",
+      "crates": [
+        "qwen3-tts-mlx",
+        "mlx-rs-core"
+      ],
+      "description": "MLX inference runtime for Qwen3-TTS on Apple Silicon"
+    },
+    "models": {
+      "Qwen3-TTS-12Hz-1.7B-CustomVoice-8bit": "~/.OminiX/models/Qwen3-TTS-12Hz-1.7B-CustomVoice-8bit (preset voices)",
+      "Qwen3-TTS-12Hz-1.7B-Base": "~/.OminiX/models/Qwen3-TTS-12Hz-1.7B-Base (voice cloning)"
+    }
+  },
+  "tools": [
+    {
+      "name": "fm_tts",
+      "spawn_only": true,
+      "spawn_only_message": "SUCCESS: Audio generation is now running in background. The audio file will be automatically delivered to the user when ready. No further action needed for this request.",
+      "description": "Synthesize speech from text. Call this tool directly with the full text — it runs in background automatically and the audio file is delivered to the user when ready. Do NOT use shell scripts or manual splitting. Supports long text, preset and custom voices.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "The text to synthesize into speech"
+          },
+          "voice": {
+            "type": "string",
+            "description": "Voice name: a preset ('vivian', 'serena', 'ryan', etc.) or a saved custom voice name. Default: 'vivian' or the user's default voice."
+          },
+          "output_path": {
+            "type": "string",
+            "description": "Path to save the audio file. Leave empty — the file is automatically saved to the workspace directory."
+          },
+          "language": {
+            "type": "string",
+            "description": "Speech language: 'chinese' (default), 'english', 'japanese', 'korean'"
+          },
+          "prompt": {
+            "type": "string",
+            "description": "Optional style instruction in natural language. Without this, the model naturally varies tone based on text content. Set this to OVERRIDE content-based tone with a consistent style across the entire text. Write the instruction as a role/manner description appropriate to the use case — the model understands free-form Chinese or English instructions. Examples: news broadcast='用专业新闻播音员的语气朗读，语调平稳，节奏清晰', storytelling='用讲故事的语气，声音温暖，节奏有起伏', excited='用兴奋激动的语气说话', soft='用温柔轻柔的语气说话'. Leave empty when content-aware natural tone is desired."
+          },
+          "speed": {
+            "type": "number",
+            "description": "Speed factor: >1.0 = faster, <1.0 = slower. Range 0.5-2.0. Default: 1.0"
+          }
+        },
+        "required": [
+          "text"
+        ]
+      }
+    },
+    {
+      "name": "fm_voice_save",
+      "description": "Save an audio file as a named custom voice. ALWAYS call fm_voice_list first to check if the voice already exists — do NOT re-save existing voices. Only save new voices from user-provided audio clips (3-10 seconds of clear speech).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name for the voice (alphanumeric and underscores only, e.g. 'my_voice', 'boss')"
+          },
+          "audio_path": {
+            "type": "string",
+            "description": "Absolute path to the audio file to use as voice reference. Supports WAV directly and auto-converts MP3/M4A/OGG/FLAC to WAV before saving."
+          }
+        },
+        "required": [
+          "name",
+          "audio_path"
+        ]
+      }
+    },
+    {
+      "name": "fm_voice_list",
+      "description": "List all available voices (preset + saved custom). Call this FIRST before any TTS or voice_save to check what voices already exist.",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "fm_voice_delete",
+      "description": "Delete a saved custom voice by name.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the custom voice to delete"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+    }
+  ],
+  "binaries": {
+    "darwin-aarch64": {
+      "url": "https://github.com/mofa-org/mofa-skills/releases/download/v0.4.0/mofa-fm-darwin-aarch64.tar.gz",
+      "sha256": "8005c778949df5c0728a6b8f0574404a81837fcb4c1269a16e1129bd8958bb01"
+    }
+  }
+}

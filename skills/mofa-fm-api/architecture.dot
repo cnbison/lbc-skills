@@ -1,0 +1,54 @@
+digraph FmApiArchitecture {
+    graph [label="MoFA FM API Skill Architecture", fontsize=14, fontname="Helvetica"]
+    node [shape=box, fontname="Helvetica", fontsize=10]
+    edge [fontname="Helvetica", fontsize=9]
+
+    // Entry
+    User [label="User Request", shape=ellipse, fillcolor=lightblue, style=filled]
+    Entry [label="Entry Agent\n• Parse intent\n• Route endpoint", fillcolor=lightyellow, style=filled]
+
+    // API Categories
+    Router [label="API Router", shape=diamond, fillcolor=lightyellow, style=filled]
+
+    Auth [label="Auth API\n/register /login", fillcolor=lightgreen, style=filled]
+    Podcasts [label="Podcast API\nShows / Episodes", fillcolor=lightgreen, style=filled]
+    Search [label="Search API\nSearch / Suggestions", fillcolor=lightgreen, style=filled]
+    Trending [label="Trending API\n56 sources", fillcolor=lightgreen, style=filled]
+    Interact [label="Interact API\nComments / Likes", fillcolor=lightgreen, style=filled]
+
+    // Backend
+    Backend [label="mofa.fm/api\nDjango REST", shape=cylinder, fillcolor=lightcyan, style=filled]
+
+    // Response
+    Response [label="JSON Response", fillcolor=lightyellow, style=filled]
+    Output [label="Data/Results", shape=ellipse, fillcolor=lightblue, style=filled]
+
+    // Auth Token
+    Token [label="JWT Token\n(access/refresh)", shape=hexagon, fillcolor=lightsalmon, style=filled]
+
+    // Edges
+    User -> Entry
+    Entry -> Router
+
+    Router -> Auth [label="auth"]
+    Router -> Podcasts [label="podcasts"]
+    Router -> Search [label="search"]
+    Router -> Trending [label="trending"]
+    Router -> Interact [label="interactions"]
+
+    Auth -> Backend
+    Podcasts -> Backend
+    Search -> Backend
+    Trending -> Backend
+    Interact -> Backend
+
+    Backend -> Response
+    Response -> Output
+
+    Token -> Backend [style=dashed, color=red]
+    Auth -> Token [style=dashed, color=red]
+
+    // Sources note
+    Note [label="Trending Sources:\nbilibili, zhihu, weibo,\ngithub, hackernews...", shape=note, fillcolor=lightgreen, style=filled]
+    Trending -> Note [style=dashed, color=gray]
+}

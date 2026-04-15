@@ -1,0 +1,100 @@
+[meta]
+name = "what-is-life"
+display_name = "What is Life?"
+description = "Schrödinger study notes, multi-domain science wireframes, lavender/dark navy"
+category = "academic"
+tags = ["science", "academic", "Chinese"]
+
+[variants]
+default = "overview"
+
+[variants.cover]
+prompt = """
+Create a presentation slide image. 1920x1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Medium lavender/purple gradient — from #C8B8E0 (medium lavender) at top-left to #D8CCE8 (soft purple) at bottom-right. Richer purple than pastel, elegant and premium.
+
+In the right half, include VERY FAINT wireframe sketches (at 10-15% opacity) of four iconic science shapes: a DNA double helix, an atom with electron orbits, a crystal lattice structure, and a Boltzmann entropy equation — overlapping subtly like a collage watermark. Drawn in faint purple lines (#A090C0). They should NOT compete with the text.
+
+TYPOGRAPHY: Noto Sans SC font for ALL text. ALL text in Chinese ONLY — absolutely NO English anywhere on the slide except proper nouns like "What is Life?".
+- Main title: font-weight 700, color #1A1A2E (very dark navy/black), 48-54pt
+- Subtitle: font-weight 300, color #4A3A6E (muted purple), 20-24pt
+
+The LEFT 50% should be clear for the title. Minimal, elegant, dramatic.
+
+"""
+
+[variants.physics_dark]
+prompt = """
+Create a presentation slide image. 1920x1080 pixels, 16:9 landscape format.
+
+BACKGROUND: Dark navy (#0B1929), solid, elegant, premium.
+
+TYPOGRAPHY: Noto Sans SC font (clean Chinese sans-serif) for ALL text. ALL text in Chinese ONLY — absolutely NO English anywhere on the slide.
+- Title: font-weight 700, color #00B4D8 (bright cyan), size 28-32pt, top-left aligned
+- Body: font-weight 300, color #CCCCCC (light gray), size 16-18pt
+- Stat numbers: font-weight 700, color #FFB703 (amber gold), size 48-64pt
+
+ILLUSTRATION STYLE (CRITICAL):
+ALL diagrams use sophisticated WIREFRAME SKETCH illustration in CYAN/TEAL tones:
+- Cyan (#00B4D8) line art on dark backgrounds — thin, elegant lines (~1.5-2px)
+- DETAILED icons with character: atoms with orbital shells, wave functions, crystal lattice nodes, Boltzmann distribution curves, quantum energy level diagrams
+- Hand-drawn/sketch quality but CLEAN and READABLE — like a senior physicist's concept whiteboard on a dark canvas
+- Arrows are clean with proper arrowheads in cyan
+- Labels in clean Noto Sans SC near their icons
+- Cards use dark card backgrounds (#132F4C) with thin cyan left border, rounded corners (12px)
+- Generous white space inside each card — diagrams breathe, never cramped
+
+CRITICAL: Premium consulting deck aesthetic (McKinsey / BCG quality) with hand-drawn wireframe concept sketches in cyan on dark navy. Apple Keynote level whitespace and typography. Intellectual, sophisticated, scientific.
+
+"""
+
+[variants.biology_light]
+prompt = """
+Create a presentation slide image. 1920x1080 pixels, 16:9 landscape format.
+
+BACKGROUND: White (#FFFFFF) to very light warm gray (#F8F9FA), clean, airy.
+
+TYPOGRAPHY: Noto Sans SC font for ALL text. ALL text in Chinese ONLY.
+- Title: font-weight 700, color #1E293B (dark slate), size 28-32pt, top-left aligned
+- Body: font-weight 300, color #555555, size 16-18pt
+- Stat numbers: font-weight 700, color #14B8A6 (teal), size 48-64pt
+
+ILLUSTRATION STYLE (CRITICAL):
+ALL diagrams use sophisticated WIREFRAME SKETCH illustration in TEAL/GREEN tones:
+- Teal (#14B8A6) and complementary colors (#00B4D8 cyan, #FFB703 amber) line art
+- DETAILED icons: DNA double helix with base pair rungs, chromosome X-shapes, cell membranes with phospholipid bilayers, mitosis spindle fibers, enzyme lock-and-key shapes
+- Hand-drawn/sketch quality but CLEAN and PROFESSIONAL
+- Stat cards use dark navy (#0B1929) background with amber numbers for dramatic contrast
+- Regular cards are white with subtle shadow and thin teal left border
+- Generous whitespace — Apple Keynote level spacing
+
+Premium consulting aesthetic with teal/green wireframe sketches on white. Clean, intellectual, data-forward.
+
+"""
+
+[variants.overview]
+prompt = """
+Create a presentation slide image. 1920x1080 pixels, 16:9 landscape format.
+
+BACKGROUND: White (#FFFFFF) or very light gray (#F0F4F8), clean, neutral.
+
+TYPOGRAPHY: Noto Sans SC font for ALL text. ALL text in Chinese ONLY.
+- Title: font-weight 700, color #1E293B (dark slate), size 28-32pt
+- Body: font-weight 300, color #555555, size 16-18pt
+- Stat numbers: font-weight 700, size 48-64pt
+
+ILLUSTRATION STYLE (CRITICAL):
+Use thematic colors for different science domains:
+- Physics: Cyan #00B4D8 wireframe icons (atoms, wave functions, energy levels)
+- Biology: Teal #14B8A6 wireframe icons (DNA, chromosomes, cells)
+- Chemistry: Amber #FFB703 wireframe icons (molecular bonds, crystal structures)
+- Thermodynamics: Rose #F43F5E wireframe icons (entropy arrows, heat flow)
+- DETAILED icons with character — each domain should feel visually distinct through color
+- Cards are white with domain-colored left borders, rounded 12px, subtle shadow
+- Generous whitespace — Apple Keynote level
+
+Premium multi-domain scientific consulting aesthetic. Clean, comparative, authoritative.
+
+"""
+

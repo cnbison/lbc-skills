@@ -1,0 +1,86 @@
+[meta]
+name = "fengzikai"
+display_name = "丰子恺 (Feng Zikai)"
+description = "Inspired by Feng Zikai's iconic ink brush art — simple lines, warm childlike scenes, generous white space, xuan paper texture"
+category = "artistic"
+tags = ["chinese", "ink", "fengzikai", "watercolor", "童趣", "水墨"]
+
+[variants]
+default = "normal"
+
+[variants.normal]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+ARTISTIC IDENTITY — FENG ZIKAI (丰子恺) INK BRUSH STYLE:
+This slide must look like a page from a Feng Zikai art book — simple, warm, poetic.
+
+BACKGROUND: Soft warm off-white resembling aged xuan paper (宣纸). NOT pure white — use a warm cream (#F7F3EC, #F0EBE0) with very subtle paper fiber texture. A few tiny ink spots or faint brush-wash stains add authenticity.
+
+ILLUSTRATION STYLE (CRITICAL — THIS IS THE SOUL OF THE DESIGN):
+- Simple BRUSH INK LINE drawings in the style of Feng Zikai's paintings
+- Use warm black/dark brown ink (#2C2416, #4A3C28) for lines — NOT digital-precise, slightly uneven brush strokes
+- Figures are SIMPLE and CHARMING: round heads, minimal facial features (dot eyes, curved smile), soft body proportions, gentle postures
+- Children playing, scholars reading, cats napping, birds on branches, tea being poured, moon viewing — everyday poetic moments
+- Sparse color washes: pale pink (#F2D5CE), light green (#D4E6C8), soft yellow (#F5E6C8), light blue (#D6E5F0) — watercolor-thin, never solid fills
+- GENEROUS WHITE SPACE (留白) — at least 40% of the slide is empty paper. This emptiness IS the design.
+- Small red seal stamp (印章) in a corner — a tiny square with abstract characters inside, in vermillion red (#C23B22)
+- NO modern UI elements, NO gradients, NO drop shadows, NO cards with borders
+
+TYPOGRAPHY:
+- Chinese text in a calligraphic or semi-formal Song/Kai style — elegant but readable
+- English text in a clean serif (like Garamond or Times) to complement the classical feel
+- Title: dark ink brown (#2C2416), moderate size — never overpowering the illustration
+- Body text: warm gray-brown (#5C4F3D)
+- Text placement follows Chinese scroll painting conventions — often top-left or right side, with illustration below or beside
+
+LAYOUT: Asymmetric and organic. NOT a rigid grid. Content flows like a painting composition — the eye moves naturally from text to illustration to white space. Think of a traditional Chinese painting album page (册页).
+
+MOOD: Warm, nostalgic, poetic, childlike innocence, the beauty of ordinary moments.
+
+"""
+
+[variants.cover]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+ARTISTIC IDENTITY — FENG ZIKAI COVER SLIDE:
+A bold, centered composition inspired by Feng Zikai's most iconic paintings.
+
+BACKGROUND: Warm xuan paper (#F7F3EC) with subtle aged texture.
+
+CENTER COMPOSITION: A single large Feng Zikai-style ink illustration occupying the right 60% of the slide — could be children under a willow tree, a figure gazing at the moon, birds on a bare branch, or a cat curled by a window. Simple brush ink lines in warm dark brown (#2C2416), with sparse watercolor washes in pale pink, green, or yellow.
+
+LEFT SIDE: Clean space for the title text. Title in dark ink brown, large but elegant. Subtitle smaller, in warm gray.
+
+A red seal stamp (印章) near the illustration — small, square, vermillion (#C23B22).
+
+GENEROUS WHITE SPACE — the cover breathes. Less is more.
+
+MOOD: Like opening a cherished book of paintings. Warm, inviting, timeless.
+
+"""
+
+[variants.data]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+ARTISTIC IDENTITY — FENG ZIKAI DATA SLIDE:
+Data-dense slide that maintains the Feng Zikai warmth while prioritizing readability.
+
+BACKGROUND: Warm xuan paper (#F7F3EC), clean and uncluttered.
+
+DATA PRESENTATION:
+- Tables and comparisons use thin brush-ink lines (#2C2416) as borders — slightly uneven, hand-drawn feel
+- Column headers in warm dark brown, slightly larger
+- Data cells in warm gray-brown (#5C4F3D)
+- Use sparse watercolor accent washes to highlight key data points — a pale pink wash behind important numbers, light green for positive indicators
+- Small ink brush icons in table cells where appropriate (tiny sketched icons, not modern vector icons)
+
+MINIMAL DECORATION: One small Feng Zikai-style sketch element in a corner — a tiny bird, a sprig of plum blossom, or a small figure — just enough to maintain the artistic identity without competing with data.
+
+Red seal stamp in bottom corner.
+
+PRIORITY: Data readability > artistic decoration. But the warmth and ink-brush character must still be present.
+
+"""

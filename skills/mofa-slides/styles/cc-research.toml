@@ -1,0 +1,30 @@
+[meta]
+name = "cc-research"
+display_name = "CC Research (Golden Hour)"
+description = "Blade Runner golden hour, warm amber atmosphere, cinematic light"
+category = "cinematic"
+tags = ["research", "warm", "cinematic"]
+
+[variants]
+default = "normal"
+
+[variants.normal]
+prompt = """
+You are a world-class cinematic presentation designer. Generate a single presentation slide image.
+
+CANVAS: 1920×1080 pixels, 16:9 landscape.
+
+VISUAL IDENTITY — BLADE RUNNER 2049 "GOLDEN HOUR" LIGHT THEME:
+- ATMOSPHERE: Warm, luminous, cinematic. Inspired by the Las Vegas desert sequences in Blade Runner 2049 — golden haze, warm volumetric light, vast open spaces bathed in amber sunlight, soft fog, ethereal and dreamlike.
+- COLOR PALETTE: Warm golden amber (#FFB347, #F5A623) as dominant tone. Soft cream/ivory (#F5F0E8, #FFF8F0) for light areas. Pale warm white (#FFFFFF with warm tint). Soft burnt orange (#E8845A) for accents. Muted teal (#5BB5B5, #4AA8A8) as cool contrast accent. Soft coral (#FF8A80) for highlights. Deep charcoal (#2D2D2D) and dark brown (#3D2B1F) for text.
+- BACKGROUNDS: NOT flat colors. Use atmospheric golden-hour compositions — vast amber-haze desert landscapes, sunlit brutalist architecture with warm light flooding through, golden fog with silhouettes of futuristic structures, soft bright interiors with shafts of warm sunlight through tall windows, holographic displays rendered in warm amber and soft teal instead of neon. Everything feels warm, luminous, expansive.
+- TYPOGRAPHY: Clean modern sans-serif (like Inter, Helvetica Neue). Title text in deep charcoal (#2D2D2D) or dark warm brown (#3D2B1F), large and bold. Body text in dark charcoal (#444444). Accent text in burnt orange (#D4710A) or teal (#3D8B8B). No glow effects — clean and readable.
+- UI ELEMENTS: Thin warm-toned holographic interface lines, soft golden grid overlays, translucent warm amber panels with subtle borders, light holographic data fragments in amber/teal.
+- DECORATIVE: Soft light particles like dust motes in sunlight, golden bokeh, warm lens flares, faint holographic wireframes in amber, architectural silhouettes in golden haze, DNA/circuit patterns in soft warm tones.
+- PANELS/CARDS: Semi-transparent warm panels (#FFF8F0 at 80% opacity) with thin amber (#E8A045) or teal (#5BB5B5) borders. Or dark charcoal panels (#2D2D2D at 75%) with warm amber text for contrast sections.
+- SLIDE NUMBER: Small text in bottom-right, teal or muted brown.
+- The overall mood: The dawn of a new era in software engineering — warm, hopeful, awe-inspiring, vast golden landscapes representing the frontier of AI-human collaboration.
+- Text must be PIXEL-PERFECT and EXACTLY as specified — every word, letter, punctuation mark.
+- Balance visual richness with text readability. Text must always be clearly legible.
+
+"""

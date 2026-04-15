@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoFA FM API 文档</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #64748b;
+            --bg: #ffffff;
+            --fg: #1e293b;
+            --code-bg: #f1f5f9;
+            --border: #e2e8f0;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--fg);
+            background: var(--bg);
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 300px;
+            background: #f8fafc;
+            border-right: 1px solid var(--border);
+            padding: 2rem 1.5rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .sidebar h1 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        .sidebar .subtitle {
+            font-size: 0.875rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+        }
+        .nav ul {
+            list-style: none;
+        }
+        .nav li {
+            margin: 0.3rem 0;
+        }
+        .nav a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: block;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .nav a:hover, .nav a.active {
+            color: var(--primary);
+            background: #eff6ff;
+        }
+        .nav .section {
+            font-weight: 600;
+            color: var(--fg);
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .content {
+            margin-left: 300px;
+            flex: 1;
+            padding: 3rem;
+            max-width: 1000px;
+        }
+        h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        h2 { font-size: 1.75rem; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border); }
+        h3 { font-size: 1.35rem; margin: 2rem 0 0.75rem; }
+        h4 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; }
+        p { margin: 1rem 0; }
+        pre {
+            background: var(--code-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            margin: 1.5rem 0;
+        }
+        code {
+            font-family: 'Monaco', 'Menlo', monospace;
+            background: var(--code-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .badge-success { background: #dcfce7; color: #166534; }
+        .badge-warning { background: #fef3c7; color: #92400e; }
+        .badge-danger { background: #fee2e2; color: #991b1b; }
+        .badge-info { background: #dbeafe; color: #1e40af; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stat-card {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--secondary);
+            margin-top: 0.5rem;
+        }
+        .endpoint {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .method {
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        .method-get { background: #dbeafe; color: #1e40af; }
+        .method-post { background: #dcfce7; color: #166534; }
+        .method-put { background: #fef3c7; color: #92400e; }
+        .method-delete { background: #fee2e2; color: #991b1b; }
+        .method-patch { background: #f3e8ff; color: #6b21a8; }
+        .endpoint-path {
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        .endpoint-desc {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .section-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 3rem 0;
+        }
+        .note {
+            background: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .warning {
+            background: #fef3c7;
+            border-left: 4px solid var(--warning);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h1>MoFA FM API</h1>
+            <div class="subtitle">播客平台 API 文档</div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#overview" class="active">概览</a></li>
+                    <li><a href="#test-report">测试报告</a></li>
+                    <li><a href="#quickstart">快速开始</a></li>
+
+                    <li class="section">API 参考</li>
+                    <li><a href="#auth">认证</a></li>
+                    <li><a href="#shows">节目</a></li>
+                    <li><a href="#episodes">单集</a></li>
+                    <li><a href="#trending">热搜</a></li>
+                    <li><a href="#search">搜索</a></li>
+                    <li><a href="#interactions">互动</a></li>
+                    <li><a href="#scripts">脚本会话</a></li>
+
+                    <li class="section">其他</li>
+                    <li><a href="#examples">使用示例</a></li>
+                    <li><a href="#errors">错误处理</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <section id="overview">
+                <h1>MoFA FM API</h1>
+                <p>MoFA FM 播客平台 API，用于浏览节目、搜索内容、管理创作者内容、获取热搜数据。</p>
+
+                <div class="note">
+                    <strong>Base URL:</strong> <code>https://mofa.fm/api/</code>
+                </div>
+
+                <h2>认证方式</h2>
+                <ul>
+                    <li><strong>公开接口</strong>: 无需认证</li>
+                    <li><strong>私有接口</strong>: JWT Bearer Token</li>
+                </ul>
+                <pre>Authorization: Bearer &lt;access_token&gt;</pre>
+            </section>
+
+            <section id="test-report">
+                <h2>测试报告</h2>
+                <p><strong>测试时间:</strong> 2026-03-18 | <strong>测试账号:</strong> testuser_cmwt6e | <strong>状态:</strong> <span class="badge badge-success">100% 通过</span></p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">20</div>
+                        <div class="stat-label">公开 API</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">14</div>
+                        <div class="stat-label">认证 API</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">34</div>
+                        <div class="stat-label">总计测试</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" style="color: var(--success);">100%</div>
+                        <div class="stat-label">通过率</div>
+                    </div>
+                </div>
+
+                <h3>公开 API 测试结果</h3>
+                <table>
+                    <tr>
+                        <th>端点</th>
+                        <th>方法</th>
+                        <th>状态</th>
+                    </tr>
+                    <tr><td>/health/</td><td><span class="method method-get">GET</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/podcasts/shows/</td><td><span class="method method-get">GET</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/podcasts/shows/&lt;slug&gt;/</td><td><span class="method method-get">GET</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/podcasts/episodes/</td><td><span class="method method-get">GET</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/podcasts/episodes/?show_slug=</td><td><span class="method method-get">GET</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/podcasts/episodes/&lt;id&gt;/play/</td><td><span class="method method-post">POST</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/podcasts/trending/sources/</td><td><span class="method method-get">GET</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/podcasts/trending/&lt;source&gt;/</td><td><span class="method method-get">GET</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/search/</td><td><span class="method method-get">GET</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/search/suggestions/</td><td><span class="method method-get">GET</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/search/popular/</td><td><span class="method method-get">GET</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/interactions/episodes/&lt;id&gt;/comments/</td><td><span class="method method-get">GET</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/podcasts/stats/</td><td><span class="method method-get">GET</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                </table>
+
+                <h3>认证 API 测试结果</h3>
+                <table>
+                    <tr>
+                        <th>端点</th>
+                        <th>方法</th>
+                        <th>状态</th>
+                    </tr>
+                    <tr><td>/auth/register/</td><td><span class="method method-post">POST</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/auth/login/</td><td><span class="method method-post">POST</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/auth/me/</td><td><span class="method method-get">GET</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/auth/creator/become/</td><td><span class="method method-post">POST</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/podcasts/shows/create/</td><td><span class="method method-post">POST</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/podcasts/shows/&lt;slug&gt;/update/</td><td><span class="method method-put">PUT</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/podcasts/shows/&lt;slug&gt;/delete/</td><td><span class="method method-delete">DELETE</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/podcasts/creator/shows/</td><td><span class="method method-get">GET</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/podcasts/creator/episodes/</td><td><span class="method method-get">GET</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/podcasts/creator/generation-queue/</td><td><span class="method method-get">GET</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/interactions/episodes/&lt;id&gt;/like/</td><td><span class="method method-post">POST</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/interactions/shows/&lt;id&gt;/follow/</td><td><span class="method method-post">POST</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                    <tr><td>/interactions/comments/create/</td><td><span class="method method-post">POST</span></td><td><span class="badge badge-success">通过</span></td></tr>
+                </table>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section id="quickstart">
+                <h2>快速开始</h2>
+
+                <h3>1. 获取 Token</h3>
+                <pre>curl -X POST https://mofa.fm/api/auth/login/ \
+  -H "Content-Type: application/json" \
+  -d '{"username":"your_username","password":"your_password"}'</pre>
+
+                <h3>2. 调用 API</h3>
+                <pre>curl https://mofa.fm/api/podcasts/shows/ \
+  -H "Authorization: Bearer &lt;access_token&gt;"</pre>
+
+                <h3>3. Python 示例</h3>
+                <pre>import requests
+
+BASE_URL = "https://mofa.fm/api"
+
+# 登录
+token = requests.post(f"{BASE_URL}/auth/login/", json={
+    "username": "user",
+    "password": "pass"
+}).json()["access"]
+
+headers = {"Authorization": f"Bearer {token}"}
+
+# 创建节目
+show = requests.post(
+    f"{BASE_URL}/podcasts/shows/create/",
+    headers=headers,
+    json={"title": "新节目", "content_type": "podcast"}
+).json()</pre>
+            </section>
+
+            <section id="auth">
+                <h2>认证 API</h2>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-post">POST</span>
+                        <span class="endpoint-path">/auth/register/</span>
+                    </div>
+                    <div class="endpoint-desc">用户注册</div>
+                    <pre>{"username": "...", "email": "...", "password": "...", "password2": "..."}</pre>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-post">POST</span>
+                        <span class="endpoint-path">/auth/login/</span>
+                    </div>
+                    <div class="endpoint-desc">用户登录</div>
+                    <pre>{"username": "...", "password": "..."}
+
+// 响应
+{"access": "...", "refresh": "...", "user": {...}}</pre>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-get">GET</span>
+                        <span class="endpoint-path">/auth/me/</span>
+                    </div>
+                    <div class="endpoint-desc">获取当前用户信息（需要认证）</div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-post">POST</span>
+                        <span class="endpoint-path">/auth/creator/become/</span>
+                    </div>
+                    <div class="endpoint-desc">申请成为创作者（需要认证）</div>
+                </div>
+            </section>
+
+            <section id="shows">
+                <h2>节目 API</h2>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-get">GET</span>
+                        <span class="endpoint-path">/podcasts/shows/</span>
+                    </div>
+                    <div class="endpoint-desc">获取节目列表（公开）</div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-post">POST</span>
+                        <span class="endpoint-path">/podcasts/shows/create/</span>
+                    </div>
+                    <div class="endpoint-desc">创建节目（需要认证）</div>
+                    <pre>{"title": "节目名称", "description": "...", "content_type": "podcast"}</pre>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-get">GET</span>
+                        <span class="endpoint-path">/podcasts/shows/&lt;slug&gt;/</span>
+                    </div>
+                    <div class="endpoint-desc">获取节目详情（公开）</div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-put">PUT</span>
+                        <span class="endpoint-path">/podcasts/shows/&lt;slug&gt;/update/</span>
+                    </div>
+                    <div class="endpoint-desc">更新节目（需要认证）</div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-delete">DELETE</span>
+                        <span class="endpoint-path">/podcasts/shows/&lt;slug&gt;/delete/</span>
+                    </div>
+                    <div class="endpoint-desc">删除节目（需要认证）</div>
+                </div>
+
+                <div class="note">
+                    <strong>获取节目单集:</strong> <code>GET /podcasts/episodes/?show_slug=&lt;slug&gt;</code>
+                </div>
+            </section>
+
+            <section id="episodes">
+                <h2>单集 API</h2>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-get">GET</span>
+                        <span class="endpoint-path">/podcasts/episodes/</span>
+                    </div>
+                    <div class="endpoint-desc">获取单集列表（公开）</div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-get">GET</span>
+                        <span class="endpoint-path">/podcasts/episodes/?show_slug=&lt;slug&gt;</span>
+                    </div>
+                    <div class="endpoint-desc">获取指定节目的单集列表（公开）</div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-get">GET</span>
+                        <span class="endpoint-path">/podcasts/episodes/&lt;id&gt;/</span>
+                    </div>
+                    <div class="endpoint-desc">获取单集详情（需要认证）</div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-post">POST</span>
+                        <span class="endpoint-path">/podcasts/episodes/create/</span>
+                    </div>
+                    <div class="endpoint-desc">创建单集（需要认证，需要上传音频文件）</div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-post">POST</span>
+                        <span class="endpoint-path">/podcasts/episodes/&lt;id&gt;/play/</span>
+                    </div>
+                    <div class="endpoint-desc">增加播放计数（公开）</div>
+                </div>
+            </section>
+
+            <section id="trending">
+                <h2>热搜 API</h2>
+                <p>支持 56 个数据源: bilibili, zhihu, weibo, github, v2ex, douyin, 36kr, juejin, sspai, hackernews 等</p>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-get">GET</span>
+                        <span class="endpoint-path">/podcasts/trending/sources/</span>
+                    </div>
+                    <div class="endpoint-desc">获取所有热搜数据源列表</div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-get">GET</span>
+                        <span class="endpoint-path">/podcasts/trending/&lt;source&gt;/</span>
+                    </div>
+                    <div class="endpoint-desc">获取指定数据源的热搜数据</div>
+                    <pre>// 示例: /podcasts/trending/bilibili/
+{
+  "code": 200,
+  "name": "bilibili",
+  "title": "哔哩哔哩",
+  "data": [...]
+}</pre>
+                </div>
+            </section>
+
+            <section id="search">
+                <h2>搜索 API</h2>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-get">GET</span>
+                        <span class="endpoint-path">/search/?q=&lt;keyword&gt;</span>
+                    </div>
+                    <div class="endpoint-desc">搜索节目和单集</div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-get">GET</span>
+                        <span class="endpoint-path">/search/suggestions/?q=&lt;prefix&gt;</span>
+                    </div>
+                    <div class="endpoint-desc">搜索建议</div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-get">GET</span>
+                        <span class="endpoint-path">/search/popular/</span>
+                    </div>
+                    <div class="endpoint-desc">热门搜索</div>
+                </div>
+            </section>
+
+            <section id="interactions">
+                <h2>互动 API</h2>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-get">GET</span>
+                        <span class="endpoint-path">/interactions/episodes/&lt;id&gt;/comments/</span>
+                    </div>
+                    <div class="endpoint-desc">获取评论列表（公开）</div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-post">POST</span>
+                        <span class="endpoint-path">/interactions/comments/create/</span>
+                    </div>
+                    <div class="endpoint-desc">发表评论（需要认证）</div>
+                    <pre>{"episode": 123, "text": "评论内容"}</pre>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-post">POST</span>
+                        <span class="endpoint-path">/interactions/episodes/&lt;id&gt;/like/</span>
+                    </div>
+                    <div class="endpoint-desc">点赞/取消点赞（需要认证）</div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-post">POST</span>
+                        <span class="endpoint-path">/interactions/shows/&lt;id&gt;/follow/</span>
+                    </div>
+                    <div class="endpoint-desc">关注/取消关注（需要认证）</div>
+                </div>
+            </section>
+
+            <section id="scripts">
+                <h2>脚本会话 API</h2>
+                <p>AI 辅助创作播客脚本功能</p>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-get">GET</span>
+                        <span class="endpoint-path">/podcasts/script-sessions/</span>
+                    </div>
+                    <div class="endpoint-desc">获取脚本会话列表（需要认证）</div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-post">POST</span>
+                        <span class="endpoint-path">/podcasts/script-sessions/</span>
+                    </div>
+                    <div class="endpoint-desc">创建脚本会话（需要认证）</div>
+                    <pre>{"title": "AI话题", "description": "讨论AI", "content_type": "podcast"}</pre>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-post">POST</span>
+                        <span class="endpoint-path">/podcasts/script-sessions/&lt;id&gt;/chat/</span>
+                    </div>
+                    <div class="endpoint-desc">AI 对话生成脚本（需要认证）</div>
+                    <pre>{"message": "帮我写一个关于AI的播客脚本"}</pre>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-post">POST</span>
+                        <span class="endpoint-path">/podcasts/script-sessions/&lt;id&gt;/upload/</span>
+                    </div>
+                    <div class="endpoint-desc">上传参考文件（需要认证）</div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method method-post">POST</span>
+                        <span class="endpoint-path">/podcasts/script-sessions/&lt;id&gt;/finalize/</span>
+                    </div>
+                    <div class="endpoint-desc">将脚本会话转为播客单集（需要认证）</div>
+                    <pre>{"show_slug": "my-show", "title": "AI播客第1期"}</pre>
+                </div>
+            </section>
+
+            <section id="examples">
+                <h2>使用示例</h2>
+
+                <h3>获取 B 站热搜</h3>
+                <pre>curl https://mofa.fm/api/podcasts/trending/bilibili/</pre>
+
+                <h3>搜索播客</h3>
+                <pre>curl "https://mofa.fm/api/search/?q=AI"</pre>
+
+                <h3>完整 Python 示例</h3>
+                <pre>from fm_client import MoFAFMClient
+
+client = MoFAFMClient()
+
+# 公开 API
+shows = client.list_shows()
+trending = client.get_trending("bilibili")
+results = client.search("AI")
+
+# 需要认证
+client.login("username", "password")
+me = client.me()
+my_shows = client.my_shows()
+
+# 脚本管理
+session = client.create_script_session("AI话题讨论", "讨论AI最新进展")
+response = client.chat_script_session(session["id"], "帮我写一个播客脚本")</pre>
+            </section>
+
+            <section id="errors">
+                <h2>错误处理</h2>
+
+                <table>
+                    <tr>
+                        <th>状态码</th>
+                        <th>含义</th>
+                    </tr>
+                    <tr><td>200</td><td>成功</td></tr>
+                    <tr><td>201</td><td>创建成功</td></tr>
+                    <tr><td>400</td><td>请求参数错误</td></tr>
+                    <tr><td>401</td><td>未认证</td></tr>
+                    <tr><td>403</td><td>无权限</td></tr>
+                    <tr><td>404</td><td>资源不存在</td></tr>
+                    <tr><td>500</td><td>服务器错误</td></tr>
+                </table>
+
+                <div class="warning">
+                    <strong>注意:</strong> Token 有效期为 1 小时，refresh token 有效期为 7 天。
+                </div>
+            </section>
+
+            <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--secondary); font-size: 0.875rem;">
+                <p>MoFA FM API Documentation | 测试完成时间: 2026-03-18 | 测试通过率: 100%</p>
+                <p>相关链接: <a href="https://mofa.fm/swagger/">Swagger UI</a> | <a href="https://mofa.fm/redoc/">ReDoc</a></p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        // 侧边栏导航高亮
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav a');
+
+        function highlightNav() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightNav);
+        highlightNav();
+    </script>
+</body>
+</html>

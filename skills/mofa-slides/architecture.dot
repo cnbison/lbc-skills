@@ -1,0 +1,81 @@
+digraph SlidesArchitecture {
+    graph [label="Slides Skill Architecture", fontsize=14, fontname="Helvetica"]
+    node [shape=box, fontname="Helvetica", fontsize=10]
+    edge [fontname="Helvetica", fontsize=9]
+
+    // Entry
+    User [label="User Request\n(topic/deck)", shape=ellipse, fillcolor=lightblue, style=filled]
+    Entry [label="Entry Agent\n• Plan slides\n• Select style", fillcolor=lightyellow, style=filled]
+
+    // Mode Selection
+    Mode [label="Mode Selection", shape=diamond, fillcolor=lightyellow, style=filled]
+    Image [label="Image Mode\nText baked in", fillcolor=lightgreen, style=filled]
+    Editable [label="Editable Mode\n--auto-layout", fillcolor=lightgreen, style=filled]
+    PDF [label="PDF-to-PPTX\nConvert", fillcolor=lightgreen, style=filled]
+
+    // Style Selection (17 styles)
+    Style [label="Style Selection\n(17 styles)", fillcolor=lightyellow, style=filled]
+    Pro [label="nb-pro\nBusiness", fillcolor=lightpink, style=filled]
+    BR [label="nb-br\nSci-fi", fillcolor=lightpink, style=filled]
+    Red [label="agentic-enterprise-red\nHuawei style", fillcolor=lightpink, style=filled]
+    Feng [label="fengzikai\nInk-wash", fillcolor=lightpink, style=filled]
+
+    // Slide Generation
+    Slide1 [label="Generate\nSlide 1", fillcolor=lightgreen, style=filled]
+    Slide2 [label="Generate\nSlide 2", fillcolor=lightgreen, style=filled]
+    SlideN [label="Generate\nSlide N", fillcolor=lightgreen, style=filled]
+
+    // Optional Auto-layout
+    AutoLayout [label="Auto-Layout\nVQA + Text extract\nRemove + Overlay", fillcolor=lightyellow, style=filled]
+
+    // Gemini
+    Gemini [label="Gemini API\nImage Gen", shape=cylinder, fillcolor=lightcyan, style=filled]
+
+    // Stitch to PPTX
+    Stitch [label="Stitch to PPTX\nPowerPoint file", fillcolor=lightyellow, style=filled]
+
+    // Output
+    Output [label="PPTX + PNGs\n(unique directory)", shape=ellipse, fillcolor=lightblue, style=filled]
+
+    // Auth
+    Auth [label="GEMINI_API_KEY\nDASHSCOPE_API_KEY", shape=hexagon, fillcolor=lightsalmon, style=filled]
+
+    // Edges
+    User -> Entry
+    Entry -> Mode
+
+    Mode -> Image [label="default"]
+    Mode -> Editable [label="editable"]
+    Mode -> PDF [label="convert"]
+
+    Entry -> Style
+    Style -> Pro [label="business"]
+    Style -> BR [label="tech"]
+    Style -> Red [label="corporate"]
+    Style -> Feng [label="artistic"]
+
+    Image -> Slide1
+    Image -> Slide2
+    Image -> SlideN
+
+    Slide1 -> Gemini
+    Slide2 -> Gemini
+    SlideN -> Gemini
+
+    Editable -> AutoLayout [style=dashed]
+    Gemini -> AutoLayout [style=dashed]
+    AutoLayout -> Stitch
+
+    Image -> Stitch [style=dashed]
+
+    PDF -> Stitch [style=dashed]
+
+    Stitch -> Output
+
+    Auth -> Gemini [style=dashed, color=red]
+    Auth -> AutoLayout [style=dashed, color=red]
+
+    // Config
+    Note [label="5-15 slides typical\n--image-size 1K/2K/4K\n--concurrency 5", shape=note, fillcolor=lightgray, style=filled]
+    Entry -> Note [style=dashed, color=gray]
+}

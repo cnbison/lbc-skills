@@ -1,0 +1,82 @@
+[meta]
+name = "paris-teal"
+display_name = "Paris Teal"
+description = "Sage-teal gradient with flat-design Paris skyline silhouette, gold accents, white content cards"
+category = "conference"
+tags = ["Paris", "teal", "skyline", "gold", "corporate"]
+
+[variants]
+default = "normal"
+
+[variants.normal]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+BACKGROUND: A smooth gradient from sage-teal green (#5A8A6A) at the top to darker teal-green (#3A6B5A) at the bottom. At the very bottom edge, a simplified flat-design PARIS SKYLINE silhouette in slightly lighter green — showing the Eiffel Tower (tallest, right of center), Arc de Triomphe, Sacré-Cœur, Louvre pyramid, Panthéon, and an obelisk. The skyline is subtle, decorative, NOT dominant — just a thin strip at the bottom 10% of the slide. Above the skyline, the background is clean gradient with NO texture, NO flowers, NO painterly effects.
+
+COLOR SCHEME:
+- Background gradient: sage-teal (#5A8A6A) to darker teal (#3A6B5A)
+- Section title: gold-green (#8B9B3E) or warm gold (#C8A84E), left-aligned, large
+- Body text: dark charcoal (#2D2D2D) on white/cream card areas
+- Accent text: teal green (#4A7A5A) for emphasis
+- Cards/content area: white (#FFFFFF) with very subtle shadow, occupying center of slide
+- Bullet points and labels: dark gray or teal
+
+TYPOGRAPHY RULES:
+- Section titles: italic or semi-bold serif-like font in gold-green, left-aligned at top
+- Body: clean sans-serif, dark on white
+- Numbers/stats: large bold teal or gold
+
+CRITICAL — NO PROMPT LEAK:
+- NEVER render formatting instructions, hex codes as visible text
+- NO words like "CARD", "ROW", "AREA" as text
+- NO page numbers
+
+LAYOUT:
+- Top: thin gold line separator under section title
+- Center: white content card(s) with clean layout
+- Bottom: Paris skyline silhouette strip
+- Professional, corporate, clean — NOT artistic or impressionist
+
+"""
+
+[variants.cover]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+BACKGROUND: A smooth gradient from light sage-gold (#B8C4A0) at the top to teal-green (#4A7A5A) at the bottom. At the bottom 15%, a detailed flat-design PARIS SKYLINE illustration — Eiffel Tower (tallest, right of center), Louvre pyramid (far left), Arc de Triomphe, obelisk, Panthéon, Sacré-Cœur — all in warm tan/brown/ochre flat colors, like architectural illustrations. The skyline is prominent on the cover.
+
+TYPOGRAPHY:
+- Title: very large dark charcoal, Manrope-style geometric sans-serif, center-aligned
+- Subtitle: slightly smaller dark text below title
+
+CRITICAL — NO PROMPT LEAK:
+- NEVER render formatting instructions as text
+- NO page numbers
+
+"""
+
+[variants.data]
+prompt = """
+Create a presentation slide image. 1920×1080 pixels, 16:9 landscape format.
+
+BACKGROUND: A smooth gradient from sage-teal green (#5A8A6A) at the top to darker teal-green (#3A6B5A) at the bottom. Subtle Paris skyline silhouette at bottom edge in slightly lighter green.
+
+COLOR SCHEME:
+- Section title: gold-green (#8B9B3E) or warm gold (#C8A84E), left-aligned
+- Body text: dark charcoal (#2D2D2D) on white card areas
+- Numbers/stats: large bold warm gold or teal
+- Tables: clean borders, alternating white/cream rows, teal header row
+- Stat callouts: large numbers with small labels below
+- Cards: white with very subtle shadow, thin gold or teal left border
+
+TYPOGRAPHY:
+- Title: italic or semi-bold serif-like font in gold-green, top-left
+- Table headers: bold, white text on teal background
+- Table body: clean sans-serif, dark charcoal
+
+CRITICAL — NO PROMPT LEAK:
+- NEVER render formatting instructions, hex codes as visible text
+- NO page numbers
+
+"""

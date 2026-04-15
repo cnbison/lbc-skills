@@ -1,0 +1,106 @@
+{
+  "name": "mofa-slides",
+  "version": "0.4.5",
+  "timeout_secs": 1800,
+  "binaries": {
+    "darwin-aarch64": {
+      "url": "https://github.com/mofa-org/mofa-skills/releases/download/v1.0.1/mofa-darwin-aarch64.tar.gz"
+    }
+  },
+  "tools": [
+    {
+      "name": "mofa_slides",
+      "description": "Generate AI presentation slides with full-bleed Gemini images. Supports multiple styles and editable PPTX mode.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "slides": {
+            "type": "array",
+            "description": "Array of slide objects",
+            "items": {
+              "type": "object",
+              "properties": {
+                "prompt": {
+                  "type": "string",
+                  "description": "Slide content description"
+                },
+                "style": {
+                  "type": "string",
+                  "description": "Slide variant: cover, normal, data, warm"
+                },
+                "auto_layout": {
+                  "type": "boolean",
+                  "description": "Enable editable text mode for this slide"
+                },
+                "source_image": {
+                  "type": "string",
+                  "description": "Existing image to use as-is"
+                }
+              },
+              "required": [
+                "prompt"
+              ]
+            }
+          },
+          "input": {
+            "type": "string",
+            "description": "Relative path to a JS or JSON file containing the slides array (for example slides/<slug>/script.js)."
+          },
+          "style": {
+            "type": "string",
+            "description": "Style template name (default: nb-pro)",
+            "default": "nb-pro"
+          },
+          "out": {
+            "type": "string",
+            "description": "Output PPTX file path. Use a relative path (e.g. slides.pptx) — never use /tmp."
+          },
+          "slide_dir": {
+            "type": "string",
+            "description": "Directory for intermediate PNGs (auto-created if omitted)"
+          },
+          "auto_layout": {
+            "type": "boolean",
+            "description": "Enable editable text mode for ALL slides"
+          },
+          "concurrency": {
+            "type": "integer",
+            "description": "Parallel generation limit (default: 5)"
+          },
+          "image_size": {
+            "type": "string",
+            "description": "Image size: 1K, 2K, 4K"
+          },
+          "refine": {
+            "type": "boolean",
+            "description": "Use Qwen-Edit for text cleanup"
+          },
+          "api": {
+            "type": "string",
+            "description": "API mode: rt (realtime, fast) or batch (50% cheaper, async)",
+            "default": "rt",
+            "enum": [
+              "rt",
+              "batch"
+            ]
+          }
+        },
+        "required": [
+          "out"
+        ],
+        "anyOf": [
+          {
+            "required": [
+              "slides"
+            ]
+          },
+          {
+            "required": [
+              "input"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

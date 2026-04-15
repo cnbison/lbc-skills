@@ -1,0 +1,44 @@
+[meta]
+name = "dark-community"
+display_name = "Dark Community"
+description = "White-to-cool-gray corporate, blue wireframe sketches, Linux Foundation style"
+category = "corporate"
+tags = ["open-source", "community", "corporate"]
+
+[variants]
+default = "normal"
+
+[variants.normal]
+prompt = """
+Create a presentation slide image. 3840×2160 pixels, 16:9 landscape format. HIGH RESOLUTION 4K — every detail crisp and sharp.
+
+BACKGROUND: White (#FFFFFF) to very light cool gray (#F5F7FA). Clean, corporate, institutional — Linux Foundation press release style.
+
+TYPOGRAPHY:
+- English text: Manrope font (geometric modern sans-serif)
+- Chinese text: Noto Sans SC font (clean Chinese sans-serif)
+- Title: font-weight 700, color #003366 (deep corporate blue), 32-36pt
+- Section headers: font-weight 700, 20-24pt
+- Body: font-weight 300, color #444444, 16-18pt
+- Badge/stat text: font-weight 700
+- ALL TEXT IN CHINESE. Do NOT repeat English translations of Chinese text. English only for proper nouns (AGENTS.md, NLSpec, Vouch, Attractor, PR-Agent).
+
+ILLUSTRATION STYLE (CRITICAL — THIS IS THE MOST IMPORTANT PART):
+Every level MUST have LARGE, DETAILED illustrations that dominate the visual space. Text is secondary.
+- Corporate blue (#003366, #0066CC, #4A90D9) as primary palette with teal (#00A99D) and navy accents
+- ABSTRACT AI FIGURES — NOT cartoonish robots. Use:
+  * Glowing orbs / neural network nodes / constellation patterns to represent AI agents
+  * Abstract geometric shapes (hexagons, circles, flowing curves) for intelligence
+  * Gradient light trails and connection beams for agent-to-agent communication
+  * Soft luminous halos around AI nodes — sophisticated, almost spiritual
+  * Minimal human figures — only use simple silhouettes when absolutely necessary, keep them small
+- Accent colors: teal (#00A99D) for trust/approval, coral (#E8636F) for rejection
+- CLEAN CORPORATE vector-style illustrations — NOT hand-drawn sketches
+- Think: Linux Foundation annual report, World Economic Forum infographic, Deloitte digital transformation deck
+- Each illustration should be LARGE scene compositions, not tiny icons
+- Cards use white background with thin blue left border, NO SHADOW, rounded 12px. NO drop shadows or shading on any card or panel.
+- Generous whitespace — institutional, authoritative
+
+Linux Foundation corporate PR aesthetic. Clean, institutional, authoritative, forward-looking.
+
+"""

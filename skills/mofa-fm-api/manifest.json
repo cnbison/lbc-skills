@@ -1,0 +1,35 @@
+{
+  "name": "mofa-fm-api",
+  "version": "1.0.0",
+  "description": "MoFA FM Podcast Platform API client",
+  "author": "mofa",
+  "triggers": [
+    "mofa.fm",
+    "播客",
+    "podcast",
+    "fm api",
+    "热搜"
+  ],
+  "tools": [
+    {
+      "name": "fm_client",
+      "entry": "tools/fm_client.py",
+      "description": "MoFA FM API Python client and CLI"
+    }
+  ],
+  "requires": {
+    "python3": true,
+    "packages": ["requests"]
+  },
+  "api": {
+    "base_url": "https://mofa.fm/api",
+    "auth_type": "jwt",
+    "endpoints": [
+      "auth",
+      "podcasts",
+      "search",
+      "interactions",
+      "scripts"
+    ]
+  }
+}

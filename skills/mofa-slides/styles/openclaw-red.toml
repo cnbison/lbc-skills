@@ -1,0 +1,98 @@
+[meta]
+name = "openclaw-red"
+display_name = "OpenClaw Red"
+description = "Huawei corporate red/black with lobster/claw wireframe motifs"
+category = "corporate"
+tags = ["open-source", "red", "Huawei-style"]
+
+[variants]
+default = "normal"
+
+[variants.normal]
+prompt = """
+Create a presentation slide image. 3840×2160 pixels, 16:9 landscape format. HIGH RESOLUTION 4K — every detail crisp and sharp.
+
+BACKGROUND: Clean white (#FFFFFF) to warm light gray (#F5F3F0). Professional, institutional, premium.
+
+TYPOGRAPHY:
+- English text: Manrope font (geometric modern sans-serif)
+- Chinese text: Noto Sans SC font (clean Chinese sans-serif)
+- Title: font-weight 700, 24pt, color #1A1A1A (deep black), LEFT-ALIGNED. Title only — NO subtitle, NO footer, NO page number.
+- Section headers: font-weight 700, 20-22pt, #1A1A1A, LEFT-ALIGNED
+- Body: font-weight 300, color #444444, 16-18pt, LEFT-ALIGNED
+- Stat numbers: font-weight 700, Manrope, 48-64pt
+- ALL TEXT IN CHINESE. English only for proper nouns (OpenClaw, ClawHub, Moltbook, Peter Steinberger, PSPDFKit, WhatsApp, Telegram, Discord, iMessage, Mac Mini, Kimi, Minimax, Claude Code, GitHub, Hacker News, Skills).
+
+ILLUSTRATION STYLE (CRITICAL — MOST IMPORTANT):
+Every slide MUST have LARGE, DETAILED WIREFRAME illustrations that are PROMINENT — not tiny decorative icons.
+- WIREFRAME LINE ART style — clean outlines, NO solid color fills, NO photo-realistic rendering
+- Line color: dark gray (#555555) to warm charcoal (#333333), line weight ~1.5-2px
+- RED ACCENT lines (#C7000B) on key elements — highlights, borders, important nodes
+- Illustrations should be LARGE SCENE COMPOSITIONS occupying ~35-40% of the slide
+- Detailed wireframe elements: lobster/claw motifs, network nodes, chat bubbles, device outlines, agent workflows
+- Each card/section should have its own wireframe illustration
+- Think: Huawei Annual Report, MWC keynote deck — bold, tech-forward, confident
+- Labels in clean UPPERCASE Manrope text beside wireframe elements
+- NO solid color fills, NO gradients on illustrations — pure line art with red accents
+
+LAYOUT:
+- Bold, modern, confident — NOT delicate or airy
+- Cards: white background, thin RED left border (#C7000B), FLAT — NO shadow. Completely flat boxes.
+- 0.5" minimum margins. Clean spacing.
+
+Huawei corporate aesthetic. Bold, tech-forward, confident. Red and black premium feel.
+
+"""
+
+[variants.cover]
+prompt = """
+Create a presentation slide image. 3840×2160 pixels, 16:9 landscape format. HIGH RESOLUTION 4K — every detail crisp and sharp.
+
+BACKGROUND: Deep black (#1A1A1A) to dark charcoal (#0D0D0D). Premium, bold, tech-forward.
+
+TYPOGRAPHY:
+- English text: Manrope font (geometric modern sans-serif)
+- Chinese text: Noto Sans SC font (clean Chinese sans-serif)
+- Title: font-weight 700, 36-40pt, color WHITE (#FFFFFF), CENTER-ALIGNED
+- Subtitle: font-weight 300, 18pt, color #D4A843 (warm gold)
+- ALL TEXT IN CHINESE except proper nouns.
+- NO footer, NO page number.
+
+ILLUSTRATION STYLE:
+- LARGE detailed WIREFRAME illustration at 15-20% opacity as atmospheric background
+- Interconnected nodes, lobster claw silhouette integrated into network pattern
+- Red accent lines (#C7000B) on key nodes, white/gray lines for the rest
+- Circuit board traces, chat bubble outlines, device silhouettes connected
+- Elegant, bold — like a Huawei MWC keynote cover
+
+Dark, bold, premium. Huawei keynote cover feel — confident and tech-forward.
+
+"""
+
+[variants.data]
+prompt = """
+Create a presentation slide image. 3840×2160 pixels, 16:9 landscape format. HIGH RESOLUTION 4K — every detail crisp and sharp.
+
+BACKGROUND: Very light warm gray (#FAFAF8) to white (#FFFFFF). Clean, corporate, institutional.
+
+TYPOGRAPHY:
+- English text: Manrope font (geometric modern sans-serif)
+- Chinese text: Noto Sans SC font (clean Chinese sans-serif)
+- Title: font-weight 700, 24pt, color #1A1A1A (deep black), LEFT-ALIGNED. Title only — NO subtitle, NO footer, NO page number.
+- Table headers: font-weight 700, 14-16pt, white text on #C7000B background (Huawei red)
+- Table body: font-weight 300, 13-15pt, #444444
+- Stat numbers: font-weight 700, Manrope, 48-64pt, #C7000B or #1A1A1A
+- ALL TEXT IN CHINESE except proper nouns.
+
+DATA DISPLAY STYLE:
+- Tables: clean borders, alternating white/#F5F3F0 rows, RED header row (#C7000B)
+- Stat callouts: large Manrope numbers with small Noto Sans SC labels below
+- Cards with thin red left border (#C7000B), FLAT — NO shadow. Completely flat boxes.
+
+ILLUSTRATION STYLE (CRITICAL):
+Even data slides need PROMINENT WIREFRAME illustrations — detailed line art with red accents. NOT tiny icons. Each data slide should have at least one medium-to-large wireframe illustration.
+
+Huawei data slide aesthetic — bold red accents, clean data.
+
+"""
+

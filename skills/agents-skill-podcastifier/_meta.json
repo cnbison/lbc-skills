@@ -1,0 +1,11 @@
+{
+  "owner": "cerbug45",
+  "slug": "agents-skill-podcastifier",
+  "displayName": "Podcastifier",
+  "latest": {
+    "version": "0.1.0",
+    "publishedAt": 1771353848892,
+    "commit": "https://github.com/openclaw/skills/commit/9809eea60092d37a895bb7ecdef2ad72809976e6"
+  },
+  "history": []
+}

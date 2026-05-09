@@ -17,3 +17,34 @@ Thumbs.db
 *.temp
 .cache/
 mtv-temp/
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+**/credentials*
+
+# Claude local settings (machine-specific)
+.claude/settings.local.json
+
+# Python
+__pycache__/
+*.pyc
+**/venv/
+**/.venv/
+
+# Node
+node_modules/
+
+# Rust build artifacts
+**/target/
+
+# Compiled binaries shipped alongside source
+**/.main_verified
+
+# Large audio assets (keep source code, drop big binary refs)
+**/voice_profiles/*.wav
+**/voice_profiles/*.mp3
+**/voice_profiles/*.flac

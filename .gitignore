@@ -43,6 +43,7 @@ node_modules/
 
 # Compiled binaries shipped alongside source
 **/.main_verified
+skills/mofa-podcast*/main
 
 # Large audio assets (keep source code, drop big binary refs)
 **/voice_profiles/*.wav

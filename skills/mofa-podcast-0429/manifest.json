@@ -1,0 +1,74 @@
+{
+  "name": "mofa-podcast",
+  "version": "0.4.5",
+  "author": "hagency",
+  "description": "Multi-speaker podcast generation with TTS voice synthesis and audio assembly",
+  "timeout_secs": 1800,
+  "requires_network": false,
+  "requires": {
+    "bins": ["python3"],
+    "os": ["darwin", "linux"]
+  },
+  "tools": [
+    {
+      "name": "podcast_voices",
+      "description": "List all available voices for podcast speakers. Shows preset (built-in) voices and any saved custom/cloned voices. Call this when helping the user choose voices for their speakers.",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "podcast_voice_save",
+      "description": "Save a reference audio file as a cloned voice for podcast generation. The audio must be a WAV file (RIFF format). After saving, the voice can be used in scripts as clone:{name}.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Voice name identifier (e.g., 'trump'). Only alphanumeric, underscore, and hyphen allowed. Will be sanitized if needed."
+          },
+          "audio_path": {
+            "type": "string",
+            "description": "Path to the reference audio WAV file. Can be absolute or relative to the workspace."
+          },
+          "force": {
+            "type": "boolean",
+            "description": "If true, overwrite existing voice with the same name. Default: false.",
+            "default": false
+          }
+        },
+        "required": ["name", "audio_path"]
+      }
+    },
+    {
+      "name": "podcast_generate",
+      "spawn_only": true,
+      "spawn_only_message": "SUCCESS: Podcast generation is now running in background. Voice segments are being generated and will be assembled into the final audio file. The audio file will be automatically delivered when ready.",
+      "description": "Generate the full podcast audio from an approved markdown script. Validates and deterministically repairs common markdown drift such as bold-wrapped speaker headers, multiline dialogue blocks, and full-width header punctuation before parsing. Then generates TTS for each segment via local VoxCPM batch engine, concatenates in timeline order with pauses, and outputs a single final audio file. This runs in background — do NOT wait for it.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "script": {
+            "type": "string",
+            "description": "The full markdown podcast script content. Canonical dialogue format is [Character - voice, emotion] text, but the validator can repair common markdown formatting drift before synthesis."
+          },
+          "script_path": {
+            "type": "string",
+            "description": "Path to the markdown script file. Alternative to providing script content directly."
+          },
+          "output_dir": {
+            "type": "string",
+            "description": "Directory for output files. Defaults to skill-output/mofa-podcast/"
+          }
+        }
+      }
+    }
+  ],
+  "binaries": {
+    "darwin-aarch64": {
+      "url": "",
+      "sha256": ""
+    }
+  }
+}

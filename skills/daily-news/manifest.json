@@ -1,0 +1,37 @@
+{
+  "name": "daily-news",
+  "version": "1.5.0",
+  "description": "Claw Daily News Agent-driven pipeline — Python handles RSS collection, filtering, and TTS. Agent (Claude Code) generates AI summaries, article, and podcast script. No AI API Key required. Triggers on daily news, 生成日报, claw日报, 今天的新闻, 播报, 日报.",
+  "author": "claw-news",
+  "triggers": [
+    "daily news",
+    "生成日报",
+    "claw日报",
+    "run daily news",
+    "今天的新闻",
+    "播报",
+    "日报",
+    "新闻播报",
+    "collect news",
+    "filter news",
+    "summarize news"
+  ],
+  "tools": [
+    {
+      "name": "daily_news",
+      "entry": "tools/daily_news.py",
+      "description": "CLI entry for running the daily news pipeline and individual stages"
+    }
+  ],
+  "requires": {
+    "python3": true,
+    "packages": [
+      "pyyaml",
+      "requests",
+      "feedparser",
+      "beautifulsoup4",
+      "edge-tts",
+      "pydub"
+    ]
+  }
+}

@@ -1,0 +1,201 @@
+sources:
+  automation_rss:
+    - https://www.reddit.com/r/rss/.rss
+    - https://www.reddit.com/r/automation/.rss
+    - https://www.reddit.com/r/selfhosted/.rss
+    - https://www.reddit.com/r/ProductHunt/.rss
+
+  tech_media:
+    - https://techcrunch.com/feed/
+    - https://thenextweb.com/feed
+    - https://arstechnica.com/information-technology/feed/
+    - https://www.zdnet.com/news/rss.xml
+    - https://www.cnet.com/rss/tech/
+    - https://www.fastcompany.com/technology/rss
+    - https://www.theverge.com/rss/index.xml
+
+  dev_media:
+    - https://www.infoq.cn/feed
+    - https://www.oschina.net/news/rss
+    - https://www.infoworld.com/news/rss/
+    - https://devclass.com/feed/
+    - https://www.smashingmagazine.com/feed/
+    - https://css-tricks.com/feed/
+
+  github:
+    - https://github.com/trending/python.atom
+    - https://github.com/trending/go.atom
+    - https://github.com/trending/opensource.atom
+    - https://github.com/topics/bot.atom
+    - https://github.com/topics/feed-parser.atom
+    - https://github.com/topics/news-aggregator.atom
+    - https://github.com/topics/podcast.atom
+
+  opensource:
+    - https://opensource.com/rss
+    - https://www.docker.com/feed/
+    - https://blog.github.com/rss
+    - https://www.linux.com/news/feed
+    - https://blog.cloudflare.com/rss/
+    - https://netflixtechblog.com/feed/
+    - https://engineering.atspotify.com/feed/
+    - https://medium.com/feed/netflix-techblog
+
+  security:
+    - https://thehackernews.com/feeds/posts/default
+    - https://krebsonsecurity.com/feed/
+    - https://www.schneier.com/blog/atom.xml
+    - https://www.bleepingcomputer.com/feed/
+    - https://threatpost.com/feed/
+    - https://www.csoonline.com/feed/
+
+  community:
+    - https://hnrss.org/frontpage
+    - https://hnrss.org/newest
+    - https://hnrss.org/best
+    - https://www.reddit.com/r/opensource/.rss
+    - https://www.reddit.com/r/programming/.rss
+    - https://www.reddit.com/r/Python/.rss
+    - https://www.reddit.com/r/devops/.rss
+    - https://www.reddit.com/r/Privacy/.rss
+    - https://www.reddit.com/r/dataslate/.rss
+    - https://www.reddit.com/r/SideProject/.rss
+
+  chinese_media:
+    - https://36kr.com/feed
+    - https://www.infoq.cn/feed
+    - https://www.oschina.net/news/rss
+    - https://sspai.com/feed
+    - https://www.ruanyifeng.com/blog/atom.xml
+    - https://blog.jetbrains.com/feed/
+    - https://www.zhihu.com/rss
+    - https://sspai.com/feed/column/6
+    - https://www.v2ex.com/index.xml
+
+  ai_agent_ecosystem:
+    - https://github.com/modelcontextprotocol/specification/releases.atom
+    - https://github.com/modelcontextprotocol/servers/releases.atom
+    - https://anthropic.com/blog/rss.xml
+    - https://github.com/microsoft/playwright/releases.atom
+    - https://github.com/browser-use/browser-use/releases.atom
+    - https://github.com/crewai/crewai/releases.atom
+    - https://github.com/langchain-ai/langchain/releases.atom
+
+filter:
+  keywords:
+    - openclaw
+    - open-claw
+    - clawhub
+    - clawbot
+    - claw-bot
+    - claw framework
+    - claw-ai
+    - swarmclaw
+    - openclawd
+    - agent skill
+    - claw skill
+    - skill ecosystem
+    - agent loop
+    - mcp server
+    - model context protocol
+    - self-hosted agent
+    - local ai agent
+    - personal ai agent
+    - agent hosting
+    - agent deployment
+    - tee agent
+    - sandboxed agent
+    - agent security
+    - claw cve
+    - agent vulnerability
+    - telegram bot
+    - discord bot
+    - bot framework
+    - bot management
+    - whatsapp bot
+    - slack bot
+    - signal bot
+    - im bot integration
+    - browser automation
+    - computer use
+    - autonomous agent
+    - agent orchestration
+    - multi-agent system
+    - clawhub
+    - claw hub
+    - awesome openclaw
+    - openclaw ecosystem
+    - agent marketplace
+    - skill registry
+    - developer tools
+    - automation script
+    - feed parsing
+    - information filtering
+    - rss aggregator
+    - news aggregator
+    - news crawler
+    - content curation
+    - feed automation
+    - podcast automation
+
+  exclude_keywords:
+    - crab claw
+    - lobster claw
+    - cat claw
+    - bear claw
+    - claw hammer
+    - claw machine
+    - red claw
+    - talon claw
+
+  time_window_hours: 24
+  max_articles: 50
+  min_article_length: 100
+
+output:
+  directory: ./daily-news/output
+  article_template: claw_daily_{date}.md
+  podcast_script_template: claw_podcast_{date}.txt
+  podcast_audio_template: claw_daily_{date}.mp3
+
+tts:
+  provider: edge
+  edge_voice: zh-CN-YunxiNeural
+  edge_voices:
+    male: zh-CN-YunxiNeural
+    female: zh-CN-XiaoxiaoNeural
+  doubao:
+    token: ${DOUBAO_TOKEN}
+    appid: ${DOUBAO_APPID}
+    cluster: volcano_tts
+    api_url: https://openspeech.bytedance.com/api/v1/tts
+    speed_ratio: 1.0
+    volume_ratio: 1.0
+    pitch_ratio: 1.0
+  doubao_voices:
+    male: zh_female_xiaohe_uranus_bigtts
+    female: zh_female_vv_uranus_bigtts
+  openai:
+    model: tts-1
+    voice: alloy
+
+mofa_fm:
+  enabled: false
+  base_url: https://mofa.fm/api
+  api:
+    timeout: 30
+    max_retries: 3
+  auto_relogin: true
+  auth:
+    token: ${MOFA_FM_TOKEN}
+    username: ${MOFA_FM_USERNAME}
+    password: ${MOFA_FM_PASSWORD}
+  features:
+    auto_publish: false
+  show:
+    slug: "clawri-bao"
+    title: "Claw日报"
+    description: "每日claw相关最新信息摘要播报"
+    content_type: podcast
+    visibility: public
+    auto_create: false

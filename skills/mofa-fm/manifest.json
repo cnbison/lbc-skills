@@ -30,7 +30,7 @@
   "dependencies": {
     "ominix-api": {
       "version": "1.0.0",
-      "repo": "https://github.com/OminiX-ai/OminiX-MLX",
+      "repo": "https://github.com/OminiX-ai/OminiX-API",
       "crate": "ominix-api",
       "features": [
         "tts"

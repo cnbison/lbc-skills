@@ -21,6 +21,7 @@ Why two locations?
 Current symlinks:
 
 ```
+.claude/skills/daily-news             -> ../../skills/daily-news
 .claude/skills/dou-wentao-perspective -> ../../skills/dou-wentao-perspective
 .claude/skills/follow-builders        -> ../../skills/follow-builders
 .claude/skills/ljg-read               -> ../../skills/ljg-read

@@ -26,6 +26,7 @@ Current symlinks:
 .claude/skills/follow-builders        -> ../../skills/follow-builders
 .claude/skills/ljg-read               -> ../../skills/ljg-read
 .claude/skills/nuwa-skill             -> ../../skills/nuwa-skill
+.claude/skills/second-brain           -> ../../skills/second-brain
 ```
 
 Background and management options are documented in `docs/skill-loading-paths.md`.

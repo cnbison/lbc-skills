@@ -6,6 +6,28 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is an **Octos skills repository** containing AI-native skills for Claude Code. Skills are declarative prompt engineering artifacts that define specialized AI capabilities. The repository is Chinese-first, with skills designed for Chinese-speaking users.
 
+## Repository Layout
+
+This repo separates **skill source** from **Claude Code's load path**:
+
+- `skills/<name>/` — Source of truth. All skill files (`SKILL.md`/`skill.md`, scripts, references, assets) live here.
+- `.claude/skills/<name>` — Symlink to `../../skills/<name>`. This is the path Claude Code auto-discovers at session start.
+
+Why two locations?
+
+- Claude Code only loads skills from `.claude/skills/` (project-level) or `~/.claude/skills/` (user-level). Anything elsewhere is invisible to the runtime.
+- Keeping the actual files under `skills/` makes the repo browsable on GitHub, easy to copy between projects, and avoids "install vs source" duplication. Symlinks bridge the two without duplicating content.
+
+Current symlinks:
+
+```
+.claude/skills/dou-wentao-perspective -> ../../skills/dou-wentao-perspective
+.claude/skills/ljg-read               -> ../../skills/ljg-read
+.claude/skills/nuwa-skill             -> ../../skills/nuwa-skill
+```
+
+Background and management options are documented in `docs/skill-loading-paths.md`.
+
 ## Skill Structure
 
 All skills follow a standardized format:
@@ -138,11 +160,17 @@ Skills write generated content to:
 
 ## Creating New Skills
 
-1. Create a new directory under `skills/` or a `.md` file in the root
+1. Create the source directory under `skills/<name>/` and add `SKILL.md` (or `skill.md`)
 2. Follow the YAML frontmatter + markdown body format
 3. Include clear trigger words in the description
 4. Document execution steps with file I/O commands where applicable
 5. Use timestamped filenames for generated content
+6. **Expose the skill to Claude Code via symlink** so it gets auto-loaded:
+   ```bash
+   ln -s ../../skills/<name> .claude/skills/<name>
+   git add .claude/skills/<name> skills/<name>
+   ```
+7. Start a new Claude Code session and confirm the skill appears in the available skills list
 
 ## Language Conventions
 

@@ -22,6 +22,7 @@ Current symlinks:
 
 ```
 .claude/skills/dou-wentao-perspective -> ../../skills/dou-wentao-perspective
+.claude/skills/follow-builders        -> ../../skills/follow-builders
 .claude/skills/ljg-read               -> ../../skills/ljg-read
 .claude/skills/nuwa-skill             -> ../../skills/nuwa-skill
 ```

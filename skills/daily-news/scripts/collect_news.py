@@ -117,6 +117,7 @@ class NewsCollector:
                         continue
 
                 logger.info(f"Fetched {len(articles)} articles from {url}")
+                break  # Success, exit retry loop
 
             except Exception as e:
                 logger.error(f"Error fetching feed {url}: {e}")

@@ -209,6 +209,61 @@ class NewsFilter:
         similarity = len(intersection) / len(union) if union else 0
         return similarity >= threshold
 
+    def load_historical_links(self, days: int = 2) -> Set[str]:
+        """Load article links from previous daily outputs for deduplication."""
+        historical_links = set()
+        output_dir = self.config.get_output_dir()
+        if not output_dir.exists():
+            return historical_links
+
+        for i in range(1, days + 1):
+            past_date = (self.reference_date - timedelta(days=i)).strftime("%Y-%m-%d")
+            article_path = output_dir / self.config.get_article_filename(past_date)
+            if article_path.exists():
+                try:
+                    with open(article_path, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                    links = re.findall(r'\[详情\]\((https?://[^\)]+)\)', content)
+                    historical_links.update(links)
+                    bare_links = re.findall(r'https?://[^\s\)\]]+', content)
+                    historical_links.update(bare_links)
+                except Exception as e:
+                    logger.debug(f"Error reading historical article {article_path}: {e}")
+
+            script_path = output_dir / self.config.get_podcast_script_filename(past_date)
+            if script_path.exists():
+                try:
+                    with open(script_path, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                    links = re.findall(r'https?://[^\s\)\]]+', content)
+                    historical_links.update(links)
+                except Exception as e:
+                    logger.debug(f"Error reading historical script {script_path}: {e}")
+
+        return historical_links
+
+    def filter_by_history(self, filtered_articles: List[FilteredArticle]) -> List[FilteredArticle]:
+        """Remove articles that were already covered in recent daily outputs."""
+        historical_links = self.load_historical_links(days=2)
+        if not historical_links:
+            return filtered_articles
+
+        result = []
+        removed = 0
+        normalized_historical = {link.rstrip('/').split('#')[0] for link in historical_links}
+
+        for filtered in filtered_articles:
+            article_link = filtered.article.link or ''
+            normalized_link = article_link.rstrip('/').split('#')[0]
+
+            if normalized_link not in normalized_historical:
+                result.append(filtered)
+            else:
+                removed += 1
+
+        logger.info(f"History-filtered to {len(result)} articles (removed {removed} previously covered)")
+        return result
+
     def rank_and_limit(self, filtered_articles: List[FilteredArticle]) -> List[FilteredArticle]:
         """
         Rank articles by relevance score and limit to max_articles.
@@ -302,7 +357,10 @@ class NewsFilter:
         # Step 4: Deduplicate
         filtered = self.deduplicate(filtered)
 
-        # Step 5: Rank and limit
+        # Step 5: Filter out articles already covered in recent dailies
+        filtered = self.filter_by_history(filtered)
+
+        # Step 6: Rank and limit
         filtered = self.rank_and_limit(filtered)
 
         logger.info(f"Filtering complete: {len(filtered)} articles")

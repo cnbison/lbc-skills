@@ -10,7 +10,6 @@ sources:
     - https://thenextweb.com/feed
     - https://arstechnica.com/information-technology/feed/
     - https://www.zdnet.com/news/rss.xml
-    - https://www.cnet.com/rss/tech/
     - https://www.fastcompany.com/technology/rss
     - https://www.theverge.com/rss/index.xml
 
@@ -68,18 +67,19 @@ sources:
     - https://sspai.com/feed
     - https://www.ruanyifeng.com/blog/atom.xml
     - https://blog.jetbrains.com/feed/
-    - https://www.zhihu.com/rss
-    - https://sspai.com/feed/column/6
     - https://www.v2ex.com/index.xml
 
   ai_agent_ecosystem:
     - https://github.com/modelcontextprotocol/specification/releases.atom
     - https://github.com/modelcontextprotocol/servers/releases.atom
-    - https://anthropic.com/blog/rss.xml
     - https://github.com/microsoft/playwright/releases.atom
     - https://github.com/browser-use/browser-use/releases.atom
-    - https://github.com/crewai/crewai/releases.atom
     - https://github.com/langchain-ai/langchain/releases.atom
+    - https://openai.com/blog/rss.xml
+    - https://blog.google/technology/ai/rss/
+    - https://simonwillison.net/atom.xml
+    - https://importai.substack.com/feed
+    - https://www.lesswrong.com/feed.xml?view=frontpage
 
 filter:
   keywords:
@@ -137,6 +137,53 @@ filter:
     - content curation
     - feed automation
     - podcast automation
+    - ai agent
+    - llm agent
+    - agentic
+    - agent framework
+    - ai model
+    - large language model
+    - openai
+    - anthropic
+    - google gemini
+    - deepseek
+    - claude
+    - gpt-4
+    - gpt-5
+    - ai safety
+    - ai security
+    - prompt injection
+    - jailbreak
+    - rag
+    - retrieval augmented generation
+    - vector database
+    - embedding model
+    - hugging face
+    - transformers
+    - diffusion model
+    - browser use
+    - codex
+    - copilot
+    - cursor editor
+    - vibe coding
+    - ai coding
+    - function calling
+    - tool use
+    - tool calling
+    - sandboxed ai
+    - confidential computing
+    - robotics
+    - humanoid robot
+    - embodied ai
+    - nvidia
+    - alignment
+    - ai governance
+    - ai regulation
+    - open source ai
+    - local llm
+    - on-device ai
+    - gpu cluster
+    - ai chip
 
   exclude_keywords:
     - crab claw
@@ -148,7 +195,7 @@ filter:
     - red claw
     - talon claw
 
-  time_window_hours: 24
+  time_window_hours: 48
   max_articles: 50
   min_article_length: 100
 

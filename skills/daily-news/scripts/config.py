@@ -131,6 +131,12 @@ class Config:
             return [k.lower() for k in self.config['filter']['exclude_keywords']]
         return []
 
+    def get_spam_patterns(self) -> List[str]:
+        """Get list of spam regex patterns for title filtering."""
+        if 'filter' in self.config and 'spam_patterns' in self.config['filter']:
+            return self.config['filter']['spam_patterns']
+        return []
+
     def get_min_article_length(self) -> int:
         """Get minimum article length for filtering."""
         if 'filter' in self.config and 'min_article_length' in self.config['filter']:

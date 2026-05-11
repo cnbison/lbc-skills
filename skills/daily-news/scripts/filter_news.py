@@ -27,6 +27,7 @@ class NewsFilter:
         self.config = config or get_config()
         self.keywords = [k.lower() for k in self.config.get_filter_keywords()]
         self.exclude_keywords = [k.lower() for k in self.config.get_exclude_keywords()]
+        self.spam_patterns = self.config.get_spam_patterns()
         self.min_article_length = self.config.get_min_article_length()
         self.time_window_hours = self.config.get_time_window_hours()
         self.max_articles = self.config.get_max_articles()
@@ -123,6 +124,40 @@ class NewsFilter:
                 result.append(filtered)
 
         logger.info(f"Exclude-filtered to {len(result)} articles")
+        return result
+
+    def filter_by_spam(self, filtered_articles: List[FilteredArticle]) -> List[FilteredArticle]:
+        """
+        Filter out low-quality or promotional articles based on title patterns.
+
+        Args:
+            filtered_articles: List of FilteredArticle objects
+
+        Returns:
+            Filtered list with spam/promotional articles removed
+        """
+        if not self.spam_patterns:
+            return filtered_articles
+
+        result = []
+        removed = 0
+        for filtered in filtered_articles:
+            article = filtered.article
+            title = article.title or ''
+            is_spam = False
+            for pattern in self.spam_patterns:
+                try:
+                    if re.search(pattern, title, re.IGNORECASE):
+                        is_spam = True
+                        break
+                except re.error:
+                    continue
+            if not is_spam:
+                result.append(filtered)
+            else:
+                removed += 1
+
+        logger.info(f"Spam-filtered to {len(result)} articles (removed {removed})")
         return result
 
     def filter_by_time(self, filtered_articles: List[FilteredArticle]) -> List[FilteredArticle]:
@@ -351,16 +386,19 @@ class NewsFilter:
         # Step 2: Filter by exclude keywords
         filtered = self.filter_by_exclude_keywords(filtered)
 
-        # Step 3: Filter by time
+        # Step 3: Filter by spam/promotional patterns
+        filtered = self.filter_by_spam(filtered)
+
+        # Step 4: Filter by time
         filtered = self.filter_by_time(filtered)
 
-        # Step 4: Deduplicate
+        # Step 5: Deduplicate
         filtered = self.deduplicate(filtered)
 
-        # Step 5: Filter out articles already covered in recent dailies
+        # Step 6: Filter out articles already covered in recent dailies
         filtered = self.filter_by_history(filtered)
 
-        # Step 6: Rank and limit
+        # Step 7: Rank and limit
         filtered = self.rank_and_limit(filtered)
 
         logger.info(f"Filtering complete: {len(filtered)} articles")

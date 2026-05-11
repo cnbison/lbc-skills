@@ -45,11 +45,20 @@ class NewsCollector:
         articles = []
         source_type = None
 
+        # Map YAML category names to SourceType enum
+        category_to_source_type = {
+            'automation_rss': SourceType.COMMUNITY,
+            'tech_media': SourceType.AI_MEDIA,
+            'dev_media': SourceType.AI_SPECIALIZED,
+            'github': SourceType.GITHUB,
+            'opensource': SourceType.COMMUNITY,
+            'security': SourceType.SECURITY,
+            'community': SourceType.COMMUNITY,
+            'chinese_media': SourceType.CHINESE_AI,
+            'ai_agent_ecosystem': SourceType.LLM_AGENT,
+        }
         if category:
-            try:
-                source_type = SourceType(category)
-            except ValueError:
-                pass
+            source_type = category_to_source_type.get(category)
 
         # Retry logic for connection errors
         for attempt in range(max_retries + 1):

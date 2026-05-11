@@ -195,6 +195,17 @@ filter:
     - red claw
     - talon claw
 
+  spam_patterns:
+    - '推广'
+    - '中转站.*(?:Token|额度|呆呆兽|DDShub|一刀)'
+    - '注册送'
+    - 'Can a few people help me test this'
+    - 'Devops Engineer intern help'
+    - '^# 🚀.*Token'
+    - 'codex 小妙招'
+    - 'Weekly Self Promotion'
+    - 'Project ideas!.*Daily Thread'
+
   time_window_hours: 48
   max_articles: 50
   min_article_length: 100

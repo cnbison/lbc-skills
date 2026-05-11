@@ -39,7 +39,9 @@ Assistant: Runs: python tools/daily_news.py collect
 - **Skill 根目录**：skill 安装目录（包含 `run_pipeline.py`、`scripts/`、`config/` 等）
 - **Python**：优先使用 `venv/bin/python`；如果没有 venv，使用系统 python3。
 - **入口工具**：`tools/daily_news.py`（支持 `run/setup/collect/filter/tts`）
-- **日志**：`pipeline.log`
+- **日志**：`pipeline.log`（生成于当前工作目录）
+- **数据目录**：采集、过滤后的 JSON 数据生成在**当前工作目录**的 `daily-news/data/` 下，而非 skill 安装目录内
+- **输出目录**：文章、播客脚本和音频生成在**当前工作目录**的 `daily-news/output/` 下
 
 ### 配置
 
@@ -48,37 +50,39 @@ Assistant: Runs: python tools/daily_news.py collect
 
 ### 命令速查
 
+以下命令均应在**项目工作目录**执行，使用 skill 目录的绝对路径调用脚本（不要 `cd` 进 skill 目录）：
+
 ```bash
 # 完整流水线（含TTS）——Python 部分
-python tools/daily_news.py run
+python <skill-dir>/tools/daily_news.py run
 
 # 跳过TTS（仅文章+播客脚本）
-python tools/daily_news.py run --skip-tts
+python <skill-dir>/tools/daily_news.py run --skip-tts
 
 # 指定日期
-python tools/daily_news.py run --date 2026-05-05
+python <skill-dir>/tools/daily_news.py run --date 2026-05-05
 
 # 使用自定义配置
-python tools/daily_news.py run --config /path/to/config.yaml
+python <skill-dir>/tools/daily_news.py run --config /path/to/config.yaml
 
 # 首次安装依赖
-python tools/daily_news.py setup
+python <skill-dir>/tools/daily_news.py setup
 
 # 强制重新安装依赖后运行
-python tools/daily_news.py run --force-setup
+python <skill-dir>/tools/daily_news.py run --force-setup
 ```
 
 ### 分阶段命令（Python 数据部分）
 
 ```bash
 # 阶段1: 采集 RSS
-python tools/daily_news.py collect
+python <skill-dir>/tools/daily_news.py collect
 
 # 阶段2: 过滤去重
-python tools/daily_news.py filter
+python <skill-dir>/tools/daily_news.py filter
 
 # 阶段5: TTS 音频（需要先有播客脚本）
-python tools/daily_news.py tts
+python <skill-dir>/tools/daily_news.py tts
 ```
 
 ### Agent 驱动的 AI 生成流程
@@ -87,19 +91,23 @@ python tools/daily_news.py tts
 
 #### 步骤 1：数据采集与过滤（Python）
 
+在项目工作目录执行：
+
 ```bash
-python tools/daily_news.py collect
-python tools/daily_news.py filter
+python <skill-dir>/tools/daily_news.py collect
+python <skill-dir>/tools/daily_news.py filter
 ```
 
 #### 步骤 2：AI 摘要（由 Agent 完成）
 
-1. 读取 `daily-news/data/filtered_news.json`
+以下文件路径均相对于**项目工作目录**（当前执行命令的目录）：
+
+1. 读取 `<cwd>/daily-news/data/filtered_news.json`
 2. 为每条新闻生成 150 字以内的中文摘要，要求：
    - 简明扼要，突出核心信息
    - 使用客观、专业的语言
 3. 将摘要填充到每条数据的 `ai_summary` 字段
-4. 保存为 `daily-news/data/summarized_news.json`，格式示例：
+4. 保存为 `<cwd>/daily-news/data/summarized_news.json`，格式示例：
    ```json
    {
      "summarized_at": "2026-05-05T10:00:00",
@@ -117,8 +125,8 @@ python tools/daily_news.py filter
 
 #### 步骤 3：生成日报文章（由 Agent 完成）
 
-1. 读取 `daily-news/data/summarized_news.json`
-2. 生成结构完整的 Markdown 文章，保存到 `daily-news/output/claw_daily_{date}.md`
+1. 读取 `<cwd>/daily-news/data/summarized_news.json`
+2. 生成结构完整的 Markdown 文章，保存到 `<cwd>/daily-news/output/claw_daily_{date}.md`
 3. 文章必须包含以下部分：
    - `# Claw 每日观察 - {date}`
    - `## 今日摘要`
@@ -139,8 +147,8 @@ python tools/daily_news.py filter
 
 #### 步骤 4：生成播客脚本（由 Agent 完成）
 
-1. 读取 `daily-news/output/claw_daily_{date}.md`
-2. 改写为 3-5 分钟的播客脚本，保存到 `daily-news/output/claw_podcast_{date}.txt`
+1. 读取 `<cwd>/daily-news/output/claw_daily_{date}.md`
+2. 改写为 3-5 分钟的播客脚本，保存到 `<cwd>/daily-news/output/claw_podcast_{date}.txt`
 3. 节目信息：
    - 名称：claw日报
    - 主持人：Alex 和 Sarah
@@ -162,10 +170,10 @@ python tools/daily_news.py filter
 
 #### 步骤 5：TTS 音频（Python）
 
-如果用户没有说跳过 TTS：
+在项目工作目录执行。如果用户没有说跳过 TTS：
 
 ```bash
-python tools/daily_news.py tts
+python <skill-dir>/tools/daily_news.py tts
 ```
 
 ### 执行规则
@@ -177,18 +185,18 @@ python tools/daily_news.py tts
    - "昨天" → `--date $(date -v-1d +%Y-%m-%d)`（macOS）或 `--date $(date -d yesterday +%Y-%m-%d)`（Linux）
    - 用户给具体日期 → `--date YYYY-MM-DD`
 
-3. **输出位置**：生成成功后，报告以下路径：
-   - 文章：`daily-news/output/claw_daily_{date}.md`
-   - 播客脚本：`daily-news/output/claw_podcast_{date}.txt`
-   - 音频：`daily-news/output/claw_daily_{date}.mp3`
+3. **输出位置**（均相对于项目工作目录）：生成成功后，报告以下路径：
+   - 文章：`<cwd>/daily-news/output/claw_daily_{date}.md`
+   - 播客脚本：`<cwd>/daily-news/output/claw_podcast_{date}.txt`
+   - 音频：`<cwd>/daily-news/output/claw_daily_{date}.mp3`
 
-4. **故障排查**：如果命令报错或输出为空，立即查看日志：
-   - `cat daily-news/pipeline.log | tail -30`
+4. **故障排查**：如果命令报错或输出为空，立即查看日志（相对于项目工作目录）：
+   - `cat <cwd>/daily-news/pipeline.log | tail -30`
    - 常见问题：RSS 采集失败、ffmpeg 缺失（仅影响 TTS 合并）
 
-5. **依赖安装**：如果运行时报 `ModuleNotFoundError`，先执行 `python tools/daily_news.py setup` 或 `python tools/daily_news.py run --force-setup`。
+5. **依赖安装**：如果运行时报 `ModuleNotFoundError`，先执行 `python <skill-dir>/tools/daily_news.py setup` 或 `python <skill-dir>/tools/daily_news.py run --force-setup`。
 
-6. **不要**使用 `cd` 进入目录再执行命令，应使用绝对路径或 `./venv/bin/python run_pipeline.py` 在工作目录直接运行。
+6. **不要**使用 `cd` 进入 skill 目录再执行命令。始终保持在项目工作目录，通过 skill 目录的绝对路径调用脚本。
 
 ### 返回格式
 

@@ -406,7 +406,7 @@ cd ${CLAUDE_SKILL_DIR}/scripts && node deliver.js --file /tmp/fb-digest.txt 2>/d
 If delivery fails, show the digest in the terminal as fallback.
 
 **If "stdout" (default):**
-Just output the digest directly.
+Just output the digest directly. The deliver script also saves a copy to the current working directory at `follow-builders/output/ai-builders-digest-{YYYY-MM-DD}.md`.
 
 ---
 

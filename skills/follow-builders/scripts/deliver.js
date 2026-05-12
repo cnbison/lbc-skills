@@ -20,9 +20,9 @@
 //   - "stdout" (default): just prints to terminal
 // ============================================================================
 
-import { readFile } from 'fs/promises';
+import { readFile, writeFile, mkdir } from 'fs/promises';
 import { existsSync } from 'fs';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import { homedir } from 'os';
 import { config as loadEnv } from 'dotenv';
 
@@ -149,6 +149,24 @@ async function sendEmail(text, apiKey, toEmail) {
   }
 }
 
+// -- File Saving -------------------------------------------------------------
+
+// Saves the digest to the current working directory under
+// follow-builders/output/ai-builders-digest-{date}.md
+async function saveToFile(text) {
+  const cwd = process.cwd();
+  const outDir = resolve(cwd, 'follow-builders', 'output');
+  const dateStr = new Date().toISOString().slice(0, 10);
+  const filePath = join(outDir, `ai-builders-digest-${dateStr}.md`);
+
+  if (!existsSync(outDir)) {
+    await mkdir(outDir, { recursive: true });
+  }
+
+  await writeFile(filePath, text, 'utf-8');
+  return filePath;
+}
+
 // -- Main --------------------------------------------------------------------
 
 async function main() {
@@ -200,8 +218,14 @@ async function main() {
 
       case 'stdout':
       default:
-        // Just print to terminal — the agent or OpenClaw handles delivery
+        // Print to terminal and save to working directory
         console.log(digestText);
+        try {
+          const savedPath = await saveToFile(digestText);
+          console.log(`\n[Digest saved to: ${savedPath}]`);
+        } catch (err) {
+          console.error(`[Failed to save digest: ${err.message}]`);
+        }
         break;
     }
   } catch (err) {

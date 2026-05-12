@@ -1,6 +1,7 @@
 # Generated output directories
 skill-output/
 /daily-news/
+/follow-builders/
 
 # System files
 .DS_Store

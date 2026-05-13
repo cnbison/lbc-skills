@@ -52,7 +52,7 @@ ln -s ~/projects/lbc-skills/skills/daily-news .claude/skills/daily-news
 | Skill | 状态 | 一句话 | 触发词 | 依赖 |
 |------|:--:|------|------|------|
 | [`daily-news`](skills/daily-news/) | ✅ | RSS 采集 → 过滤去重 → Agent 摘要/文章/播客脚本 → TTS 合成 MP3 | 生成日报 / claw日报 / 今天的新闻 / 播报 | `python3` |
-| [`follow-builders`](skills/follow-builders/) | ✅ | 监控 X 上的 AI builder 与播客，做日 / 周 digest，支持中英双语 | /ai / AI digest / builder 更新 | 无（从中心 feed 拉取） |
+| [`follow-builders`](skills/follow-builders/) | ✅ | 监控 X 上的 AI builder 与播客，做日 / 周 digest，支持中英双语 | AI digest / builders digest / builder 更新 / industry insights | 无（从中心 feed 拉取） |
 | [`ljg-read`](skills/ljg-read/) | ✅ | 伴读 agent：翻译、结构标注、深度提问、跨学科洞察 | 伴读 / 陪我读 / 读这篇 / read with me | — |
 | [`news-summary`](skills/news-summary/) | 🚧 | 抓取国际 RSS 做新闻播报，可生成语音摘要 | news / 新闻 / briefing | RSS、可选 TTS |
 

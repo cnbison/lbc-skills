@@ -34,7 +34,7 @@ ln -s ~/projects/lbc-skills/skills/daily-news .claude/skills/daily-news
 
 ```
 > 生成日报           → 触发 daily-news
-> /ai                → 触发 follow-builders
+> builder digest    → 触发 follow-builders
 > 用窦文涛的视角看…  → 触发 dou-wentao-perspective
 > 陪我读这篇         → 触发 ljg-read
 > 蒸馏 <人物>        → 触发 nuwa-skill

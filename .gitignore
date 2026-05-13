@@ -19,6 +19,8 @@ Thumbs.db
 *.temp
 .cache/
 mtv-temp/
+temp/
+tmp/
 
 # Secrets — never commit
 .env

@@ -1,51 +1,82 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file is the **development guide** for Claude Code (claude.ai/code) when working **inside this repository**. It tells Claude what this repo is, where things live, and how to design / create / adapt skills here.
 
-## Repository Overview
+> 想了解仓库里**有哪些 skill、怎么使用**？请看 [README.md](./README.md)。本文件只关心**开发约束**，不当使用手册。
 
-This is an **Octos skills repository** containing AI-native skills for Claude Code. Skills are declarative prompt engineering artifacts that define specialized AI capabilities. The repository is Chinese-first, with skills designed for Chinese-speaking users.
+---
 
-## Repository Layout
+## 1. 仓库定位
 
-This repo separates **skill source** from **Claude Code's load path**:
+`lbc-skills` 是一个**AI-native skill 工坊**：
 
-- `skills/<name>/` — Source of truth. All skill files (`SKILL.md`/`skill.md`, scripts, references, assets) live here.
-- `.claude/skills/<name>` — Symlink to `../../skills/<name>`. This is the path Claude Code auto-discovers at session start.
+- **核心目的**：设计、创建、改编、迭代 Claude Code skill（声明式的 prompt engineering artifact）。
+- **核心受众**：skill 开发者本人 + Claude Code 在协作开发时的自我约束。
+- **不是**：终端用户的使用手册，也不是 skill 安装器。
+- **语言**：中文优先（Chinese-first），skill 描述与触发词同时提供中英双语。
 
-Why two locations?
+**Claude 在本仓库的默认任务**：阅读现有 skill → 写新 skill / 改 skill → 暴露到 `.claude/skills/` → 提交并 push。
 
-- Claude Code only loads skills from `.claude/skills/` (project-level) or `~/.claude/skills/` (user-level). Anything elsewhere is invisible to the runtime.
-- Keeping the actual files under `skills/` makes the repo browsable on GitHub, easy to copy between projects, and avoids "install vs source" duplication. Symlinks bridge the two without duplicating content.
+---
 
-Current symlinks:
+## 2. 仓库布局
 
-```
-.claude/skills/daily-news             -> ../../skills/daily-news
-.claude/skills/dou-wentao-perspective -> ../../skills/dou-wentao-perspective
-.claude/skills/follow-builders        -> ../../skills/follow-builders
-.claude/skills/ljg-read               -> ../../skills/ljg-read
-.claude/skills/nuwa-skill             -> ../../skills/nuwa-skill
-.claude/skills/second-brain           -> ../../skills/second-brain
-```
+仓库刻意把 **skill 源码** 和 **Claude Code 的加载路径** 分开：
 
-Background and management options are documented in `docs/skill-loading-paths.md`.
+| 路径 | 角色 |
+|------|------|
+| `skills/<name>/` | **真源**。所有 skill 文件（`SKILL.md` / `skill.md`、脚本、references、assets）都放这里。 |
+| `.claude/skills/<name>` | **软链接**，指向 `../../skills/<name>`。Claude Code 在会话开始时只扫描这里。 |
+| `docs/` | 跨 skill 的设计与对比文档（skill-loading-paths、skill-format-comparison 等）。 |
+| `daily-news/`、`follow-builders/` 顶层目录 | 某些 skill 的运行产物落地目录（不是源码，可被 `.gitignore`）。 |
 
-## Skill Structure
+为什么要双路径？
 
-All skills follow a standardized format:
+- Claude Code 只从 `.claude/skills/`（项目级）或 `~/.claude/skills/`（用户级）加载 skill。放在 `skills/` 下的源文件对运行时**不可见**。
+- 但把源码放在 `skills/` 下让仓库在 GitHub 上可浏览、便于跨项目复制、不用区分"install vs source"。软链接是桥。
+
+详见 [`docs/skill-loading-paths.md`](docs/skill-loading-paths.md)。
+
+---
+
+## 3. Skill 的三类形态
+
+| 形态 | 标志 | 代表 |
+|------|------|------|
+| **纯 prompt skill** | 仅 `SKILL.md` + 可选 `references/` | `dou-wentao-perspective`、`ljg-read`、`ljg-roundtable`、`mofa-concept`、`nuwa-skill`、`ljg-roundtable` |
+| **Python 流水线 skill** | 带 `tools/`、`venv/`、`scripts/`、`requirements.txt` | `daily-news`、`follow-builders`、`agents-skill-podcastifier` |
+| **MoFA 类 Rust 二进制 skill** | 带 `manifest.json`、`Cargo.toml`、`src/`、`architecture.dot` | `mofa-slides`、`mofa-fm`、`mofa-podcast-*`、`mofa-cli` |
+
+三类的对比与权衡：见 [`docs/skill-format-comparison.md`](docs/skill-format-comparison.md)。
+
+**选择原则**：能用 prompt 解决的不引入脚本，能用脚本解决的不引入 Rust。脚本类只做**确定性数据工作**（采集、清洗、TTS、ffmpeg 合并等），所有 LLM 生成由 Agent 在 SKILL.md 指导下完成，避免在脚本里硬编码 API key。
+
+---
+
+## 4. Skill 文件格式约束
+
+所有 skill 的入口都是 `SKILL.md`（少数旧 skill 用 `skill.md`，新建一律 `SKILL.md`）。
+
+### 4.1 YAML Frontmatter（必填）
 
 ```yaml
 ---
-name: skill-name
-description: >-
-  Detailed description including trigger words/phrases.
-  Triggers: word1, word2, /command.
-version: x.y.z  # optional
-author: name    # optional
-always: false   # optional
+name: skill-name                 # kebab-case，唯一
+description: >-                  # 必含触发词（中英双语）
+  一句话定位 + Triggers: 触发词1, 触发词2, /command。
+version: 0.1.0                   # 可选
+author: name                     # 可选
+always: false                    # 可选；true 表示常驻加载
+requires_bins: python3, ffmpeg   # 可选；声明系统二进制依赖
+requires_env: GEMINI_API_KEY     # 可选；声明环境变量依赖
 ---
+```
 
+`description` 是 Claude Code 自动激活 skill 的关键。**触发词必须显式列出**，否则 skill 永远不会被触发。
+
+### 4.2 Body 结构
+
+```markdown
 ## Usage
 
 <example>
@@ -55,139 +86,129 @@ Assistant: [Expected behavior]
 
 ## Instructions
 
-Step-by-step execution instructions...
+1. 第一步...
+2. 第二步...
 ```
 
-### Key Conventions
+### 4.3 命名与输出约定
 
-1. **YAML Frontmatter**: Required. The `description` field must include trigger words that activate the skill
-2. **Usage Examples**: Include `<example>` blocks showing user input and expected assistant behavior
-3. **Execution Instructions**: Numbered steps that Claude follows when executing the skill
-4. **File Output**: Skills that generate files use timestamped naming: `{timestamp}--{topic}__{type}.{ext}`
+- **skill 名**：kebab-case，与目录名一致。
+- **文件输出**：生成的产物用时间戳前缀，便于排序与去重：`{YYYY-MM-DD}--{topic}__{type}.{ext}`，例如 `概念解剖-道__concept.md`。
+- **输出落地路径**：
+  - `~/Documents/notes/` — 文档类（markdown、org-mode）。
+  - `~/Documents/scripts/` — 播客脚本类。
+  - `./skill-output/<skill>-<timestamp>/` — 多文件流水线产物（slide、音频、视频段）。
+  - `./<skill-name>/output/` — 部分以仓库工作目录为根的 skill（如 `daily-news`、`follow-builders`）。
 
-## Skill Categories
+---
 
-### Content Generation Skills
+## 5. MoFA 类 skill 的额外约束
 
-- **`mofa-concept`**: 8-dimensional concept deconstruction (history, dialectics, phenomenology, linguistics, formalization, existentialism, aesthetics, meta-philosophy). Outputs markdown reports and podcast scripts.
+MoFA（Model-on-File Architecture）skill 是 Rust 二进制 + 风格化 pipeline 的组合。新建 MoFA 类 skill 时必读：
 
-- **`ljg-roundtable`**: Structured multi-perspective debate with historical figures. Uses action tags (陈述/质疑/补充/反驳/修正/综合) and ASCII framework diagrams. Outputs org-mode files.
-
-### MoFA Core Skills
-
-- **`mofa-slides`**: AI-generated visual presentations with full-bleed Gemini images. Four modes: image-only, manual text overlay, auto-layout (VQA), PDF-to-PPTX. 17+ built-in styles (fengzikai, nb-pro, agentic-enterprise, etc.). Requires `GEMINI_API_KEY`.
-
-- **`mofa-fm`**: TTS and voice cloning service. Preset voices: vivian, serena, ryan, aiden, eric, dylan, uncle_fu, ono_anna, sohee. Custom voices via `fm_voice_save`.
-
-- **`mofa-podcast`**: Multi-speaker podcast and dialogue generation with emotion tags and BGM cues. Supports 1-5 speakers, multiple genres (drama, news, talk-show, interview, storytelling, debate).
-
-- **`mofa-cli`**: Shared CLI binary providing the `mofa` command for all mofa skills. Rust-based implementation with pipelines for slides, cards, comic, infographic, and video.
-
-- **`mofa-fm-api`**: API interface for mofa-fm TTS services. Includes Python client (`fm_client.py`) and documentation site.
-
-### Pipeline Skills
-
-- **`md-to-video`**: Markdown → AI slides → TTS → ffmpeg → MP4. Requires external tools (`mofa-slides`, `mofa-fm`, `ffmpeg`, `GEMINI_API_KEY`).
-
-## MoFA Skill Architecture
-
-MoFA (Model-on-File Architecture) skills are Rust-based binaries with structured pipelines:
-
-### Directory Structure
+### 5.1 目录骨架
 
 ```
 skills/mofa-<name>/
-├── SKILL.md              # Skill definition and usage
-├── manifest.json         # Binary requirements and metadata
-├── Cargo.toml           # Rust dependencies
+├── SKILL.md              # skill 定义
+├── manifest.json         # 二进制依赖与元数据
+├── Cargo.toml            # Rust 依赖
 ├── src/
-│   ├── main.rs          # CLI entry point
-│   └── pipeline/        # Pipeline implementations
-├── styles/              # TOML style definitions (for slides)
-├── scripts/             # Setup and utility scripts
-└── architecture.dot     # Pipeline architecture diagram
+│   ├── main.rs           # CLI 入口
+│   └── pipeline/         # pipeline 实现
+├── styles/               # TOML 风格定义（slides 类）
+├── scripts/              # 安装/工具脚本
+└── architecture.dot      # pipeline 架构图（Graphviz）
 ```
 
-### Key Patterns
+### 5.2 关键模式
 
-1. **Binary Dependencies**: Declared in `manifest.json` via `requires_bins` or `requires_bin`
-2. **Environment Variables**: API keys declared via `requires_env` in SKILL.md frontmatter
-3. **Output Paths**: Always use relative paths under `skill-output/<skill>-<timestamp>/`
-4. **Pipeline Architecture**: Documented in `architecture.dot` files
+1. **二进制依赖**：在 `manifest.json` 里通过 `requires_bins` / `requires_bin` 声明，运行时检查。
+2. **环境变量**：API key 在 `SKILL.md` frontmatter 用 `requires_env` 声明。
+3. **输出路径**：相对路径 `skill-output/<skill>-<timestamp>/`，禁止硬编码绝对路径。
+4. **架构图**：用 `architecture.dot` 描述 pipeline 数据流。
 
-### MoFA Slides Modes
+### 5.3 `mofa-cli` 是共享内核
 
-| Mode | Description | Use Case |
-|------|-------------|----------|
-| Mode 1: Image-only | Text baked into AI image | Quick, beautiful, not editable |
-| Mode 2: Manual text overlay | Clean background + positioned text boxes | Pixel-perfect control |
-| Mode 3: Auto-layout (VQA) | AI generates with text, VQA extracts, text removed | Fully automated editable |
-| Mode 4: PDF-to-PPTX | Existing images to editable PPTX | Import/conversion |
+`mofa-slides`、`mofa-podcast-*` 等共享同一个 `mofa` CLI 二进制（由 `mofa-cli` 提供）。新增 MoFA 子 skill 时，应优先复用 `mofa <subcommand>`，而不是新建独立二进制。
 
-## External Dependencies
+---
 
-Some skills require external tools (not managed by package managers):
-
-| Tool | Purpose | Skills Using It |
-|------|---------|-----------------|
-| `mofa` | CLI binary (slides, cards, comic, infographic, video) | mofa-slides, mofa-cli |
-| `mofa-fm` | TTS and voice cloning | mofa-fm, md-to-video, mofa-podcast |
-| `ffmpeg` | Video/audio processing | md-to-video, mofa-podcast |
-| `soffice` | PPTX conversion (optional) | md-to-video, mofa-slides |
-| `GEMINI_API_KEY` | Image generation + VQA | mofa-slides, md-to-video |
-| `DASHSCOPE_API_KEY` | Text removal (qwen-image-edit) | mofa-slides (auto-layout mode) |
-
-### MoFA CLI Commands
+## 6. 创建新 Skill 的步骤（核心 SOP）
 
 ```bash
-# Generate slides
-mofa slides --style nb-pro --out deck.pptx --slide-dir imgs/ input.json
+# 1) 在源目录建骨架
+mkdir -p skills/<name>
+$EDITOR skills/<name>/SKILL.md     # 写 YAML frontmatter + Usage + Instructions
 
-# Generate cards
-mofa cards --style minimal --out cards.pptx input.json
+# 2) 暴露到加载路径（关键，否则 Claude 看不到）
+ln -s ../../skills/<name> .claude/skills/<name>
 
-# Generate infographic
-mofa infographic --style data --out infographic.png input.json
+# 3) 加进 git
+git add skills/<name> .claude/skills/<name>
 
-# Generate video
-mofa video --style cinematic --out video.mp4 input.json
+# 4) 启动新会话验证 skill 是否被自动识别（看 system-reminder 中的 skill 列表）
+
+# 5) 提交并推送
+git commit -m "feat(<name>): add new skill"
+git push origin main
 ```
 
-## Output Locations
+**新 skill 的验收清单**：
 
-Skills write generated content to:
+- [ ] `description` 含至少 3 个触发词，中英双语
+- [ ] 至少一个 `<example>` 块
+- [ ] `## Instructions` 用编号步骤，避免模糊指令
+- [ ] 软链接已建并 `git add`（软链接本身也要进 git）
+- [ ] 新会话能在系统提示里看到该 skill
+- [ ] 至少跑通一次端到端（生成产物或打印输出）
+- [ ] 在 `README.md` 的 skill 目录中追加一行
 
-- `~/Documents/notes/` — Markdown and org-mode reports
-- `~/Documents/scripts/` — Podcast scripts
-- `./skill-output/<skill-name>-<timestamp>/` — Pipeline artifacts (slides, audio, video segments)
+---
 
-## Creating New Skills
+## 7. 语言与本地化约定
 
-1. Create the source directory under `skills/<name>/` and add `SKILL.md` (or `skill.md`)
-2. Follow the YAML frontmatter + markdown body format
-3. Include clear trigger words in the description
-4. Document execution steps with file I/O commands where applicable
-5. Use timestamped filenames for generated content
-6. **Expose the skill to Claude Code via symlink** so it gets auto-loaded:
-   ```bash
-   ln -s ../../skills/<name> .claude/skills/<name>
-   git add .claude/skills/<name> skills/<name>
-   ```
-7. Start a new Claude Code session and confirm the skill appears in the available skills list
+- **首要语言**：简体中文。
+- **触发词**：中英文都要列。例如：`Triggers: 圆桌, roundtable, debate`。
+- **生成文件标题**：中文优先 + 英文 type 后缀，例如 `概念解剖-道__concept.md`。
+- **代码注释**：英文（保持跨项目可读）；用户面向的 prompt 文案：中文。
 
-## Language Conventions
+---
 
-- **Primary language**: Chinese (Simplified)
-- **Trigger words**: Include both Chinese and English variants where applicable
-- **File output**: Use Chinese titles with English type suffixes (e.g., `概念解剖-道__concept.md`)
+## 8. Git / 版本控制工作流（硬约束）
 
-## Version Control Workflow
+**所有代码修改完成后必须推送到远程仓库。本地不留未推送提交。**
 
-**所有代码修改完成后必须推送到远程仓库：**
+```bash
+git status                    # 1) 检查变更
+git add <files>               # 2) 精确添加（不用 git add .）
+git commit -m "<scope>: 描述"  # 3) 中文或英文描述均可，scope 用 skill 名
+git push origin main          # 4) 立即 push
+```
 
-1. 检查变更：`git status`
-2. 添加文件：`git add <files>`
-3. 提交更改：`git commit -m "描述信息"`
-4. 推送至远程：`git push origin main`
+**禁止**：
+- 在本地保留未推送提交
+- `git add .` / `git add -A`（容易卷入 `.env`、临时产物）
+- 强推 main（`push --force` 到 main）
+- 跳过 git hooks（`--no-verify`）
 
-**禁止**在本地保留未推送的提交。每次任务完成时主动执行 push。
+---
+
+## 9. 工作时的默认动作
+
+当用户在本仓库内提出 skill 相关请求时，Claude 默认执行顺序：
+
+1. **先读 `skills/<name>/SKILL.md`**，了解 skill 现状（不靠记忆）。
+2. **改动遵循"最小变更"原则**：只动用户要求的部分，不顺手重构。
+3. **改完立即建/更新软链接**，再 `git add` 包含两个路径。
+4. **任务完成立刻 `git commit && git push`**，不留尾巴。
+5. **新建 skill 后在 `README.md` 的目录里补一行**，保持 README 与 `skills/` 同步。
+
+---
+
+## 10. 仅与开发相关的速查
+
+- skill 形态对比：[`docs/skill-format-comparison.md`](docs/skill-format-comparison.md)
+- skill 加载路径机制：[`docs/skill-loading-paths.md`](docs/skill-loading-paths.md)
+- 单个 skill 的设计笔记：散落在 `docs/<skill-name>.md`
+- 终端用户的使用说明：[`README.md`](README.md)

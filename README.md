@@ -2,7 +2,7 @@
 
 > 一个面向中文用户的 Claude Code Skill 集合。
 
-`lbc-skills` 收录了一组**AI-native skill**：可被 Claude Code 自动识别、按触发词激活、声明式定义行为的能力包。覆盖**信息流、思考与知识、语音播客、多模态生成**四大场景，共 **19 个 skill**，其中 **6 个 active**、**13 个 WIP / 待激活**。
+`lbc-skills` 收录了一组**AI-native skill**：可被 Claude Code 自动识别、按触发词激活、声明式定义行为的能力包。覆盖**信息流、思考与知识、语音播客、多模态生成**四大场景，共 **20 个 skill**，其中 **7 个 active**、**13 个 WIP / 待激活**。
 
 - 想了解**如何在自己的项目里加载这些 skill**：见下方 [快速开始](#快速开始)。
 - 想**贡献新 skill 或修改现有 skill**：先读 [`CLAUDE.md`](./CLAUDE.md)（开发约束）。
@@ -95,6 +95,7 @@ ln -s ~/projects/lbc-skills/skills/daily-news .claude/skills/daily-news
 | Skill | 状态 | 一句话 | 触发词 | 依赖 |
 |------|:--:|------|------|------|
 | [`mofa-cli`](skills/mofa-cli/) | 🚧 | 所有 MoFA skill 共享的 CLI 二进制（slides / cards / comic / infographic / video） | 非用户触发，被其他 skill 依赖 | Rust toolchain |
+| [`skill-creator`](skills/skill-creator/) | ✅ | 创建、修改、评估和优化 skill 的完整工作流（含 eval 框架与 description 优化） | create skill / 新建 skill / 优化 skill / skill eval | `python3` |
 
 ---
 

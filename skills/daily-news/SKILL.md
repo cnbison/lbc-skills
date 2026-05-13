@@ -40,8 +40,8 @@ Assistant: Runs: python tools/daily_news.py collect
 - **Python**：优先使用 `venv/bin/python`；如果没有 venv，使用系统 python3。
 - **入口工具**：`tools/daily_news.py`（支持 `run/setup/collect/filter/tts`）
 - **日志**：`pipeline.log`（生成于当前工作目录）
-- **数据目录**：采集、过滤后的 JSON 数据生成在**当前工作目录**的 `daily-news/data/` 下，而非 skill 安装目录内
-- **输出目录**：文章、播客脚本和音频生成在**当前工作目录**的 `daily-news/output/` 下
+- **数据目录**：采集、过滤后的 JSON 数据生成在**当前工作目录**的 `output/daily-news/data/` 下，而非 skill 安装目录内
+- **输出目录**：文章、播客脚本和音频生成在**当前工作目录**的 `output/daily-news/output/` 下
 
 ### 配置
 
@@ -102,12 +102,12 @@ python <skill-dir>/tools/daily_news.py filter
 
 以下文件路径均相对于**项目工作目录**（当前执行命令的目录）：
 
-1. 读取 `<cwd>/daily-news/data/filtered_news.json`
+1. 读取 `<cwd>/output/daily-news/data/filtered_news.json`
 2. 为每条新闻生成 150 字以内的中文摘要，要求：
    - 简明扼要，突出核心信息
    - 使用客观、专业的语言
 3. 将摘要填充到每条数据的 `ai_summary` 字段
-4. 保存为 `<cwd>/daily-news/data/summarized_news.json`，格式示例：
+4. 保存为 `<cwd>/output/daily-news/data/summarized_news.json`，格式示例：
    ```json
    {
      "summarized_at": "2026-05-05T10:00:00",
@@ -125,8 +125,8 @@ python <skill-dir>/tools/daily_news.py filter
 
 #### 步骤 3：生成日报文章（由 Agent 完成）
 
-1. 读取 `<cwd>/daily-news/data/summarized_news.json`
-2. 生成结构完整的 Markdown 文章，保存到 `<cwd>/daily-news/output/claw_daily_{date}.md`
+1. 读取 `<cwd>/output/daily-news/data/summarized_news.json`
+2. 生成结构完整的 Markdown 文章，保存到 `<cwd>/output/daily-news/output/claw_daily_{date}.md`
 3. 文章必须包含以下部分：
    - `# Claw 每日观察 - {date}`
    - `## 今日摘要`
@@ -147,8 +147,8 @@ python <skill-dir>/tools/daily_news.py filter
 
 #### 步骤 4：生成播客脚本（由 Agent 完成）
 
-1. 读取 `<cwd>/daily-news/output/claw_daily_{date}.md`
-2. 改写为 3-5 分钟的播客脚本，保存到 `<cwd>/daily-news/output/claw_podcast_{date}.txt`
+1. 读取 `<cwd>/output/daily-news/output/claw_daily_{date}.md`
+2. 改写为 3-5 分钟的播客脚本，保存到 `<cwd>/output/daily-news/output/claw_podcast_{date}.txt`
 3. 节目信息：
    - 名称：claw日报
    - 主持人：Alex 和 Sarah
@@ -186,12 +186,12 @@ python <skill-dir>/tools/daily_news.py tts
    - 用户给具体日期 → `--date YYYY-MM-DD`
 
 3. **输出位置**（均相对于项目工作目录）：生成成功后，报告以下路径：
-   - 文章：`<cwd>/daily-news/output/claw_daily_{date}.md`
-   - 播客脚本：`<cwd>/daily-news/output/claw_podcast_{date}.txt`
-   - 音频：`<cwd>/daily-news/output/claw_daily_{date}.mp3`
+   - 文章：`<cwd>/output/daily-news/output/claw_daily_{date}.md`
+   - 播客脚本：`<cwd>/output/daily-news/output/claw_podcast_{date}.txt`
+   - 音频：`<cwd>/output/daily-news/output/claw_daily_{date}.mp3`
 
 4. **故障排查**：如果命令报错或输出为空，立即查看日志（相对于项目工作目录）：
-   - `cat <cwd>/daily-news/pipeline.log | tail -30`
+   - `cat <cwd>/output/daily-news/pipeline.log | tail -30`
    - 常见问题：RSS 采集失败、ffmpeg 缺失（仅影响 TTS 合并）
 
 5. **依赖安装**：如果运行时报 `ModuleNotFoundError`，先执行 `python <skill-dir>/tools/daily_news.py setup` 或 `python <skill-dir>/tools/daily_news.py run --force-setup`。

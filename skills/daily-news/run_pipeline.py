@@ -30,7 +30,7 @@ except ImportError:
     logger.warning("MoFA FM publisher not available. Install to enable auto-publish.")
 
 # Configure logging
-log_path = Path.cwd() / 'daily-news' / 'pipeline.log'
+log_path = Path.cwd() / 'output' / 'daily-news' / 'pipeline.log'
 log_path.parent.mkdir(parents=True, exist_ok=True)
 logging.basicConfig(
     level=logging.INFO,

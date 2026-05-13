@@ -101,11 +101,11 @@ daily-news/
 
 ## 输出文件
 
-- `daily-news/output/claw_daily_{date}.md` — 日报文章（Agent 生成）
-- `daily-news/output/claw_podcast_{date}.txt` — 播客脚本（Agent 生成）
-- `daily-news/output/claw_daily_{date}.mp3` — TTS 音频（Python 生成）
+- `output/daily-news/output/claw_daily_{date}.md` — 日报文章（Agent 生成）
+- `output/daily-news/output/claw_podcast_{date}.txt` — 播客脚本（Agent 生成）
+- `output/daily-news/output/claw_daily_{date}.mp3` — TTS 音频（Python 生成）
 
-运行时 `daily-news/data/` 和 `daily-news/output/` 目录会自动创建在当前工作目录下，不需要打包在 skill 中。
+运行时 `output/daily-news/data/` 和 `output/daily-news/output/` 目录会自动创建在当前工作目录下，不需要打包在 skill 中。
 
 ## 依赖
 

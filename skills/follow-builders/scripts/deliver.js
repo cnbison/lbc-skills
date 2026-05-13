@@ -152,10 +152,10 @@ async function sendEmail(text, apiKey, toEmail) {
 // -- File Saving -------------------------------------------------------------
 
 // Saves the digest to the current working directory under
-// follow-builders/output/ai-builders-digest-{date}.md
+// output/follow-builders/ai-builders-digest-{date}.md
 async function saveToFile(text) {
   const cwd = process.cwd();
-  const outDir = resolve(cwd, 'follow-builders', 'output');
+  const outDir = resolve(cwd, 'output', 'follow-builders');
   const dateStr = new Date().toISOString().slice(0, 10);
   const filePath = join(outDir, `ai-builders-digest-${dateStr}.md`);
 

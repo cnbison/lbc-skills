@@ -211,7 +211,7 @@ filter:
   min_article_length: 100
 
 output:
-  directory: ./daily-news/output
+  directory: ./output/daily-news/output
   article_template: claw_daily_{date}.md
   podcast_script_template: claw_podcast_{date}.txt
   podcast_audio_template: claw_daily_{date}.mp3

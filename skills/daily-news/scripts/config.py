@@ -148,8 +148,8 @@ class Config:
         return self.config.get('ai', {})
 
     def get_output_dir(self) -> Path:
-        """Get output directory path (cwd/daily-news/output)."""
-        default_dir = Path.cwd() / "daily-news" / "output"
+        """Get output directory path (cwd/output/daily-news/output)."""
+        default_dir = Path.cwd() / "output" / "daily-news" / "output"
         if 'output' in self.config and 'directory' in self.config['output']:
             configured = Path(self.config['output']['directory'])
             if configured.is_absolute():
@@ -158,8 +158,8 @@ class Config:
         return default_dir
 
     def get_data_dir(self) -> Path:
-        """Get data directory path (cwd/daily-news/data)."""
-        return Path.cwd() / "daily-news" / "data"
+        """Get data directory path (cwd/output/daily-news/data)."""
+        return Path.cwd() / "output" / "daily-news" / "data"
 
     def get_article_filename(self, date: str) -> str:
         """Generate article filename for given date."""

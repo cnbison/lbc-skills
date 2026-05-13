@@ -28,7 +28,7 @@ This file is the **development guide** for Claude Code (claude.ai/code) when wor
 | `skills/<name>/` | **真源**。所有 skill 文件（`SKILL.md` / `skill.md`、脚本、references、assets）都放这里。 |
 | `.claude/skills/<name>` | **软链接**，指向 `../../skills/<name>`。Claude Code 在会话开始时只扫描这里。 |
 | `docs/` | 跨 skill 的设计与对比文档（skill-loading-paths、skill-format-comparison 等）。 |
-| `daily-news/`、`follow-builders/` 顶层目录 | 某些 skill 的运行产物落地目录（不是源码，可被 `.gitignore`）。 |
+| `output/` | 各 skill 运行产物的统一落地目录（如 `output/daily-news/`、`output/follow-builders/`），不是源码，可被 `.gitignore`。 |
 
 为什么要双路径？
 
@@ -98,7 +98,7 @@ Assistant: [Expected behavior]
   - `~/Documents/notes/` — 文档类（markdown、org-mode）。
   - `~/Documents/scripts/` — 播客脚本类。
   - `./skill-output/<skill>-<timestamp>/` — 多文件流水线产物（slide、音频、视频段）。
-  - `./<skill-name>/output/` — 部分以仓库工作目录为根的 skill（如 `daily-news`、`follow-builders`）。
+  - `./output/<skill-name>/` — 各 skill 运行产物的统一落地目录（如 `output/daily-news`、`output/follow-builders`）。
 - **Skill 解析与使用指南文档**：当用户对某个具体 skill 做深度解析、编写使用指南或技术分析时，生成的 markdown 文档默认保存到 `./docs/<skill-name>.md`（或 `./docs/<skill-name>-analysis.md`），文件名使用 skill 名 + 文档类型后缀，便于集中管理与检索。
 
 ---

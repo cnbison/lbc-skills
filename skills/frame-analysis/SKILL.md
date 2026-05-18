@@ -3,31 +3,18 @@ name: frame-analysis
 version: 0.2.0
 alwaysApply: false
 description: >
-  反路径锁定 · 多框架分析法（Frame Method）。当用户需要分析判断选择、策略决策、
-  复杂权衡、开放式问题，或明确提到"从多个角度看""不要过早下结论""帮我展开理解路径"时，
-  阻止过早收敛，将问题拆分为 3–5 条真正不同的理解框架，让每条路径独立成立，保留张力。
-
-  三种使用方式：
-  1. 「/frame-analysis on」—— 开启常驻自动判断模式
-  2. 「/frame-analysis off」—— 关闭自动判断，技能休眠
-  3. 「/frame-analysis <问题>」—— 单次分析，无视 on/off 状态
+  反路径锁定 · 多框架分析法（Frame Method）。当用户面临判断选择、策略决策、
+  复杂权衡、开放式问题，或说"从多个角度看""不要过早下结论""展开理解路径"时，激活本法。
+  阻止过早收敛，将问题拆分为 3–5 条真正不同的理解框架，保留张力。
+  可通过「/frame-analysis on」开启常驻自动判断，「/frame-analysis off」关闭，
+  或直接输入「/frame-analysis <问题>」单次调用。
 
   Triggers: 反路径锁定, 多框架分析, frame analysis, frame method,
-  /frame-analysis, /cg0x-frame-analysis, 帮我分析这个问题, 从多个角度看,
+  /frame-analysis, 帮我分析这个问题, 从多个角度看,
   不要过早下结论, 展开理解路径, 过早收敛, 思维框架
 ---
 
 ## Usage
-
-<example>
-User: /frame-analysis on
-Assistant: 🟢 反路径锁定法已开启。此后我会对涉及判断、策略、权衡的问题自动展开多框架分析；简单事实或执行任务则正常处理。
-</example>
-
-<example>
-User: /frame-analysis off
-Assistant: 🔴 反路径锁定法已关闭。如需手动调用，输入「/frame-analysis <问题>」。
-</example>
 
 <example>
 User: /frame-analysis 我应该接受这份远程但降薪 30% 的 offer 吗？

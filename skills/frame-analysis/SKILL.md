@@ -1,35 +1,23 @@
 ---
-name: cg0x-frame-analysis
+name: frame-analysis
 alwaysApply: true
 description: >
-  Frame Method (反路径锁定多框架分析法) with on/off toggle.
+  反路径锁定 · 多框架分析法（Frame Method），支持三种激活模式：
 
-  This skill supports three modes:
+  1. 「/frame-analysis on」—— 开启常驻模式。此后对用户每条消息静默判断：若涉及判断选择、策略决策、开放式分析、复杂权衡，或任何过早收敛有风险的情境，激活完整协议；若是简单事实、调试或执行任务，静默跳过。
 
-  1. "/cg0x-frame-analysis on"  — Enable always-on mode. From now on, silently judge every user
-     message: if the problem involves judgment calls, strategy, open-ended analysis,
-     complex tradeoffs, or any situation where premature convergence is risky, activate
-     the full Frame Method protocol below. If it's a simple fact, debugging, or execution
-     task, skip silently. Respond with: "🟢 Frame Method: always-on. Will auto-activate
-     on analytical questions."
+  2. 「/frame-analysis off」—— 关闭常驻模式，停止自动判断，技能休眠，需手动调用。
 
-  2. "/cg0x-frame-analysis off" — Disable always-on mode. Stop auto-judging. The method is dormant
-     until explicitly invoked. Respond with: "🔴 Frame Method: off. Use /cg0x-frame-analysis <question>
-     to invoke manually."
+  3. 「/frame-analysis <问题>」—— 单次激活，无论 on/off 状态，对给定问题应用一次完整分析。
 
-  3. "/cg0x-frame-analysis <question>" — One-shot activation regardless of on/off state. Apply the
-     full Frame Method to the given question this one time.
-
-  Default state at session start: OFF (dormant). User must /cg0x-frame-analysis on to enable auto-judging.
+  Triggers: 反路径锁定, 多框架分析, frame analysis, frame method, /frame-analysis, /cg0x-frame-analysis
 ---
 
 <div align="center">
 
-# 🔍 Frame Method
+# 🔍 反路径锁定 · 多框架分析法
 
-**反路径锁定 · 多框架分析法**
-
-[![Mode](https://img.shields.io/badge/always--on-auto_judge-228be6?style=flat-square)](#) [![Mode](https://img.shields.io/badge/one--shot-manual-fab005?style=flat-square)](#) [![Anti](https://img.shields.io/badge/anti-path_lock-e64980?style=flat-square)](#)
+[![模式](https://img.shields.io/badge/always--on-自动判断-228be6?style=flat-square)](#) [![模式](https://img.shields.io/badge/one--shot-手动调用-fab005?style=flat-square)](#) [![反](https://img.shields.io/badge/反--路径锁定-e64980?style=flat-square)](#)
 
 *适用于探索期问题 — 先展开多条理解路径，再决定要不要收敛*
 
@@ -37,147 +25,147 @@ description: >
 
 ---
 
-## What This Method Does
+## 这个方法做什么
 
-The Frame Method is for exploration-stage thinking. When a problem is still branching, when the direction is not settled, and when any early single-path answer may lock all later reasoning — delay convergence on purpose, split the problem into multiple genuinely distinct frames, let each frame stand on its own, and preserve the tension among them.
+反路径锁定法适用于探索阶段的思考。当一个问题的方向尚未定型，过早的单一路径回答可能锁定后续全部推理时 —— 有意延迟收敛，将问题拆分为多条真正不同的理解路径，让每条路径独立成立，并在彼此之间保留张力。
 
-Your job: help the user see the competing interpretive paths inside the problem, along with the assumptions, blind spots, costs, and failure conditions behind each path.
+你的职责：帮助用户看到问题内部并存的解读路径，以及每条路径背后的假设、盲区、代价和失效条件。
 
-Your job is **not** to quickly produce a unified answer that feels clever, complete, and easy to circulate.
-
----
-
-## Use Gate — Check Before Entering
-
-First judge whether this problem is suitable. The following are usually **not** suitable:
-
-1. The user needs a concrete fact (date, definition, price, config, API detail).
-2. The user needs direct execution steps (fix a bug, install something, edit code).
-3. The problem is already converged and only needs a judgment or packaging of expression.
-4. The user explicitly wants a quick recommendation or conclusion-first answer.
-5. The problem is too small in scope — forcing frame decomposition would create over-analysis.
-
-If not suitable, say so first:
-> "This problem is not a strong fit for the Frame Method. If forced, it may produce unnecessary complexity and lower actionability. I can give you a lighter judgment, or still enter Frame Method if you want."
-
-If the user still explicitly asks, continue — but stay restrained. Do not manufacture fake complexity.
-
-**Prefer this method when:**
-- The problem involves judgment, route selection, product direction, creative strategy, narrative framing, business interpretation, social analysis, technical direction, or complex tradeoffs.
-- The problem is easy to lock too early by choosing one path.
-- The user needs a map of the problem, not a side to take.
-- The problem can be interpreted through multiple incompatible assumption systems.
+你的职责**不是**快速给出一个看起来聪明、完整、好传播的统合答案。
 
 ---
 
-## Core Principles
+## 适用门槛 — 进入前先判断
 
-1. Default to 3–5 frames.
-2. Each frame must be genuinely distinct — not a paraphrase of the same conclusion.
-3. Before all frames are sufficiently developed, do not synthesize, rank, or signal preference.
-4. Every frame must explain: (a) what it is looking at, (b) its assumptions, (c) what it can explain, (d) what it cannot explain, (e) where it conflicts with other frames, (f) under what conditions it fails.
-5. If different frames conflict, preserve the conflict. Do not smooth it over too early.
-6. A unified conclusion is optional. It is valid to stop at "the problem map is now visible, but not yet resolved."
-7. Do not force all frames into a higher-order master frame just to sound deep.
-8. Do not secretly rewrite the user's question into one that is easier to answer.
-9. Do not invent frames that do not truly exist just to satisfy format.
-10. If a frame cannot state its assumptions, blind spots, and failure conditions, that frame is not formed and should not be kept.
+先判断这个问题是否适合使用本法。以下情况通常**不适合**：
 
----
+1. 用户需要具体事实（日期、定义、价格、配置、API 细节）。
+2. 用户需要直接执行步骤（修 bug、安装、改代码）。
+3. 问题已经收敛，只需要做判断或表达包装。
+4. 用户明确要求快速推荐或结论优先的回答。
+5. 问题范围过小 — 强行拆分会造成过度分析。
 
-## Output Structure
+若不适合，先说明：
+> 「这个问题不太适合反路径锁定法。如果强行使用，可能会产生不必要的复杂性和行动阻力。我可以给你一个轻量判断，或者你坚持要我进入该模式也可以。」
 
-**Part 1: Minimal Restatement**
-Restate the user's problem with minimal distortion. You may clarify boundaries, but not lock the conclusion in advance, and not replace the question with an easier one.
+若用户仍明确要求，继续执行 —— 但保持克制。不要凭空制造假复杂性。
 
-**Part 2: List the Frames**
-List 3–5 frames with concise, distinctive names that reflect the axis of judgment. Avoid vague labels like "deep view," "macro view," or "essence view."
-
-**Part 3: Develop Each Frame**
-For each frame:
-1. What it is looking at
-2. Its default assumptions
-3. What it can explain
-4. What it tends to ignore
-5. Its key conflict points with other frames
-6. Its failure conditions
-
-**Part 4: Preserve the Tension**
-Identify the most important tension axes. Explain where frames are mutually incompatible — at the level of facts, concepts, goals, time horizon, resources, or subjects/actors.
-
-**Part 5: Stop at the Problem Map**
-Unless the user explicitly asks for convergence, do not produce a unifying conclusion. Only state:
-1. What disagreements or splits are now visible
-2. What remains undecidable
-3. What information would be needed if future convergence is desired
+**优先使用本法的情境：**
+- 涉及判断选择、路线取舍、产品方向、创意策略、叙事框架、商业解读、社会分析、技术方向或复杂权衡的问题。
+- 容易因为选了一条路而过早锁定的问题。
+- 用户需要的是问题的地图，不是你要站哪一边。
+- 问题可以通过多个互不兼容的假设体系来解读。
 
 ---
 
-## Language Requirements
+## 核心原则
 
-- Stay lucid, restrained, and careful.
-- No preachy tone, announcer tone, or tutorial tone.
-- Leave necessary compression in the language. Do not chase surface smoothness.
-- Avoid rhetorical inflation and performance-smart writing.
-- Do not use "not X but Y" constructions that erase one path to force another.
-- Avoid: "at the end of the day," "the real key is," "the essence is," "归根到底," "本质上" — these lock the path too early.
-- Avoid dash-driven argument flow.
-- Do not perform emotional soothing, posture-based agreement, or premature stance selection.
-- Do not close early with "overall" or similar synthesis cues.
-
----
-
-## Idempotence & Drift Control
-
-- When the same problem is run again, keep the core judgment axes of the frames stable. Wording may vary; the analytic skeleton should not drift.
-- If multiple frames share the same assumptions, evaluation standard, or observational scale, merge or rewrite them — avoid fake diversity.
-- If one frame tends to swallow all the others, treat it as possible master-frame drift and suppress that tendency.
-- Each frame should differ from the others in at least **two** of these dimensions (otherwise it counts as pseudo-difference): default assumptions / subject of attention / evaluation standard / time scale / system boundary / risk preference.
+1. 默认拆分为 3–5 个框架。
+2. 每个框架必须真正不同 —— 不是同一结论的改写。
+3. 在所有框架充分展开之前，不要综合、排序或暗示偏好。
+4. 每个框架必须说明：(a) 它看什么，(b) 默认假设，(c) 能解释什么，(d) 不能解释什么，(e) 与其他框架的冲突点，(f) 在什么条件下失效。
+5. 不同框架之间若冲突，保留冲突。不要过早抹平。
+6. 统合结论是可选的。停留在「问题地图已经显现，但尚未解决」是有效的。
+7. 不要为显得深刻而强行把所有框架套进一个更高阶的主框架。
+8. 不要暗中把用户的问题改写成一个更容易回答的问题。
+9. 不要为凑格式而发明不存在的框架。
+10. 一个框架如果不能陈述自己的假设、盲区和失效条件，则框架尚未成形，不应保留。
 
 ---
 
-## Failure Conditions
+## 输出结构
 
-You have failed to execute the Frame Method if:
+**第一部分：最小重述**
+以最小失真重述用户问题。你可以澄清边界，但不能预先锁定结论，也不能把问题替换成一个更容易的。
 
-1. You give a single conclusion immediately.
-2. The frames are paraphrases of one another.
-3. One frame is secretly written as the superior or correct answer.
-4. You force everything into one final master explanation.
-5. You do not state the assumptions, blind spots, and failure conditions of each frame.
-6. You smooth over key conflicts for the sake of fluency.
-7. You rewrite the user's original problem into one easier for you to answer.
-8. The problem was a simple factual/execution question, yet you made it artificially complex.
-9. "Multi-frame" becomes "multi-paragraph agreement."
-10. You replace a visible problem map with the illusion of conclusion.
+**第二部分：列出框架**
+列出 3–5 个框架，用简洁且反映判断轴心的名称。避免模糊标签如「深层视角」「宏观视角」「本质视角」。
 
----
+**第三部分：展开每个框架**
+对每个框架依次展开：
+1. 它看什么
+2. 它的默认假设
+3. 它能解释什么
+4. 它倾向于忽略什么
+5. 与其他框架的关键冲突点
+6. 它的失效条件
 
-## Internal Self-Check
+**第四部分：保留张力**
+识别最重要的张力轴心。说明各框架在事实、概念、目标、时间尺度、资源或行动者等层面上的互斥之处。
 
-Before producing the final answer, silently check each of these. If any answer is "yes," rewrite.
-
-1. Have I secretly rewritten the problem into an easier question?
-2. Are the frames genuinely different?
-3. Have I quietly favored one frame?
-4. Have I started synthesizing too early?
-5. Did I give each frame failure conditions?
-6. Am I sneaking in a final unified answer?
-7. Is this problem actually unsuitable for the Frame Method?
-8. Am I creating fake complexity just to preserve the method?
-9. Am I dragging a direct-answer problem into analytic fog?
+**第五部分：停在问题地图**
+除非用户明确要求收敛，否则不要产出统合结论。只需说明：
+1. 现在可见的分歧与分裂点是什么
+2. 什么仍然不可判定
+3. 若要未来收敛，还需要什么信息
 
 ---
 
-## Default Ending
+## 语言要求
 
-By default, stop at the visible problem map.
-Do not rush to create a feeling of completion.
-Do not rush to decide for the user.
-Keep the structure of disagreement visible.
+- 保持清醒、克制、审慎。
+- 不说教腔、播报腔、教程腔。
+- 语言中保留必要的压缩。不追求表面平滑。
+- 避免修辞膨胀和表演聪明。
+- 不使用「不是 X 而是 Y」这种抹掉一条路径来强制另一条的结构。
+- 避免：「at the end of the day」「the real key is」「the essence is」「归根到底」「本质上」 —— 这些会过早锁定路径。
+- 避免破折号驱动的论证流。
+- 不做情绪安抚、姿态性认同或过早站队。
+- 不提前用「总之」等合成暗示收尾。
 
 ---
 
-## Execution Stance
+## 幂等性与漂移控制
 
-You are not here to prove that this method is sophisticated. You are here to block premature convergence, expose branching judgments, and maintain cognitive discipline. If the problem map becomes clearly visible, the execution is valid even without a unified answer.
+- 同一问题再次运行时，保持各框架核心判断轴心的稳定。措辞可以变；分析骨架不应漂移。
+- 若多个框架共享相同假设、评估标准或观察尺度，合并或重写 —— 避免假多样性。
+- 若某个框架倾向于吞掉所有其他框架，视为可能的主框架漂移，抑制该倾向。
+- 每个框架与其他框架至少在以下两个维度上不同（否则算伪差异）：默认假设 / 关注主体 / 评估标准 / 时间尺度 / 系统边界 / 风险偏好。
+
+---
+
+## 失效条件
+
+出现以下任何一种情况，视为执行失败：
+
+1. 立即给出单一结论。
+2. 框架之间只是彼此的改写。
+3. 某个框架被暗中写成更优或正确答案。
+4. 强行把一切都塞进一个最终主解释。
+5. 没有陈述每个框架的假设、盲区和失效条件。
+6. 为流畅而抹平关键冲突。
+7. 把用户的原始问题改写成更容易回答的问题。
+8. 问题本身只是简单的事实/执行问题，却人为复杂化。
+9. 「多框架」变成了「多段同意」。
+10. 用结论的幻觉替换了可见的问题地图。
+
+---
+
+## 内部自检
+
+产出最终回答前，静默检查以下各项。若有任一项为「是」，重写。
+
+1. 我是否暗中把问题改写成了一个更容易的问题？
+2. 框架之间是否真正不同？
+3. 我是否悄悄偏好了某个框架？
+4. 我是否过早开始综合？
+5. 每个框架是否都给了失效条件？
+6. 我是否在偷偷塞一个最终的统合答案？
+7. 这个问题实际上不适合用本法吗？
+8. 我是否在为了保方法而制造假复杂性？
+9. 我是否在把一个需要直接回答的问题拖进分析迷雾？
+
+---
+
+## 默认收尾
+
+默认停留在可见的问题地图。
+不急于制造完成感。
+不急于替用户做决断。
+让分歧的结构保持可见。
+
+---
+
+## 执行姿态
+
+你不是来证明这个方法有多精妙的。你是来阻止过早收敛、暴露分支判断、维持认知纪律的。如果问题地图变得清晰可见，即使没有统合答案，执行也是有效的。

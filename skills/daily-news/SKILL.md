@@ -1,11 +1,15 @@
 ---
 name: daily-news
+version: 1.5.0
 description: >-
-  Claw Daily News automated pipeline. Runs RSS collection → filtering
-  (via Python scripts), then Agent generates AI summaries, article, and podcast script.
-  Use when user says "daily news", "生成日报", "claw日报", "run daily news",
-  "今天的新闻", "播报", "日报", "新闻播报" or wants to generate today's news article / podcast.
-  Supports --date, --skip-tts, --config and per-stage re-runs.
+  Claw Daily News 自动化流水线。当用户请求生成日报、播报、新闻摘要、
+  播客脚本，或提到"今天有什么新闻""tech news""RSS 采集""过滤新闻"时，激活本法。
+  Python 脚本负责 RSS 采集、过滤去重、TTS 音频；Agent 负责生成 AI 摘要、
+  日报文章和播客脚本。不需要 AI API Key。
+
+  Triggers: daily news, 生成日报, claw日报, run daily news, 今天的新闻,
+  播报, 日报, 新闻播报, collect news, filter news, summarize news,
+  只收集, 只过滤, 跳过TTS, 指定日期, 新闻摘要, 播客脚本
 requires_bins: python3
 ---
 
@@ -126,7 +130,7 @@ python <skill-dir>/tools/daily_news.py filter
 #### 步骤 3：生成日报文章（由 Agent 完成）
 
 1. 读取 `<cwd>/output/daily-news/data/summarized_news.json`
-2. 生成结构完整的 Markdown 文章，保存到 `<cwd>/output/daily-news/output/claw_daily_{date}.md`
+2. 生成结构完整的 Markdown 文章，保存到 `<cwd>/output/daily-news/output/{date}--claw-daily__article.md`
 3. 文章必须包含以下部分：
    - `# Claw 每日观察 - {date}`
    - `## 今日摘要`
@@ -147,8 +151,8 @@ python <skill-dir>/tools/daily_news.py filter
 
 #### 步骤 4：生成播客脚本（由 Agent 完成）
 
-1. 读取 `<cwd>/output/daily-news/output/claw_daily_{date}.md`
-2. 改写为 3-5 分钟的播客脚本，保存到 `<cwd>/output/daily-news/output/claw_podcast_{date}.txt`
+1. 读取 `<cwd>/output/daily-news/output/{date}--claw-daily__article.md`
+2. 改写为 3-5 分钟的播客脚本，保存到 `<cwd>/output/daily-news/output/{date}--claw-daily__podcast.txt`
 3. 节目信息：
    - 名称：claw日报
    - 主持人：Alex 和 Sarah
@@ -164,7 +168,7 @@ python <skill-dir>/tools/daily_news.py filter
 5. 格式要求：
    - 使用 `[ ]` 标记环节名称
    - 使用 `Alex:` 和 `Sarah:` 标记说话人
-   - 总字数 1200-1800 字
+   - 总字数 600-1000 字（对应 3-5 分钟播客时长）
    - 口语化，对话自然
    - 每个部分包含 2-3 条不同的新闻
 
@@ -186,9 +190,9 @@ python <skill-dir>/tools/daily_news.py tts
    - 用户给具体日期 → `--date YYYY-MM-DD`
 
 3. **输出位置**（均相对于项目工作目录）：生成成功后，报告以下路径：
-   - 文章：`<cwd>/output/daily-news/output/claw_daily_{date}.md`
-   - 播客脚本：`<cwd>/output/daily-news/output/claw_podcast_{date}.txt`
-   - 音频：`<cwd>/output/daily-news/output/claw_daily_{date}.mp3`
+   - 文章：`<cwd>/output/daily-news/output/{date}--claw-daily__article.md`
+   - 播客脚本：`<cwd>/output/daily-news/output/{date}--claw-daily__podcast.txt`
+   - 音频：`<cwd>/output/daily-news/output/{date}--claw-daily__audio.mp3`
 
 4. **故障排查**：如果命令报错或输出为空，立即查看日志（相对于项目工作目录）：
    - `cat <cwd>/output/daily-news/pipeline.log | tail -30`

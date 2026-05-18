@@ -212,9 +212,9 @@ filter:
 
 output:
   directory: ./output/daily-news/output
-  article_template: claw_daily_{date}.md
-  podcast_script_template: claw_podcast_{date}.txt
-  podcast_audio_template: claw_daily_{date}.mp3
+  article_template: "{date}--claw-daily__article.md"
+  podcast_script_template: "{date}--claw-daily__podcast.txt"
+  podcast_audio_template: "{date}--claw-daily__audio.mp3"
 
 tts:
   provider: edge

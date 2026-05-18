@@ -165,19 +165,19 @@ class Config:
         """Generate article filename for given date."""
         if 'output' in self.config and 'article_template' in self.config['output']:
             return self.config['output']['article_template'].format(date=date)
-        return f"openclaw_daily_{date}.md"
+        return f"{date}--claw-daily__article.md"
 
     def get_podcast_script_filename(self, date: str) -> str:
         """Generate podcast script filename for given date."""
         if 'output' in self.config and 'podcast_script_template' in self.config['output']:
             return self.config['output']['podcast_script_template'].format(date=date)
-        return f"openclaw_podcast_{date}.txt"
+        return f"{date}--claw-daily__podcast.txt"
 
     def get_podcast_audio_filename(self, date: str) -> str:
         """Generate podcast audio filename for given date."""
         if 'output' in self.config and 'podcast_audio_template' in self.config['output']:
             return self.config['output']['podcast_audio_template'].format(date=date)
-        return f"openclaw_daily_{date}.mp3"
+        return f"{date}--claw-daily__audio.mp3"
 
     def get_tts_config(self) -> Dict[str, Any]:
         """Get TTS configuration."""

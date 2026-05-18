@@ -7,7 +7,7 @@ Main orchestrator for the daily news automation system.
 import sys
 import logging
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timedelta
 import argparse
 import json
 
@@ -22,6 +22,8 @@ from scripts.tts_generate import TTSGenerator
 from scripts.models import GeneratedContent
 
 # MoFA FM publishing (optional)
+logger = logging.getLogger(__name__)
+
 try:
     from scripts.mofa_publish import MoFAPublisher
     MOFA_AVAILABLE = True
@@ -41,7 +43,6 @@ logging.basicConfig(
     ]
 )
 
-logger = logging.getLogger(__name__)
 
 
 class Pipeline:
@@ -213,7 +214,7 @@ class Pipeline:
             logger.info("MoFA FM auto-publish is disabled in config. Skipping publish.")
             return
 
-        logger.info("\n[Step 7/5] Publishing to MoFA FM...")
+        logger.info("\n[Optional] Publishing to MoFA FM...")
 
         try:
             output_dir = self.config.get_output_dir()

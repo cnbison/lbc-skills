@@ -54,6 +54,7 @@ ln -s ~/projects/lbc-skills/skills/daily-news .claude/skills/daily-news
 | [`daily-news`](skills/daily-news/) | ✅ | RSS 采集 → 过滤去重 → Agent 摘要/文章/播客脚本 → TTS 合成 MP3 | 生成日报 / claw日报 / 今天的新闻 / 播报 | `python3` |
 | [`follow-builders`](skills/follow-builders/) | ✅ | 监控 X 上的 AI builder 与播客，做日 / 周 digest，支持中英双语 | AI digest / builders digest / builder 更新 / industry insights | 无（从中心 feed 拉取） |
 | [`ljg-read`](skills/ljg-read/) | ✅ | 伴读 agent：翻译、结构标注、深度提问、跨学科洞察 | 伴读 / 陪我读 / 读这篇 / read with me | — |
+| [`guwen-translate`](skills/guwen-translate/) | ✅ | 古文今解：用现代语境通俗诠释古文，支持诗经/易经/道德经/金刚经定向风格与通用文言框架 | 古文今解 / 翻译古文 / 今解 / explain ancient text | — |
 | [`news-summary`](skills/news-summary/) | 🚧 | 抓取国际 RSS 做新闻播报，可生成语音摘要 | news / 新闻 / briefing | RSS、可选 TTS |
 
 ### 🧠 思考 / 知识 / 视角

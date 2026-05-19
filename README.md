@@ -2,7 +2,7 @@
 
 > 一个面向中文用户的 Claude Code Skill 集合。
 
-`lbc-skills` 收录了一组**AI-native skill**：可被 Claude Code 自动识别、按触发词激活、声明式定义行为的能力包。覆盖**信息流、思考与知识、语音播客、多模态生成**四大场景，共 **21 个 skill**，其中 **8 个 active**、**13 个 WIP / 待激活**。
+`lbc-skills` 收录了一组**AI-native skill**：可被 Claude Code 自动识别、按触发词激活、声明式定义行为的能力包。覆盖**信息流、思考与知识、语音播客、多模态生成**五大场景，共 **22 个 skill**，其中 **8 个 active**、**14 个 WIP / 待激活**。
 
 - 想了解**如何在自己的项目里加载这些 skill**：见下方 [快速开始](#快速开始)。
 - 想**贡献新 skill 或修改现有 skill**：先读 [`CLAUDE.md`](./CLAUDE.md)（开发约束）。
@@ -56,6 +56,7 @@ ln -s ~/projects/lbc-skills/skills/daily-news .claude/skills/daily-news
 | [`ljg-read`](skills/ljg-read/) | ✅ | 伴读 agent：翻译、结构标注、深度提问、跨学科洞察 | 伴读 / 陪我读 / 读这篇 / read with me | — |
 | [`guwen-translate`](skills/guwen-translate/) | ✅ | 古文今解：用现代语境通俗诠释古文，支持诗经/易经/道德经/金刚经定向风格与通用文言框架 | 古文今解 / 翻译古文 / 今解 / explain ancient text | — |
 | [`news-summary`](skills/news-summary/) | 🚧 | 抓取国际 RSS 做新闻播报，可生成语音摘要 | news / 新闻 / briefing | RSS、可选 TTS |
+| [`last30days`](skills/last30days/) | 🚧 | 跨平台社交舆情研究：抓取 Reddit/X/YouTube/TikTok/HN 等过去 30 天的真实讨论与情绪 | `/last30days <topic>` | `node` `python3` 及多个可选 API Key |
 
 ### 🧠 思考 / 知识 / 视角
 

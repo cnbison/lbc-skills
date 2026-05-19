@@ -55,6 +55,30 @@ Assistant: 读取已审核的 script.md，直接调用 podcast_generate 生成�
 
 ---
 
+## 调用约定（重要 — 别踩坑）
+
+本 skill 的 `main` 二进制有两个反直觉的地方，**所有工具调用都必须通过 wrapper**：
+
+1. **JSON 从 stdin 传，不是 argv** — 把 JSON 写在命令行参数里，进程会阻塞在 `stdin.read_to_string` 上，看上去像"卡死"。
+2. **macOS 下二进制可能带 `com.apple.quarantine`** — Gatekeeper 直接 SIGKILL，退出码 137。
+
+仓库提供了一个 wrapper 脚本 `scripts/run.sh`，封装 stdin 协议并幂等剥 quarantine。**调用任何 tool 都用它**：
+
+```bash
+# 列出可用声音（无 payload）
+./scripts/run.sh podcast_voices
+
+# 生成播客（JSON 走 stdin）
+./scripts/run.sh podcast_generate '{"script_path":"/abs/path/to/script.md","output_dir":"/abs/path/to/outdir"}'
+
+# 保存克隆声音
+./scripts/run.sh podcast_voice_save '{"name":"alice","audio_path":"/abs/path/ref.wav"}'
+```
+
+**不要**写成 `./main podcast_generate '{...}'` —— 会卡住。
+
+---
+
 ## Instructions
 
 ### Pipeline 架构
@@ -81,7 +105,7 @@ produce  → 调用 podcast_generate 生成音频
  - **默认预设**：`douwt`（窦文涛风格）、`yangmi`（杨幂风格）
  - **克隆声音**：`clone:xxx`（用户自行添加，见下文"声音管理"）
 
-调用 `podcast_voices` 列出当前可用声音供用户选择。
+调用 `podcast_voices` 列出当前可用声音供用户选择（通过 `./scripts/run.sh podcast_voices`）。
 
 收集完毕后输出结构化摘要：
 
@@ -125,13 +149,13 @@ LENGTH: <minutes>min
 
 ### 步骤 4：生成音频（produce）
 
-用户批准后，调用 `podcast_generate`：
+用户批准后，通过 wrapper 调用 `podcast_generate`（**不要直接调 `./main`**，见上文"调用约定"）：
 
-```json
-{"script_path": "./skill-output/mofa-podcast-{timestamp}/{date}--{topic}__script.md"}
+```bash
+./scripts/run.sh podcast_generate '{"script_path":"<绝对路径>/script.md","output_dir":"<绝对路径>"}'
 ```
 
-生成完成后向用户报告最终音频路径。
+建议把命令丢到后台跑（35 段对话约需 2–3 分钟，VoxCPM 模型首次加载 ~20s）。生成完成后向用户报告最终音频路径。
 
 ---
 
@@ -149,11 +173,11 @@ LENGTH: <minutes>min
 用户可自行添加、查询、删除克隆声音。
 
 **查询当前克隆声音**：
-调用 `podcast_voices` 列出所有可用声音（预设 + 克隆）。
+通过 `./scripts/run.sh podcast_voices` 列出所有可用声音（预设 + 克隆）。
 
 **添加克隆声音**：
 1. 用户提供一段参考音频（5-30 秒，WAV 格式，干净人声）
-2. 调用 `podcast_voice_save(name="xxx", audio_path="/path/to/ref.wav")`
+2. 调用 `./scripts/run.sh podcast_voice_save '{"name":"xxx","audio_path":"/path/to/ref.wav"}'`
 3. 保存后在脚本中使用 `clone:xxx`
 
 **删除克隆声音**：

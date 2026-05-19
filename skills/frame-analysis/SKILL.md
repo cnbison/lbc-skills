@@ -62,6 +62,14 @@ Assistant: [进入完整分析流程]
    - 什么仍然不可判定
    - 未来收敛所需的信息
 
+7. **自动保存输出**
+   完成上述分析后，将完整内容（含最小重述、框架列表、各框架展开、保留张力、问题地图）保存到 `./output/frame-analysis/` 目录。
+
+   文件名格式：`{YYYY-MM-DD}--{short-topic}__frame-analysis.md`
+   - `short-topic`：从用户问题中提取 2-4 个关键词，kebab-case，如 `ai-agent-framework-survival`
+   - 文件头部添加 frontmatter：问题原文、分析日期、方法标注
+   - 保存后向用户报告文件路径
+
 ---
 
 ## 核心原则

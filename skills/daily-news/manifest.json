@@ -14,7 +14,16 @@
     "新闻播报",
     "collect news",
     "filter news",
-    "summarize news"
+    "summarize news",
+    "只收集",
+    "只过滤",
+    "跳过TTS",
+    "指定日期",
+    "新闻摘要",
+    "播客脚本",
+    "今天有啥新闻",
+    "给我讲讲今天的tech新闻",
+    "播客做好了没"
   ],
   "tools": [
     {

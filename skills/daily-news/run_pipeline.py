@@ -24,15 +24,17 @@ from scripts.models import GeneratedContent
 # MoFA FM publishing (optional)
 logger = logging.getLogger(__name__)
 
+MOFA_AVAILABLE = False
+
 try:
     from scripts.mofa_publish import MoFAPublisher
     MOFA_AVAILABLE = True
 except ImportError:
-    MOFA_AVAILABLE = False
     logger.warning("MoFA FM publisher not available. Install to enable auto-publish.")
 
-# Configure logging
-log_path = Path.cwd() / 'output' / 'daily-news' / 'pipeline.log'
+# Configure logging — fixed path under skill directory
+_skill_dir = Path(__file__).parent
+log_path = _skill_dir / 'logs' / 'pipeline.log'
 log_path.parent.mkdir(parents=True, exist_ok=True)
 logging.basicConfig(
     level=logging.INFO,

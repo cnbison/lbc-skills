@@ -135,7 +135,7 @@ class PodcastGenerator:
 - 使用 "Alex:" 和 "Sarah:" 标记说话人（这是唯一正确的说话人标记格式）
 - 不要使用 "(Alex...)" 或 "(Sarah...)" 这种格式
 - 说话人标记后直接接对话内容，不要添加语气描述
-- 总字数1200-1800字（不含舞台说明）
+- 总字数600-1000字（对应3-5分钟播客时长）
 - 口语化，易于朗读
 - 对话要自然，多用口语词汇和语气词
 - **每个部分必须包含2-3条不同的新闻**
@@ -288,7 +288,7 @@ def main():
     # Load article and data
     config = get_config()
     output_dir = config.get_output_dir()
-    article_path = output_dir / f"claw_daily_{datetime.now().strftime('%Y-%m-%d')}.md"
+    article_path = output_dir / config.get_article_filename(datetime.now().strftime('%Y-%m-%d'))
     data_path = config.get_data_dir() / "summarized_news.json"
 
     if not article_path.exists():

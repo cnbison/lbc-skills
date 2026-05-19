@@ -8,8 +8,9 @@ description: >-
   日报文章和播客脚本。不需要 AI API Key。
 
   Triggers: daily news, 生成日报, claw日报, run daily news, 今天的新闻,
-  播报, 日报, 新闻播报, collect news, filter news, summarize news,
-  只收集, 只过滤, 跳过TTS, 指定日期, 新闻摘要, 播客脚本
+  今天有啥新闻, 给我讲讲今天的tech新闻, 播报, 日报, 新闻播报,
+  collect news, filter news, summarize news, 只收集, 只过滤, 跳过TTS,
+  指定日期, 新闻摘要, 播客脚本, 播客做好了没
 requires_bins: python3
 ---
 
@@ -17,7 +18,17 @@ requires_bins: python3
 
 <example>
 User: 生成日报
-Assistant: [Runs full pipeline for today]
+Assistant: 已执行完整流水线。
+- 采集：1972 篇文章
+- 过滤：50 篇相关文章
+- 文章：./output/daily-news/output/2026-05-19--claw-daily__article.md
+- 播客脚本：./output/daily-news/output/2026-05-19--claw-daily__podcast.txt
+- 音频：./output/daily-news/output/2026-05-19--claw-daily__audio.mp3
+</example>
+
+<example>
+User: 只重新生成今天的文章，不要重新采集
+Assistant: 读取已过滤的 filtered_news.json，直接生成文章和播客脚本，跳过 collect/filter/TTS。
 </example>
 
 <example>
@@ -131,46 +142,14 @@ python <skill-dir>/tools/daily_news.py filter
 
 1. 读取 `<cwd>/output/daily-news/data/summarized_news.json`
 2. 生成结构完整的 Markdown 文章，保存到 `<cwd>/output/daily-news/output/{date}--claw-daily__article.md`
-3. 文章必须包含以下部分：
-   - `# Claw 每日观察 - {date}`
-   - `## 今日摘要`
-   - `## 重要新闻`
-   - `## 技术进展`
-   - `## 安全动态`
-   - `## GitHub动态`
-   - `## 研究前沿`
-   - `## 社区热议`
-   - `## 今日总结`
-4. 关键要求：
-   - 避免重复，同一条新闻不要在不同部分重复出现
-   - 合理分配，如果新闻较少，通过背景信息、技术细节、行业影响分析来扩展
-   - 使用 `-` 开头的列表格式
-   - 每条新闻后添加 `[详情](链接URL)`
-   - 总字数 1500-2500 字
-   - 特别关注 OpenClaw、AI Agent、大语言模型等内容
+3. 文章格式参考 `<skill-dir>/references/article-template.md`，必须包含全部 8 个章节。
 
 #### 步骤 4：生成播客脚本（由 Agent 完成）
 
 1. 读取 `<cwd>/output/daily-news/output/{date}--claw-daily__article.md`
 2. 改写为 3-5 分钟的播客脚本，保存到 `<cwd>/output/daily-news/output/{date}--claw-daily__podcast.txt`
-3. 节目信息：
-   - 名称：claw日报
-   - 主持人：Alex 和 Sarah
-   - 必须在开场白中报出完整日期和星期
-4. 结构要求：
-   - `[开场]`（20-25秒）
-   - `[今日头条]`（60-90秒）
-   - `[技术速递]`（60秒）
-   - `[安全焦点]`（45秒）
-   - `[GitHub热榜]`（30秒）
-   - `[社区声音]`（30秒）
-   - `[总结]`（30秒）
-5. 格式要求：
-   - 使用 `[ ]` 标记环节名称
-   - 使用 `Alex:` 和 `Sarah:` 标记说话人
-   - 总字数 600-1000 字（对应 3-5 分钟播客时长）
-   - 口语化，对话自然
-   - 每个部分包含 2-3 条不同的新闻
+3. 节目信息：名称 claw日报，主持人 Alex 和 Sarah，开场白必须报出完整日期和星期
+4. 播客格式参考 `<skill-dir>/references/podcast-template.md`，包含 7 个环节，总字数 600-1000 字
 
 #### 步骤 5：TTS 音频（Python）
 

@@ -6,7 +6,7 @@
   "timeout_secs": 1800,
   "requires_network": false,
   "requires": {
-    "bins": ["python3"],
+    "bins": ["python3", "ffmpeg", "mofa-podcast"],
     "os": ["darwin", "linux"]
   },
   "tools": [

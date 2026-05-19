@@ -3,15 +3,11 @@ name: frame-analysis
 version: 0.2.0
 alwaysApply: false
 description: >
-  反路径锁定 · 多框架分析法（Frame Method）。当用户面临判断选择、策略决策、
-  复杂权衡、开放式问题，或说"从多个角度看""不要过早下结论""展开理解路径"时，激活本法。
+  反路径锁定 · 多框架分析法（Frame Method）。当用户面临判断选择、策略决策、复杂权衡、开放式问题，或说"从多个角度看""不要过早下结论""展开理解路径"时，激活本法。
   阻止过早收敛，将问题拆分为 3–5 条真正不同的理解框架，保留张力。
-  可通过「/frame-analysis on」开启常驻自动判断，「/frame-analysis off」关闭，
-  或直接输入「/frame-analysis <问题>」单次调用。
+  可通过「/frame-analysis on」开启常驻自动判断，「/frame-analysis off」关闭，或直接输入「/frame-analysis <问题>」单次调用。
 
-  Triggers: 反路径锁定, 多框架分析, frame analysis, frame method,
-  /frame-analysis, 帮我分析这个问题, 从多个角度看,
-  不要过早下结论, 展开理解路径, 过早收敛, 思维框架
+  Triggers: 反路径锁定, 多框架分析, frame analysis, frame method,/frame-analysis, 帮我分析这个问题, 从多个角度看,不要过早下结论, 展开理解路径, 过早收敛, 思维框架 
 ---
 
 ## Usage

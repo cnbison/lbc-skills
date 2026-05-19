@@ -2,7 +2,7 @@
 
 > 一个面向中文用户的 Claude Code Skill 集合。
 
-`lbc-skills` 收录了一组**AI-native skill**：可被 Claude Code 自动识别、按触发词激活、声明式定义行为的能力包。覆盖**信息流、思考与知识、语音播客、多模态生成**五大场景，共 **22 个 skill**，其中 **8 个 active**、**14 个 WIP / 待激活**。
+`lbc-skills` 收录了一组**AI-native skill**：可被 Claude Code 自动识别、按触发词激活、声明式定义行为的能力包。覆盖**信息流、思考与知识、语音播客、多模态生成**五大场景，共 **21 个 skill**，其中 **8 个 active**、**13 个 WIP / 待激活**。
 
 - 想了解**如何在自己的项目里加载这些 skill**：见下方 [快速开始](#快速开始)。
 - 想**贡献新 skill 或修改现有 skill**：先读 [`CLAUDE.md`](./CLAUDE.md)（开发约束）。
@@ -74,8 +74,7 @@ ln -s ~/projects/lbc-skills/skills/daily-news .claude/skills/daily-news
 | Skill | 状态 | 一句话 | 触发词 | 依赖 |
 |------|:--:|------|------|------|
 | [`mofa-fm`](skills/mofa-fm/) | 🚧 | TTS 与声音克隆，内置 9 个预设音色，支持自定义 | voice / TTS / 语音 / 播报 | `mofa-fm` |
-| [`mofa-podcast-0429`](skills/mofa-podcast-0429/) | 🚧 | 多人对话播客（1-5 人），支持情绪标签与 BGM cue，新版本 | podcast / 播客 / 多人对话 / 锵锵三人行 | `mofa-podcast` |
-| [`mofa-podcast-old`](skills/mofa-podcast-old/) | 🚧 | mofa-podcast 的旧版本，保留作对比基线 | 同上 | `mofa-podcast` |
+| [`mofa-podcast`](skills/mofa-podcast/) | 🚧 | 多人对话播客（1-5 人），支持情绪标签与 BGM cue | podcast / 播客 / 多人对话 / 锵锵三人行 | `mofa-podcast` |
 | [`agents-skill-podcastifier`](skills/agents-skill-podcastifier/) | 🚧 | 把邮件 / newsletter 切块、TTS 合成、ffmpeg 拼接，做成短播客 | podcastify / 把这封邮件做成播客 | `python3` `ffmpeg` |
 | [`mofa-fm-api`](skills/mofa-fm-api/) | 🚧 | MoFA FM 播客平台的 API 客户端（节目、单集、搜索、热搜） | mofa.fm / fm api / 热搜 | `python3` |
 
@@ -137,9 +136,9 @@ mofa video --style cinematic --out video.mp4 input.json
 | 工具 / 变量 | 用途 | 使用它的 skill |
 |------------|------|----------------|
 | `mofa` | MoFA CLI（slides / cards / comic / infographic / video） | mofa-slides、mofa-cli、md-to-video |
-| `mofa-fm` | TTS 与声音克隆 | mofa-fm、md-to-video、mofa-podcast-* |
-| `mofa-podcast` | 多人对话播客 | mofa-podcast-0429、mofa-podcast-old |
-| `ffmpeg` | 音视频处理 | md-to-video、mofa-podcast-*、ffmpeg-video-editor、agents-skill-podcastifier |
+| `mofa-fm` | TTS 与声音克隆 | mofa-fm、md-to-video、mofa-podcast |
+| `mofa-podcast` | 多人对话播客 | mofa-podcast |
+| `ffmpeg` | 音视频处理 | md-to-video、mofa-podcast、ffmpeg-video-editor、agents-skill-podcastifier |
 | `soffice` | PPTX 转换（可选） | md-to-video、mofa-slides |
 | `python3` | Python 流水线 | daily-news、agents-skill-podcastifier、mofa-fm-api |
 | `GEMINI_API_KEY` | 图像生成 + VQA | mofa-slides、md-to-video |

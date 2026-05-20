@@ -9,11 +9,11 @@ set -euo pipefail
 # Config
 API_KEY="${ACE_MUSIC_API_KEY:-}"
 BASE_URL="${ACE_MUSIC_BASE_URL:-https://api.acemusic.ai}"
-OUTPUT="output_$(date +%s).mp3"
+OUTPUT_DIR="${ACE_MUSIC_OUTPUT_DIR:-./output/ace-music}"
 
 # Defaults
 DURATION=""
-LANGUAGE="en"
+LANGUAGE=""
 INSTRUMENTAL="null"
 BPM=""
 KEY_SCALE=""
@@ -23,6 +23,22 @@ BATCH_SIZE=1
 LYRICS=""
 PROMPT=""
 FORMAT="mp3"
+
+# Validate numeric helpers
+validate_int() {
+  local val="$1" name="$2"
+  if [[ -n "$val" && ! "$val" =~ ^[0-9]+$ ]]; then
+    echo "ERROR: $name must be an integer, got '$val'" >&2
+    exit 1
+  fi
+}
+validate_number() {
+  local val="$1" name="$2"
+  if [[ -n "$val" && ! "$val" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
+    echo "ERROR: $name must be a number, got '$val'" >&2
+    exit 1
+  fi
+}
 
 # Parse args
 while [[ $# -gt 0 ]]; do
@@ -37,10 +53,20 @@ while [[ $# -gt 0 ]]; do
     --seed) SEED="$2"; shift 2 ;;
     --sample-mode) SAMPLE_MODE="true"; shift ;;
     --batch) BATCH_SIZE="$2"; shift 2 ;;
-    --format) FORMAT="$2"; shift 2 ;;
+    --format) FORMAT="$2"; shift ;;
     *) PROMPT="$1"; shift ;;
   esac
 done
+
+# Validate numeric inputs
+validate_number "$DURATION" "duration"
+validate_number "$BPM" "bpm"
+validate_int "$SEED" "seed"
+validate_int "$BATCH_SIZE" "batch_size"
+
+# Ensure output directory exists
+mkdir -p "$OUTPUT_DIR"
+OUTPUT="${OUTPUT:-${OUTPUT_DIR}/$(date +%Y%m%d-%H%M%S).mp3}"
 
 if [[ -z "$API_KEY" ]]; then
   echo "ERROR: ACE_MUSIC_API_KEY not set." >&2
@@ -54,7 +80,8 @@ if [[ -z "$PROMPT" && "$SAMPLE_MODE" == "false" ]]; then
 fi
 
 # Build audio_config
-AUDIO_CONFIG="{\"vocal_language\":\"$LANGUAGE\",\"format\":\"$FORMAT\""
+AUDIO_CONFIG="{\"format\":\"$FORMAT\""
+[[ -n "$LANGUAGE" ]] && AUDIO_CONFIG="$AUDIO_CONFIG,\"vocal_language\":\"$LANGUAGE\""
 [[ -n "$DURATION" ]] && AUDIO_CONFIG="$AUDIO_CONFIG,\"duration\":$DURATION"
 [[ -n "$BPM" ]] && AUDIO_CONFIG="$AUDIO_CONFIG,\"bpm\":$BPM"
 [[ "$INSTRUMENTAL" != "null" ]] && AUDIO_CONFIG="$AUDIO_CONFIG,\"instrumental\":$INSTRUMENTAL"
@@ -63,8 +90,9 @@ AUDIO_CONFIG="$AUDIO_CONFIG}"
 
 # Build message content
 if [[ -n "$LYRICS" && -n "$PROMPT" ]]; then
-  # Tagged mode
-  CONTENT="<prompt>${PROMPT}</prompt>\n<lyrics>${LYRICS}</lyrics>"
+  # Tagged mode — real newline, not literal \n
+  CONTENT="<prompt>${PROMPT}</prompt>
+<lyrics>${LYRICS}</lyrics>"
 elif [[ -n "$LYRICS" ]]; then
   CONTENT="$LYRICS"
 else
@@ -76,7 +104,6 @@ CONTENT_ESCAPED=$(echo -n "$CONTENT" | python3 -c "import sys,json; print(json.d
 
 # Build request body
 BODY="{\"messages\":[{\"role\":\"user\",\"content\":\"$CONTENT_ESCAPED\"}],\"audio_config\":$AUDIO_CONFIG,\"stream\":false"
-[[ -n "$LYRICS" && -n "$PROMPT" ]] || true  # tagged mode handled via content
 [[ "$SAMPLE_MODE" == "true" ]] && BODY="$BODY,\"sample_mode\":true"
 [[ -n "$SEED" ]] && BODY="$BODY,\"seed\":$SEED"
 [[ "$BATCH_SIZE" -gt 1 ]] && BODY="$BODY,\"batch_size\":$BATCH_SIZE"
@@ -85,7 +112,7 @@ BODY="$BODY}"
 echo "🎵 Generating music..." >&2
 echo "   Prompt: ${PROMPT:-[lyrics/sample mode]}" >&2
 [[ -n "$DURATION" ]] && echo "   Duration: ${DURATION}s" >&2
-echo "   Language: $LANGUAGE" >&2
+[[ -n "$LANGUAGE" ]] && echo "   Language: $LANGUAGE" >&2
 
 # API call
 RESPONSE=$(curl -s -X POST "${BASE_URL}/v1/chat/completions" \
@@ -93,47 +120,47 @@ RESPONSE=$(curl -s -X POST "${BASE_URL}/v1/chat/completions" \
   -H "Content-Type: application/json" \
   -d "$BODY")
 
-# Check for errors
-if echo "$RESPONSE" | python3 -c "import sys,json; d=json.load(sys.stdin); exit(0 if 'choices' in d else 1)" 2>/dev/null; then
-  # Extract metadata
-  METADATA=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['choices'][0]['message'].get('content',''))" 2>/dev/null || echo "")
-  
-  # Extract and save audio(s)
-  COUNT=$(echo "$RESPONSE" | python3 -c "
-import sys,json
-d=json.load(sys.stdin)
-audios=d['choices'][0]['message'].get('audio',[])
-print(len(audios))
-" 2>/dev/null || echo "0")
-
-  if [[ "$COUNT" -eq 0 ]]; then
-    echo "ERROR: No audio in response" >&2
-    echo "$RESPONSE" >&2
-    exit 1
-  fi
-
-  echo "$RESPONSE" | python3 -c "
+# Single-pass Python via stdin (safe from quote injection)
+echo "$RESPONSE" | python3 -c "
 import sys, json, base64
+
 d = json.load(sys.stdin)
-audios = d['choices'][0]['message'].get('audio', [])
+
+# Check for errors / choices
+if 'choices' not in d:
+    print('ERROR: API request failed', file=sys.stderr)
+    print(json.dumps(d, indent=2), file=sys.stderr)
+    sys.exit(1)
+
+msg = d['choices'][0]['message']
+audios = msg.get('audio', [])
+
+if not audios:
+    print('ERROR: No audio in response', file=sys.stderr)
+    print(json.dumps(d, indent=2), file=sys.stderr)
+    sys.exit(1)
+
+# Extract metadata
+metadata = msg.get('content', '')
+
+# Decode and save all audio files
 output = '$OUTPUT'
 for i, a in enumerate(audios):
     url = a['audio_url']['url']
     b64 = url.split(',', 1)[1]
-    fname = output if len(audios) == 1 else output.rsplit('.', 1)[0] + f'_{i+1}.' + output.rsplit('.', 1)[1]
+    if len(audios) == 1:
+        fname = output
+    else:
+        stem, ext = output.rsplit('.', 1)
+        fname = f'{stem}_{i+1}.{ext}'
     with open(fname, 'wb') as f:
         f.write(base64.b64decode(b64))
     print(f'Saved: {fname}', file=sys.stderr)
     print(fname)
-"
 
-  if [[ -n "$METADATA" ]]; then
-    echo "" >&2
-    echo "📋 Metadata:" >&2
-    echo "$METADATA" >&2
-  fi
-else
-  echo "ERROR: API request failed" >&2
-  echo "$RESPONSE" >&2
-  exit 1
-fi
+# Print metadata
+if metadata:
+    print('', file=sys.stderr)
+    print('📋 Metadata:', file=sys.stderr)
+    print(metadata, file=sys.stderr)
+"

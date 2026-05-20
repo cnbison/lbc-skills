@@ -90,7 +90,7 @@ ln -s ~/projects/lbc-skills/skills/daily-news .claude/skills/daily-news
 
 | Skill | 状态 | 一句话 | 触发词 | 依赖 |
 |------|:--:|------|------|------|
-| [`ace-music`](skills/ace-music/) | 🚧 | 通过 ACE-Step 1.5 免费 API 生成音乐 / 歌曲 / 配乐 / 翻唱 | create music / generate song / 作曲 / 配乐 | `ACE_MUSIC_API_KEY` |
+| [`ace-music`](skills/ace-music/) | ✅ | 通过 ACE-Step 1.5 免费 API 生成音乐 / 歌曲 / 配乐 / 翻唱 | ace-music / generate music / create song / 作曲 / 配乐 / 帮我做首歌 | `curl` `python3` `ACE_MUSIC_API_KEY` |
 
 ### 🛠 基础设施
 

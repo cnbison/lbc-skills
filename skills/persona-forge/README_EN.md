@@ -19,12 +19,7 @@
 <br>
 
 **Other Languages:**
-
 [中文](README.md)
-
-<br>
-
-[![Star History Chart](https://api.star-history.com/svg?repos=alchaincyf/persona-forge&type=Date)](https://star-history.com/#alchaincyf/persona-forge&Date)
 
 </div>
 
@@ -255,15 +250,6 @@ A good person skill lets you see your own problems through another's eyes. A goo
 
 ---
 
-## About the Author
-
-**Huashu** — AI Native Coder, indie developer. All products built with AI-written code ([Kitten Fill Light](https://apps.apple.com/app/id6738028637) reached #1 on China App Store paid chart). Running 40+ custom skills in Claude Code. Persona Forge is the skill that makes skills.
-
-- WeChat Official Account: 花叔 (Huashu)
-- X: [@AlchainHust](https://x.com/AlchainHust)
-- Bilibili: [花叔](https://space.bilibili.com/14097567)
-- YouTube: [@Alchain](https://www.youtube.com/@Alchain)
-
 ## License
 
 MIT — use it, modify it, build with it.
@@ -276,8 +262,5 @@ MIT — use it, modify it, build with it.
 
 *The next mind you want to converse with doesn't have to be a famous one.*
 
-<br>
-
-MIT License © [Huashu](https://github.com/alchaincyf)
 
 </div>

@@ -67,6 +67,7 @@ ln -s ~/projects/lbc-skills/skills/daily-news .claude/skills/daily-news
 | [`second-brain`](skills/second-brain/) | ✅ | 由 Ensue 驱动的个人知识库，捕捉与检索理解 | save this / remember / my notes on | `ENSUE_API_KEY` |
 | [`mofa-concept`](skills/mofa-concept/) | 🚧 | 8 维概念解剖（历史 / 辩证 / 现象学 / 语言学 / 形式化 / 存在主义 / 美学 / 元哲学），输出 md 报告 | 解剖概念 / 概念解剖 / explain concept | — |
 | [`ljg-roundtable`](skills/ljg-roundtable/) | 🚧 | 结构化多视角辩论框架，主持人邀请代表人物围绕议题展开 | 圆桌讨论 / 圆桌 / roundtable / 辩论 | — |
+| [`elementary-math-teacher-persona`](skills/elementary-math-teacher-persona/) | ✅ | 小学高年级数学老师人格化AI，温暖鼓励、启发引导、类比可视化教学 | 小学数学老师 / 数学辅导 / 数学题不会做 / 数学思维 | — |
 | [`frame-analysis`](skills/frame-analysis/) | ✅ | 反路径锁定多框架分析法：先展开多条理解路径，再决定要不要收敛 | cg0x-frame-analysis | — |
 
 ### 🎙 语音 / 播客 / TTS

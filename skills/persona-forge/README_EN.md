@@ -1,8 +1,8 @@
 <div align="center">
 
-# Persona Forge.skill (Persona Forge)
+# Persona Forge.skill
 
-> *"The next person you want to distill doesn't have to be a colleague."*
+> *"Personify anything — famous minds, or unique characters you create."*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blueviolet)](https://claude.ai/code)
@@ -10,15 +10,11 @@
 
 <br>
 
-**Persona Forge distills the thinking of anyone — let Musk, Naval, Munger, and Feynman work for you.**
+**Persona Forge is a persona engine: distill the thinking of famous minds, or synthesize custom characters to your specifications.**
 
 <br>
 
-[colleague-skill](https://github.com/titanwings/colleague-skill) proved that distilling a person into an AI skill is viable.
-So why stop at colleagues? Go distill Munger, Feynman, Musk.
-Just input a name — Persona Forge handles research, extraction, and validation automatically.
-
-[Examples](#examples) · [Install](#install) · [What Persona Forge Distills](#what-nuwa-distills) · [How It Works](#how-it-works)
+[Examples](#examples) · [Install](#install) · [What It Does](#what-it-does) · [How It Works](#how-it-works)
 
 <br>
 
@@ -26,11 +22,17 @@ Just input a name — Persona Forge handles research, extraction, and validation
 
 [中文](README.md) · [日本語](README_JA.md) · [한국어](README_KO.md) · [Español](README_ES.md)
 
+<br>
+
+[![Star History Chart](https://api.star-history.com/svg?repos=alchaincyf/persona-forge&type=Date)](https://star-history.com/#alchaincyf/persona-forge&Date)
+
 </div>
 
 ---
 
 ## Examples
+
+### Example 1: Distilling a Famous Mind
 
 ```
 User    ❯ I want to do content creation, write a book, and build an indie app,
@@ -58,7 +60,22 @@ Musk    ❯ Don't think about how to reduce it yet. Calculate the physical minim
            Don't optimize the funnel — question whether the funnel should exist at all.
 ```
 
-This is not role-play. Naval uses his "desire as contract" mental model. Musk uses "asymptotic limit" reasoning. **They are not reciting quotes — they are analyzing your problem through the cognitive frameworks of these minds.**
+### Example 2: Synthesizing a Custom Character
+
+```
+User          ❯ Create a patient elementary school math teacher persona
+
+Persona Forge ❯ Generated "Patient Math Teacher" persona.
+
+User          ❯ Why doesn't 1/2 plus 1/3 equal 2/5?
+
+Math Teacher  ❯ That's a really interesting thought! A lot of kids think that at first.
+                  Let's do an experiment: imagine you have a pizza...
+
+                  (Character designed from "warm encouragement + analogy-rich + guided discovery" dimensions)
+```
+
+This is not role-play. Naval uses his "desire as contract" mental model. Musk uses "asymptotic limit" reasoning. The math teacher uses "scaffolding + analogy-based pedagogy". **They are not reciting templates — they are analyzing your problem through specific cognitive frameworks.**
 
 ---
 
@@ -70,25 +87,32 @@ npx skills add alchaincyf/persona-forge
 
 Then in Claude Code:
 
+**Distill a famous mind:**
 ```
 > Distill Paul Graham
-> Build a Zhang Xiaolong perspective skill
-> Create a Duan Yongping skill for me
+> Build a Steve Jobs perspective skill
+> Create a Naval skill for me
+```
+
+**Synthesize a custom character:**
+```
+> Create a patient math teacher persona
+> Build a strict but supportive mentor role
+> Design an AI companion for teaching kids to code
 ```
 
 After creation, invoke directly:
-
 ```
 > Use Munger's perspective to analyze this investment decision
 > How would Feynman explain quantum computing?
-> Switch to Naval, I'm torn between three things
+> Switch to math teacher, explain fractions to me
 ```
 
 ---
 
-## What Persona Forge Distills
+## What It Does
 
-Distilling the best minds in any field requires extracting something deeper than daily work habits. Persona Forge extracts six layers:
+Persona Forge extracts five layers of cognitive structure:
 
 | Layer | Description |
 |---|---|
@@ -98,7 +122,11 @@ Distilling the best minds in any field requires extracting something deeper than
 | **What they won't do** | Anti-patterns, value floor |
 | **Honest limits** | What the skill genuinely cannot do |
 
-Work habits can be conveyed through process docs. But what makes Munger and Musk reach different conclusions about the same problem is their cognitive frameworks. Persona Forge extracts the cognitive operating system.
+### Two Capabilities
+
+**1. Person Distillation** — Input a name, and 6 parallel agents research the person's writings, interviews, and decision records to extract their unique cognitive operating system.
+
+**2. Persona Synthesis** — No specific person needed. Select/combine dimensions from the Persona Dimension Library (teaching style, communication warmth, expression mode, etc.) and generate a custom character in 5 minutes.
 
 ### Honest Limits
 
@@ -107,24 +135,94 @@ Every skill explicitly states what it cannot do:
 - Cannot distill intuition — frameworks can be extracted, inspiration cannot
 - Cannot capture change — only a snapshot up to the research cutoff
 - Public statements ≠ true beliefs — only based on public information
+- Synthetic personas ≠ real people — clearly labeled as AI-generated characters
 
 **A skill that doesn't tell you its limits is not worth trusting.**
 
 ---
 
+## Generated Skills
+
+Persona Forge has generated 13 person skills + 1 topic skill. Each is a standalone, installable skill:
+
+### Person Skills (Distilled)
+
+| Person | Domain | Standalone Repo | Install |
+|------|------|---------|---------|
+| 🔥 **Paul Graham** | Startups/Writing/Product/Philosophy | [paul-graham-skill](https://github.com/alchaincyf/paul-graham-skill) | `npx skills add alchaincyf/paul-graham-skill` |
+| 🔥 **Zhang Yiming** | Product/Organization/Globalization | [zhang-yiming-skill](https://github.com/alchaincyf/zhang-yiming-skill) | `npx skills add alchaincyf/zhang-yiming-skill` |
+| 🔥 **Karpathy** | AI/Engineering/Education/Open Source | [karpathy-skill](https://github.com/alchaincyf/karpathy-skill) | `npx skills add alchaincyf/karpathy-skill` |
+| 🔥 **Ilya Sutskever** | AI Safety/Scaling/Research Taste | [ilya-sutskever-skill](https://github.com/alchaincyf/ilya-sutskever-skill) | `npx skills add alchaincyf/ilya-sutskever-skill` |
+| 🔥 **MrBeast** | Content Creation/YouTube | [mrbeast-skill](https://github.com/alchaincyf/mrbeast-skill) | `npx skills add alchaincyf/mrbeast-skill` |
+| 🔥 **Trump** | Negotiation/Power/Communication | [trump-skill](https://github.com/alchaincyf/trump-skill) | `npx skills add alchaincyf/trump-skill` |
+| ⭐ **Steve Jobs** | Product/Design/Strategy | [steve-jobs-skill](https://github.com/alchaincyf/steve-jobs-skill) | `npx skills add alchaincyf/steve-jobs-skill` |
+| **Elon Musk** | Engineering/Cost/First Principles | [elon-musk-skill](https://github.com/alchaincyf/elon-musk-skill) | `npx skills add alchaincyf/elon-musk-skill` |
+| **Munger** | Investment/Multidisciplinary Thinking | [munger-skill](https://github.com/alchaincyf/munger-skill) | `npx skills add alchaincyf/munger-skill` |
+| **Feynman** | Learning/Teaching/Scientific Thinking | [feynman-skill](https://github.com/alchaincyf/feynman-skill) | `npx skills add alchaincyf/feynman-skill` |
+| **Naval** | Wealth/Leverage/Life Philosophy | [naval-skill](https://github.com/alchaincyf/naval-skill) | `npx skills add alchaincyf/naval-skill` |
+| **Taleb** | Risk/Antifragility/Uncertainty | [taleb-skill](https://github.com/alchaincyf/taleb-skill) | `npx skills add alchaincyf/taleb-skill` |
+| **Zhang Xuefeng** | Education/Career/Class Mobility | [zhangxuefeng-skill](https://github.com/alchaincyf/zhangxuefeng-skill) | `npx skills add alchaincyf/zhangxuefeng-skill` |
+
+### Topic Skill
+
+| Topic | Domain | Standalone Repo | Install |
+|------|------|---------|---------|
+| **X Mentor** | X/Twitter Growth | [x-mentor-skill](https://github.com/alchaincyf/x-mentor-skill) | `npx skills add alchaincyf/x-mentor-skill` |
+
+Person skills distill an individual's thinking; topic skills distill a domain's methodology. Each repo includes full research data and example conversations.
+
+Want to distill someone not on the list? Install Persona Forge and say "Distill XXX".
+Want to create a custom character? Say "Create a XXX persona".
+
+---
+
+## Darwin.skill: Evolve All Skills Continuously
+
+<div align="center">
+
+<a href="https://github.com/alchaincyf/darwin-skill">
+<img src="https://raw.githubusercontent.com/alchaincyf/darwin-skill/master/assets/banner.svg" alt="Darwin.skill" width="600">
+</a>
+
+</div>
+
+Persona Forge creates skills, **[Darwin](https://github.com/alchaincyf/darwin-skill)** evolves them.
+
+Inspired by Karpathy's autoresearch, Darwin.skill uses autonomous experiment loops to batch-optimize all skills: 8-dimension evaluation, ratchet mechanism (only keep improvements, auto-rollback regressions), independent sub-agent scoring. Persona Forge's Phase 5 dual-agent refinement embeds Darwin's evaluation framework — one reason Persona Forge generates such high-quality skills.
+
+```bash
+npx skills add alchaincyf/darwin-skill
+```
+
+---
+
 ## How It Works
+
+### Person Distillation Flow
 
 Input a name, and Persona Forge does four things:
 
-**1. Six parallel research streams** — writings, podcasts/interviews, social media, critic perspectives, decision records, life timeline. 6 agents running simultaneously, each archived.
+**1. Six parallel research streams** — writings, podcasts/interviews, social media, critic perspectives, decision records, life timeline. 6 agents run simultaneously, each archived.
 
-**2. Triple-verification extraction** — a claim must pass three tests before being recorded as a mental model: appears across 2+ domains (not a one-off statement), can predict positions on new questions (has predictive power), not something any smart person would think (has exclusivity). All three required.
+**2. Triple-verification extraction** — a claim must pass three tests before being recorded as a mental model: appears across 2+ domains (not a one-off), can predict positions on new questions (has predictive power), not something any smart person would think (has exclusivity). All three required.
 
 **3. Build the skill** — 3–7 mental models + 5–10 decision heuristics + expression DNA + values & anti-patterns + honest limits, written into SKILL.md.
 
-**4. Quality validation** — test with 3 questions the person publicly answered; the direction must match. Then test with 1 question they never addressed; the skill should show appropriate uncertainty rather than false confidence.
+**4. Quality validation** — test with 3 questions the person publicly answered; direction must match. Then test with 1 question they never addressed; skill should show appropriate uncertainty rather than false confidence.
 
-Full methodology in `references/extraction-framework.md`.
+### Persona Synthesis Flow
+
+Input a character description, and:
+
+**1. Dimension composition** — select/adjust dimensions from the Persona Dimension Library (teaching style, communication warmth, expression mode, interaction pattern, etc.).
+
+**2. Domain knowledge injection** — 1 agent searches general domain methodology (e.g., "best practices for elementary math pedagogy").
+
+**3. Character consistency design** — derive mental models, decision heuristics, and expression DNA from dimension composition + domain knowledge.
+
+**4. Assembly & validation** — generate the skill using the extended template, then run character consistency tests, dimension deviation detection, and domain appropriateness tests.
+
+Full methodology in `references/extraction-framework.md` (person distillation) and `references/persona-dimension-library.md` (persona synthesis).
 
 ---
 
@@ -132,46 +230,34 @@ Full methodology in `references/extraction-framework.md`.
 
 ```
 persona-forge/
-├── SKILL.md                    # Persona Forge herself
+├── SKILL.md                      # Persona Forge core
 ├── references/
-│   ├── extraction-framework.md # Extraction methodology (read this for depth)
-│   └── skill-template.md       # Template for generating skills
-└── examples/
-    ├── naval-perspective/       # Naval full example + research data
-    └── elon-musk-perspective/   # Musk full example + research data
+│   ├── extraction-framework.md   # Extraction methodology
+│   ├── skill-template.md         # Template for generating skills
+│   └── persona-dimension-library.md  # Persona Dimension Library (synthesis)
+└── examples/                          # 13 people + 1 topic
+    ├── naval-perspective/             # Naval
+    ├── elon-musk-perspective/         # Musk
+    └── ...
 ```
 
-All research is fully transparent. The examples include complete research files — you can see how information was collected, filtered, and turned into mental models.
+All research is fully transparent. Each example includes complete research files — you can see how information was collected, filtered, and turned into mental models.
 
 ---
 
-## Star History
-
-<div align="center">
-
-[![Star History Chart](https://api.star-history.com/svg?repos=alchaincyf/persona-forge&type=Date)](https://star-history.com/#alchaincyf/persona-forge&Date)
-
-</div>
-
----
-
-## The Story Behind It
-
-[colleague-skill](https://github.com/titanwings/colleague-skill) recently exploded on GitHub — distilling departing colleagues into AI skills, crossing 5,000 stars in days. It proved one thing: distilling a person is completely viable.
-
-Since we have the ability to distill people, why stop at colleagues nearby? Go distill the best minds in every field. And fortunately, these people usually left behind vast amounts of distillable material — books, talks, interviews, social media. This is an enormous enhancement to your own thinking.
-
-I've been doing something like this for a while — not distilling colleagues, but Munger, Feynman, Naval, Musk, Taleb. Today I'm open-sourcing the methodology.
+## About
 
 Persona Forge doesn't copy people. It extracts cognitive operating systems.
 
-**Persona Forge (Persona Forge)**, the goddess in Chinese mythology who created humans from clay. Here the clay is public information, and what's created is not a person — it's a mirror.
+A good person skill lets you see your own problems through another's eyes. A good persona character lets AI interact with you in the style and capability you need. Not to imitate them, but to expand your own thinking and interaction experience.
+
+**Persona Forge** — a persona engine.
 
 ---
 
 ## About the Author
 
-Huashu / Huasheng, AI Native Coder, indie developer. All products are built by AI-written code ([Kitten Fill Light](https://apps.apple.com/app/id6738028637) reached #1 on China App Store paid chart). Running 40+ custom skills in Claude Code. Persona Forge is the skill that makes skills.
+**Huashu** — AI Native Coder, indie developer. All products built with AI-written code ([Kitten Fill Light](https://apps.apple.com/app/id6738028637) reached #1 on China App Store paid chart). Running 40+ custom skills in Claude Code. Persona Forge is the skill that makes skills.
 
 - WeChat Official Account: 花叔 (Huashu)
 - X: [@AlchainHust](https://x.com/AlchainHust)
@@ -186,9 +272,9 @@ MIT — use it, modify it, build with it.
 
 <div align="center">
 
-**colleague-skill** distills what a person does.<br>
-**Persona Forge** distills how a person thinks.<br><br>
-*The next person you want to distill doesn't have to be a colleague.*
+**Persona Forge** — Personify anything.
+
+*The next mind you want to converse with doesn't have to be a famous one.*
 
 <br>
 

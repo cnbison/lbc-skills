@@ -225,11 +225,13 @@ Full methodology in `references/extraction-framework.md` (person distillation) a
 
 ```
 persona-forge/
-├── SKILL.md                      # Persona Forge core
+├── SKILL.md                      # Persona Forge core (3-path entry + index)
 ├── references/
-│   ├── extraction-framework.md   # Extraction methodology
-│   ├── skill-template.md         # Template for generating skills
-│   └── persona-dimension-library.md  # Persona Dimension Library (synthesis)
+│   ├── extraction-framework.md   # Extraction methodology (triple verification, quality checklist)
+│   ├── skill-template.md         # Template for generating skills (person + synthetic persona)
+│   ├── persona-dimension-library.md  # Persona Dimension Library (synthesis)
+│   ├── path-a.md                 # Person distillation detailed flow (Phase 1-5)
+│   └── path-c.md                 # Persona synthesis detailed flow (Phase 1C-5C)
 └── examples/                          # 13 people + 1 topic
     ├── naval-perspective/             # Naval
     ├── elon-musk-perspective/         # Musk

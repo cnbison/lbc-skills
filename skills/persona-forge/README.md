@@ -225,11 +225,13 @@ npx skills add alchaincyf/darwin-skill
 
 ```
 persona-forge/
-├── SKILL.md                      # Persona Forge 本体
+├── SKILL.md                      # Persona Forge 本体（三路径入口 + 精简索引）
 ├── references/
-│   ├── extraction-framework.md   # 提炼方法论
-│   ├── skill-template.md         # 生成 Skill 的模板
-│   └── persona-dimension-library.md  # 角色维度库（合成角色用）
+│   ├── extraction-framework.md   # 提炼方法论（三重验证、质量自检）
+│   ├── skill-template.md         # 生成 Skill 的模板（人物 + 合成角色）
+│   ├── persona-dimension-library.md  # 角色维度库（合成角色用）
+│   ├── path-a.md                 # 人物蒸馏详细流程（Phase 1-5）
+│   └── path-c.md                 # 角色合成详细流程（Phase 1C-5C）
 └── examples/                          # 13 个人物 + 1 个主题
     ├── steve-jobs-perspective/        # 乔布斯
     ├── paul-graham-perspective/       # Paul Graham

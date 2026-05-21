@@ -20,7 +20,7 @@
 
 **其他语言 / Other Languages:**
 
-[English](README_EN.md) · [日本語](README_JA.md) · [한국어](README_KO.md) · [Español](README_ES.md)
+[English](README_EN.md)
 
 <br>
 

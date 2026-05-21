@@ -204,8 +204,9 @@ git push origin main          # 4) 立即 push
 3. **改完立即建/更新软链接**，再 `git add` 包含两个路径。
 4. **任务完成立刻 `git commit && git push`**，不留尾巴。
 5. **新建 skill 后在 `README.md` 的目录里补一行**，保持 README 与 `skills/` 同步。
+6. **每次代码变更需同步更新 `docs/<skill-name>/CHANGELOG.md`**，详细规则见 `docs/docs-maintenance-guide.md`。
 
-当涉及具体代码编写（Python 脚本、Rust 二进制、JS 工具等）时，遵循 [`docs/claudemd_zh.md`](docs/claudemd_zh.md) 中的通用原则：**思考先于编码、简洁优先、精准修改、目标导向**。
+当涉及具体代码编写（Python 脚本、Rust 二进制、JS 工具等）时，遵循 [`docs/_shared/claudemd_zh.md`](docs/_shared/claudemd_zh.md) 中的通用原则：**思考先于编码、简洁优先、精准修改、目标导向**。
 
 ---
 
@@ -213,5 +214,5 @@ git push origin main          # 4) 立即 push
 
 - skill 形态对比：[`docs/skill-format-comparison.md`](docs/skill-format-comparison.md)
 - skill 加载路径机制：[`docs/skill-loading-paths.md`](docs/skill-loading-paths.md)
-- 单个 skill 的设计笔记：散落在 `docs/<skill-name>.md`
+- 单个 skill 的设计笔记：`docs/<skill-name>/` 目录
 - 终端用户的使用说明：[`README.md`](README.md)

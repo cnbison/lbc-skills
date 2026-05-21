@@ -27,9 +27,9 @@
 | **工具搜索** | "search for tools/templates/workflows" |
 | **领域求助** | 提到具体领域（design, testing, deployment 等） |
 
-**与 `nuwa-skill` 的区别**：
+**与 `persona-forge` 的区别**：
 
-| 维度 | find-skills | nuwa-skill |
+| 维度 | find-skills | persona-forge |
 |------|-------------|-----------|
 | 目标 | 找到**已有的** skill | **创建新的** skill |
 | 输入 | "我想做 X" | "我想拥有 XX 的思维方式" |

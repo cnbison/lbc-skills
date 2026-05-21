@@ -8,7 +8,7 @@
 
 - `dou-wentao-perspective`
 - `follow-builders`
-- `nuwa-skill`
+- `persona-forge`
 - `ljg-read`
 
 这 4 个 skill 正好对应 `.claude/skills/` 下的 4 个目录。
@@ -43,7 +43,7 @@ $ ls -la .claude/skills/ljg-read/skill.md skills/ljg-read/skill.md
 
 - `.claude/skills/` = "已安装"区，Claude Code 直接读取
 - `skills/` = "源码 / 分发包"区，类似上架到市场前的工作区，便于版本管理、复制分享、被其他项目引用
-- 这就是为什么 `nuwa-skill` 等造 skill 流程的最终产物需要"安装"到 `.claude/skills/` 后才能被触发使用
+- 这就是为什么 `persona-forge` 等造 skill 流程的最终产物需要"安装"到 `.claude/skills/` 后才能被触发使用
 
 ## 建议的管理方式
 

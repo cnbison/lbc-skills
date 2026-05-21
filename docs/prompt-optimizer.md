@@ -312,7 +312,7 @@ skill 内置了 30+ 个框架，对用户来说可能有"选择 overload"的风�
 | **prompt-optimizer** | Prompt 工程 | 任务描述 / 原始 prompt | 结构化 prompt 模板 | 需要系统化设计 prompt 时 |
 | **skill-creator** | Skill 开发 | 人物/任务描述 | 完整的 SKILL.md | 创建可复用的 AI 能力包 |
 | **dou-wentao-perspective** | 思维框架 | 分析问题 | 人物视角的分析 | 需要特定思维方式时 |
-| **nuwa-skill** | 造人引擎 | 人名/主题 | 人物 Skill | 把任意人物蒸馏成 skill |
+| **persona-forge** | 人格化引擎 | 人名/主题 | 人物 Skill | 把任意人物蒸馏成 skill |
 
 **关键区分**：
 - `prompt-optimizer` 优化的是**单次交互的 prompt**

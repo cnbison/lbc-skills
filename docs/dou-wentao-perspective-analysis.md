@@ -2,7 +2,7 @@
 
 > **Skill 路径**：`skills/dou-wentao-perspective/SKILL.md`
 > **版本**：v1.0.0
-> **创建者**：Nuwa Skill（女娲造人）
+> **创建者**：Persona Forge Skill（Persona Forge 人格化）
 > **调研时间**：2026 年 4 月 17 日
 
 ---
@@ -195,7 +195,7 @@
 | Skill | 类型 | 深度 | 研究协议 | 最佳场景 |
 |-------|------|------|---------|---------|
 | **dou-wentao-perspective** | 人物思维蒸馏 | ★★★★★ | 有（WebSearch） | 深度分析、决策咨询、内容创作 |
-| **nuwa-skill** | 造人引擎 | ★★★★★ | 有（自动调研） | 把任意人物蒸馏成 skill |
+| **persona-forge** | 人格化引擎 | ★★★★★ | 有（自动调研） | 把任意人物蒸馏成 skill |
 | **ljg-read** | 伴读 | ★★★★☆ | 无 | 文本精读、翻译、提问 |
 | **second-brain** | 知识库 | ★★★☆☆ | 无 | 知识保存与检索 |
 
@@ -223,4 +223,4 @@ skills/dou-wentao-perspective/
 3. **量化表达 DNA**，让输出质量稳定可控
 4. **明确诚实边界**，管理用户期望
 
-如果你正在使用 `nuwa-skill` 来蒸馏其他人物的思维方式，`dou-wentao-perspective` 就是最好的参考模板。
+如果你正在使用 `persona-forge` 来蒸馏其他人物的思维方式，`dou-wentao-perspective` 就是最好的参考模板。

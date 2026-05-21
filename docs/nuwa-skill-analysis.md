@@ -1,15 +1,15 @@
-# Nuwa-Skill 深度分析报告
+# Persona Forge 深度分析报告
 
 > 评估框架：Skill-Creator 五维评估体系（Anatomy / Progressive Disclosure / Triggering / Writing Quality / Testability）
-> 评估对象：`skills/nuwa-skill/SKILL.md` 及其附属文件
+> 评估对象：`skills/persona-forge/SKILL.md` 及其附属文件
 > 评估日期：2026-05-20
-> 评估版本：nuwa-skill v0.1.0（基于 SKILL.md 当前状态）
+> 评估版本：persona-forge v0.1.0（基于 SKILL.md 当前状态）
 
 ---
 
-## 一、概述：Nuwa-Skill 是什么
+## 一、概述：Persona Forge 是什么
 
-Nuwa-Skill 是一个**元 Skill（Meta-Skill）**——它不直接解决用户问题，而是**生成其他 Skill**。其核心能力是将一个真实人物或模糊需求，通过多 Agent 并行调研、框架提炼、质量验证，最终输出一个可运行的 "人物视角 Skill"（如 `feynman-perspective`）。
+Persona Forge 是一个**元 Skill（Meta-Skill）**——它不直接解决用户问题，而是**生成其他 Skill**。其核心能力是将一个真实人物或模糊需求，通过多 Agent 并行调研、框架提炼、质量验证，最终输出一个可运行的 "人物视角 Skill"（如 `feynman-perspective`）。
 
 ---
 
@@ -18,7 +18,7 @@ Nuwa-Skill 是一个**元 Skill（Meta-Skill）**——它不直接解决用户�
 ### 2.1 目录结构
 
 ```
-skills/nuwa-skill/
+skills/persona-forge/
 ├── SKILL.md                              # 主指令文件（645行）
 ├── references/
 │   ├── skill-template.md                 # 人物 Skill 模板
@@ -49,7 +49,7 @@ skills/nuwa-skill/
 | Section | 行数 | 内容 |
 |---------|------|------|
 | Frontmatter | 1-8 | name, description, 触发词 |
-| 核心理念 | 14-26 | "女娲不是复制人，是提炼思维框架" |
+| 核心理念 | 14-26 | "Persona Forge不是复制人，是提炼思维框架" |
 | Phase 0: 入口分流 | 29-138 | 直接路径(0A) + 诊断路径(0B) + 目录创建(0.5) |
 | Phase 1: 多源采集 | 173-311 | 6 个并行 Agent 的分配、prompt 模板、信息源策略 |
 | Phase 1.5: 调研 Review | 314-338 | 检查点表格，要求用户确认 |
@@ -76,7 +76,7 @@ Level 2: SKILL.md body                    <500 lines, loaded on trigger
 Level 3: Bundled resources                unlimited, loaded on demand
 ```
 
-### 3.1 Nuwa-Skill 的实际加载分布
+### 3.1 Persona Forge 的实际加载分布
 
 | 层级 | 内容 | 大小 | 问题 |
 |------|------|------|------|
@@ -114,9 +114,9 @@ SKILL.md 中明确标注了何时读取 reference 文件：
 
 ```yaml
 description: |
-  女娲造人：输入人名/主题/甚至只是模糊需求，自动深度调研→思维框架提炼→生成可运行的人物Skill。
+  Persona Forge造人：输入人名/主题/甚至只是模糊需求，自动深度调研→思维框架提炼→生成可运行的人物Skill。
   两种入口：(1)明确人名→直接蒸馏 (2)模糊需求→诊断推荐→再蒸馏。
-  触发词：「造skill」「蒸馏XX」「女娲」「造人」「XX的思维方式」「做个XX视角」「更新XX的skill」。
+  触发词：「造skill」「蒸馏XX」「Persona Forge」「造人」「XX的思维方式」「做个XX视角」「更新XX的skill」。
   模糊需求也触发：「我想提升决策质量」「有没有一种思维方式能帮我...」「我需要一个思维顾问」。
 ```
 
@@ -137,18 +137,18 @@ description: |
 
 2. **"我需要一个思维顾问"** → 同样过于宽泛。用户可能只是想让我用现有能力给建议，而非走完整的多 Agent 蒸馏流程。
 
-3. **与现有 Perspective Skills 的竞争**：当用户说 "用费曼的视角" 时，系统中已有 `feynman-perspective` Skill。Nuwa 的触发词中未明确排除 "直接使用已有 Skill" 的场景，可能导致两个 Skill 竞争。
+3. **与现有 Perspective Skills 的竞争**：当用户说 "用费曼的视角" 时，系统中已有 `feynman-perspective` Skill。Persona Forge 的触发词中未明确排除 "直接使用已有 Skill" 的场景，可能导致两个 Skill 竞争。
 
 ### 4.3 改进建议
 
 ```yaml
 # 建议优化后的 description
 description: |
-  女娲造人：从零创建一个人物/主题视角 Skill。输入人名、主题或模糊需求，
+  Persona Forge造人：从零创建一个人物/主题视角 Skill。输入人名、主题或模糊需求，
   自动执行多 Agent 深度调研→心智模型提炼→可运行 Skill 生成。
   当用户想要**新建**或**更新**某个人物的思维视角 Skill 时触发。
   触发词：「造skill」「蒸馏XX」「做个XX视角」「生成XX的skill」「更新XX的skill」。
-  如果系统中已有该人物的 Skill（如 feynman-perspective），优先使用现有 Skill，不触发女娲。
+  如果系统中已有该人物的 Skill（如 feynman-perspective），优先使用现有 Skill，不触发Persona Forge。
   模糊需求仅在用户明确说「想要一个思维顾问/决策框架」且未指定具体人物时触发。
 ```
 
@@ -173,7 +173,7 @@ Skill-Creator 推荐的原则：
 - 解释 reasoning，让模型理解
 - 避免过度僵化的结构
 
-Nuwa-Skill 的表现：
+Persona Forge 的表现：
 - ✅ **解释充分**：每个 Phase 开头都有 "为什么需要这个步骤" 的说明
 - ✅ **柔性约束**：用 "建议"、"推荐" 而非全大写 MUST
 - ⚠️ **部分 rigid**：Phase 4 的通过标准表格使用了明确的数字约束（"3-7个心智模型"、"5-10条启发式"），这是合理的——这些是可量化的质量标准
@@ -181,7 +181,7 @@ Nuwa-Skill 的表现：
 
 ### 5.3 可操作性（Actionability）
 
-这是 Nuwa-Skill 的核心优势，也是其复杂度来源。
+这是 Persona Forge 的核心优势，也是其复杂度来源。
 
 | 流程步骤 | 可操作性 | 依赖 |
 |---------|---------|------|
@@ -194,7 +194,7 @@ Nuwa-Skill 的表现：
 | Phase 4: 质量验证 | ★★★☆☆ | 需要 spawn 子 Agent 运行测试，Claude.ai 不可用 |
 | Phase 5: 双 Agent 精炼 | ★★☆☆☆ | **重度依赖 subagents**，Claude.ai 不可用 |
 
-**核心矛盾**：Nuwa-Skill 设计为一个**重度 Agentic 的复杂工作流**，但在 Claude.ai（无 subagents）环境下，Phase 1、4、5 无法执行。这是一个**平台兼容性**问题，不是 Skill 本身的质量问题。
+**核心矛盾**：Persona Forge 设计为一个**重度 Agentic 的复杂工作流**，但在 Claude.ai（无 subagents）环境下，Phase 1、4、5 无法执行。这是一个**平台兼容性**问题，不是 Skill 本身的质量问题。
 
 ---
 
@@ -202,7 +202,7 @@ Nuwa-Skill 的表现：
 
 ### 6.1 内置测试机制
 
-Nuwa-Skill 内置了完善的质量验证体系：
+Persona Forge 内置了完善的质量验证体系：
 
 | 测试类型 | 存在 | 自动化程度 |
 |---------|------|-----------|
@@ -223,20 +223,20 @@ Skill-Creator 推荐的测试流程：
 5. 启动 eval-viewer 人工 review
 6. 迭代改进
 
-Nuwa-Skill 的测试流程：
+Persona Forge 的测试流程：
 1. Phase 4.1-4.3：定性验证（3 个测试场景）
 2. Phase 4.4：量化通过标准（6 项检查）
 3. Phase 5：双 Agent 精炼评审
 
 **差距**：
-- Nuwa 缺少**系统化的 eval 用例集合**（evals.json）
-- Nuwa 缺少**基准对比**（with-skill vs without-skill 或 old vs new）
-- Nuwa 缺少**自动化 grading 和 benchmark 生成**
-- Nuwa 的 `quality_check.py` 是一个轻量脚本，未达到 Skill-Creator 的 `generate_review.py` + `aggregate_benchmark` 的完整度
+- Persona Forge 缺少**系统化的 eval 用例集合**（evals.json）
+- Persona Forge 缺少**基准对比**（with-skill vs without-skill 或 old vs new）
+- Persona Forge 缺少**自动化 grading 和 benchmark 生成**
+- Persona Forge 的 `quality_check.py` 是一个轻量脚本，未达到 Skill-Creator 的 `generate_review.py` + `aggregate_benchmark` 的完整度
 
 ### 6.3 改进建议
 
-如果希望将 Nuwa-Skill 的测试体系与 Skill-Creator 对齐：
+如果希望将 Persona Forge 的测试体系与 Skill-Creator 对齐：
 
 1. **添加 evals.json 模板**：在 `references/eval-templates/` 中预置人物 Skill 的标准测试用例
 2. **扩展 quality_check.py**：加入自动化 grading（PASS/FAIL + evidence）
@@ -289,7 +289,7 @@ Nuwa-Skill 的测试流程：
 ### 8.3 低优先级
 
 7. **示例 Skill 缺少版本标注**
-   - 14 个 examples 未标注生成时间、Nuwa 版本、验证状态
+   - 14 个 examples 未标注生成时间、Persona Forge 版本、验证状态
    - 修复：在 example 目录添加 `metadata.json`
 
 8. **国际化支持有限**
@@ -300,7 +300,7 @@ Nuwa-Skill 的测试流程：
 
 ## 九、与 Skill-Creator 最佳实践的对比总结
 
-| 最佳实践 | Nuwa-Skill 现状 | 差距 |
+| 最佳实践 | Persona Forge 现状 | 差距 |
 |---------|----------------|------|
 | SKILL.md < 500 行 | 645 行 | ❌ 超标 29% |
 | Reference > 300 行 需 TOC | extraction-framework.md 152 行，无 TOC | ⚠️ 建议添加 |
@@ -316,7 +316,7 @@ Nuwa-Skill 的测试流程：
 
 ## 十、结论
 
-Nuwa-Skill 是一个**方法论极其成熟、设计理念先进的元 Skill**。它在以下方面达到或超过了行业最佳实践：
+Persona Forge 是一个**方法论极其成熟、设计理念先进的元 Skill**。它在以下方面达到或超过了行业最佳实践：
 
 - ✅ 多 Agent 并行调研的方法论设计
 - ✅ 心智模型三重验证的提炼框架

@@ -65,7 +65,7 @@ private/
 
 ## 六、与其他 skill 的关系
 
-| 维度 | second-brain | nuwa-skill | ljg-read |
+| 维度 | second-brain | persona-forge | ljg-read |
 |---|---|---|---|
 | 定位 | 个人知识库 | 造 skill 的 skill | 伴读 |
 | 写入方 | 用户主动 | 生成 skill 文件 | 不写入 |

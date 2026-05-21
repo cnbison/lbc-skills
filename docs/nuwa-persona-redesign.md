@@ -1,6 +1,6 @@
-# Nuwa-Skill → Persona-Skill 改版方案
+# Persona Forge → Persona-Skill 改版方案
 
-> 基于 `docs/nuwa-skill-analysis.md` 的深度分析，提出从「人物蒸馏」到「人格化引擎」的架构改版方案。
+> 基于 `docs/persona-forge-analysis.md` 的深度分析，提出从「人物蒸馏」到「人格化引擎」的架构改版方案。
 > 设计日期：2026-05-20
 > 核心目标：不仅能把**真实人物**人格化，还能**按需组合**出一个特定人格化（如小学数学老师、耐心导师、幽默面试官）。
 
@@ -8,7 +8,7 @@
 
 ## 一、改版目标与定位变化
 
-### 1.1 当前定位（Nuwa-Skill）
+### 1.1 当前定位（Persona Forge）
 
 | 维度 | 现状 |
 |------|------|
@@ -391,10 +391,10 @@ else:
 
 ## 三、触发词扩展
 
-### 3.1 当前触发词（Nuwa-Skill）
+### 3.1 当前触发词（Persona Forge）
 
 ```
-造skill、蒸馏XX、女娲、造人、XX的思维方式、做个XX视角、更新XX的skill
+造skill、蒸馏XX、Persona Forge、造人、XX的思维方式、做个XX视角、更新XX的skill
 我想提升决策质量、有没有一种思维方式能帮我...、我需要一个思维顾问
 ```
 
@@ -538,7 +538,7 @@ else:
 
 ### 改版的本质
 
-这不是对 Nuwa-Skill 的推翻，而是**能力的扩展**：
+这不是对 Persona Forge 的推翻，而是**能力的扩展**：
 
 - **保留**：人物蒸馏的完整方法论（6 Agent 调研、三重验证、质量门控）
 - **新增**：角色合成的轻量级流程（维度组合、领域知识注入、一致性设计）
@@ -565,5 +565,5 @@ Persona-Skill：
 
 ---
 
-> 本方案基于 `docs/nuwa-skill-analysis.md` 的深度分析制定。
+> 本方案基于 `docs/persona-forge-analysis.md` 的深度分析制定。
 > 建议先实施 Phase 1-2（基础设施+核心流程），再验证 3 个示例，最后全量推广。

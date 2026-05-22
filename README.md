@@ -150,10 +150,35 @@ mofa video --style cinematic --out video.mp4 input.json
 
 ## 文档
 
-- [`CLAUDE.md`](./CLAUDE.md) — 开发指南（仓库定位、目录约定、skill 形态、新增 skill 的 SOP、Git 工作流）
-- [`docs/_shared/skill-loading-paths.md`](./docs/_shared/skill-loading-paths.md) — `skills/` 与 `.claude/skills/` 双路径机制详解
-- [`docs/_shared/skill-format-comparison.md`](./docs/_shared/skill-format-comparison.md) — 三类 skill 形态的对比与权衡
-- `docs/<skill-name>.md` — 部分 skill 的设计笔记
+### 开发指南（必读）
+
+| 文档 | 内容 |
+|------|------|
+| [`CLAUDE.md`](./CLAUDE.md) | 仓库定位、目录约定、skill 形态、新增 skill 的 SOP、Git 工作流、默认动作 |
+| [`docs/docs-maintenance-guide.md`](./docs/docs-maintenance-guide.md) | `docs/` 目录维护规则、标准文件说明、状态管理、结构性变更检查清单 |
+
+### 跨 skill 通用文档
+
+| 文档 | 内容 |
+|------|------|
+| [`docs/_shared/skill-loading-paths.md`](./docs/_shared/skill-loading-paths.md) | `skills/` 与 `.claude/skills/` 双路径机制详解 |
+| [`docs/_shared/skill-format-comparison.md`](./docs/_shared/skill-format-comparison.md) | 三类 skill 形态的对比与权衡（纯 prompt / Python 流水线 / MoFA Rust） |
+| [`docs/_shared/claudemd_zh.md`](./docs/_shared/claudemd_zh.md) | 通用编码原则：思考先于编码、简洁优先、精准修改 |
+
+### 各 skill 开发文档
+
+每个 skill 的独立开发文档存放在 `docs/<skill-name>/` 下：
+
+```
+docs/<skill-name>/
+├── README.md      # 开发总览（定位、状态、核心文件索引）
+├── STATUS.md      # 状态标记（staging / active / archived）
+├── CHANGELOG.md   # 版本历史
+├── DECISIONS.md   # 关键决策（ADR 格式，按需创建）
+└── analysis.md    # 深度分析报告（skill-creator 框架审查等）
+```
+
+详见 [`docs/README.md`](./docs/README.md) 获取完整的 skill 文档索引。
 
 ---
 

@@ -99,7 +99,7 @@ Assistant: [Expected behavior]
   - `~/Documents/scripts/` — 播客脚本类。
   - `./skill-output/<skill>-<timestamp>/` — 多文件流水线产物（slide、音频、视频段）。
   - `./output/<skill-name>/` — 各 skill 运行产物的统一落地目录（如 `output/daily-news`、`output/follow-builders`）。
-- **Skill 解析与使用指南文档**：当用户对某个具体 skill 做深度解析、编写使用指南或技术分析时，生成的 markdown 文档默认保存到 `./docs/<skill-name>.md`（或 `./docs/<skill-name>-analysis.md`），文件名使用 skill 名 + 文档类型后缀，便于集中管理与检索。
+- **Skill 解析与使用指南文档**：当用户对某个具体 skill 做深度解析、编写使用指南或技术分析时，生成的 markdown 文档必须保存到该 skill 的专属开发文档目录下：`docs/<skill-name>/analysis.md`（或 `docs/<skill-name>/<skill-name>-analysis.md`）。如 `docs/<skill-name>/` 目录尚不存在，则先创建该目录（含 README.md + CHANGELOG.md + STATUS.md），再将分析文档放入其中。禁止直接保存到 `docs/` 根目录。
 
 ---
 

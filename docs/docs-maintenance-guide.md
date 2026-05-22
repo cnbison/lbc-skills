@@ -143,6 +143,17 @@ since: 2026-05-22
 
 **底线**：每次代码变更，CHANGELOG.md 必须同步更新。这是唯一不可跳过的文件。
 
+### 分析文档保存规则
+
+当对某个具体 skill 做深度解析、技术分析或使用指南时，生成的 markdown 文档必须遵守以下规则：
+
+- **保存位置**：`docs/<skill-name>/` 目录下（如 `docs/persona-forge/analysis.md`）
+- **文件名**：`analysis.md` 或 `<skill-name>-analysis.md`
+- **前置检查**：如 `docs/<skill-name>/` 目录尚不存在，**必须先初始化该目录**（创建 README.md + CHANGELOG.md + STATUS.md），再将分析文档放入
+- **禁止行为**：**不得直接保存到 `docs/` 根目录**（如 `docs/xxx-analysis.md` 的平铺形式已废弃）
+
+此规则同时写入 `CLAUDE.md` §4 命名与输出约定。
+
 ---
 
 ## 四、与代码提交的关系

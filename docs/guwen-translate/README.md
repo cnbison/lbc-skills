@@ -21,6 +21,10 @@
 | `../../skills/guwen-translate/references/jingangjing.md` | 《金刚经》风格指南 |
 | `../../skills/guwen-translate/references/wenyan.md` | 通用文言翻译框架 |
 
+## 当前状态
+
+见 [STATUS.md](./STATUS.md) — 🟢 active
+
 ## 版本历史
 
 见 [CHANGELOG.md](./CHANGELOG.md)

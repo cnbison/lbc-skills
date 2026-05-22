@@ -45,61 +45,61 @@ ln -s ~/projects/lbc-skills/skills/daily-news .claude/skills/daily-news
 
 ## Skill 目录
 
-图例：✅ active（仓库根 `.claude/skills/` 已暴露）｜🚧 WIP（仅源码存在，未暴露，需自行软链接）
+图例：🟢 active（经过验证，基本可用）｜🟡 staging（功能完整但未经充分验证）｜🔴 archived（已废弃或长期未维护）
 
 ### 📰 信息流 / 内容生产
 
 | Skill | 状态 | 一句话 | 触发词 | 依赖 |
 |------|:--:|------|------|------|
-| [`daily-news`](skills/daily-news/) | ✅ | RSS 采集 → 过滤去重 → Agent 摘要/文章/播客脚本 → TTS 合成 MP3 | 生成日报 / claw日报 / 今天的新闻 / 播报 | `python3` |
-| [`follow-builders`](skills/follow-builders/) | ✅ | 监控 X 上的 AI builder 与播客，做日 / 周 digest，支持中英双语 | AI digest / builders digest / builder 更新 / industry insights | 无（从中心 feed 拉取） |
-| [`ljg-read`](skills/ljg-read/) | ✅ | 伴读 agent：翻译、结构标注、深度提问、跨学科洞察 | 伴读 / 陪我读 / 读这篇 / read with me | — |
-| [`guwen-translate`](skills/guwen-translate/) | ✅ | 古文今解：用现代语境通俗诠释古文，支持诗经/易经/道德经/金刚经定向风格与通用文言框架 | 古文今解 / 翻译古文 / 今解 / explain ancient text | — |
-| [`news-summary`](skills/news-summary/) | 🚧 | 抓取国际 RSS 做新闻播报，可生成语音摘要 | news / 新闻 / briefing | RSS、可选 TTS |
-| [`last30days`](skills/last30days/) | 🚧 | 跨平台社交舆情研究：抓取 Reddit/X/YouTube/TikTok/HN 等过去 30 天的真实讨论与情绪 | `/last30days <topic>` | `node` `python3` 及多个可选 API Key |
+| [`daily-news`](skills/daily-news/) | 🟢 | RSS 采集 → 过滤去重 → Agent 摘要/文章/播客脚本 → TTS 合成 MP3 | 生成日报 / claw日报 / 今天的新闻 / 播报 | `python3` |
+| [`follow-builders`](skills/follow-builders/) | 🟢 | 监控 X 上的 AI builder 与播客，做日 / 周 digest，支持中英双语 | AI digest / builders digest / builder 更新 / industry insights | 无（从中心 feed 拉取） |
+| [`ljg-read`](skills/ljg-read/) | 🟢 | 伴读 agent：翻译、结构标注、深度提问、跨学科洞察 | 伴读 / 陪我读 / 读这篇 / read with me | — |
+| [`guwen-translate`](skills/guwen-translate/) | 🟢 | 古文今解：用现代语境通俗诠释古文，支持诗经/易经/道德经/金刚经定向风格与通用文言框架 | 古文今解 / 翻译古文 / 今解 / explain ancient text | — |
+| [`news-summary`](skills/news-summary/) | 🟡 | 抓取国际 RSS 做新闻播报，可生成语音摘要 | news / 新闻 / briefing | RSS、可选 TTS |
+| [`last30days`](skills/last30days/) | 🟡 | 跨平台社交舆情研究：抓取 Reddit/X/YouTube/TikTok/HN 等过去 30 天的真实讨论与情绪 | `/last30days <topic>` | `node` `python3` 及多个可选 API Key |
 
 ### 🧠 思考 / 知识 / 视角
 
 | Skill | 状态 | 一句话 | 触发词 | 依赖 |
 |------|:--:|------|------|------|
-| [`dou-wentao-perspective`](skills/dou-wentao-perspective/) | ✅ | 窦文涛的 5 个心智模型 + 7 条决策启发式，做思维顾问 | 窦文涛视角 / 锵锵模式 / 圆桌派视角 | — |
-| [`persona-forge`](skills/persona-forge/) | ✅ | Persona Forge 人格化引擎：人物蒸馏 + 角色合成 + 需求诊断 | 造 skill / 蒸馏 XX / Persona Forge / 创建角色 | — |
-| [`second-brain`](skills/second-brain/) | ✅ | 由 Ensue 驱动的个人知识库，捕捉与检索理解 | save this / remember / my notes on | `ENSUE_API_KEY` |
-| [`mofa-concept`](skills/mofa-concept/) | 🚧 | 8 维概念解剖（历史 / 辩证 / 现象学 / 语言学 / 形式化 / 存在主义 / 美学 / 元哲学），输出 md 报告 | 解剖概念 / 概念解剖 / explain concept | — |
-| [`ljg-roundtable`](skills/ljg-roundtable/) | 🚧 | 结构化多视角辩论框架，主持人邀请代表人物围绕议题展开 | 圆桌讨论 / 圆桌 / roundtable / 辩论 | — |
-| [`elementary-math-teacher-persona`](skills/elementary-math-teacher-persona/) | ✅ | 小学高年级数学老师人格化AI，温暖鼓励、启发引导、类比可视化教学 | 小学数学老师 / 数学辅导 / 数学题不会做 / 数学思维 | — |
-| [`frame-analysis`](skills/frame-analysis/) | ✅ | 反路径锁定多框架分析法：先展开多条理解路径，再决定要不要收敛 | cg0x-frame-analysis | — |
+| [`dou-wentao-perspective`](skills/dou-wentao-perspective/) | 🟢 | 窦文涛的 5 个心智模型 + 7 条决策启发式，做思维顾问 | 窦文涛视角 / 锵锵模式 / 圆桌派视角 | — |
+| [`persona-forge`](skills/persona-forge/) | 🟢 | Persona Forge 人格化引擎：人物蒸馏 + 角色合成 + 需求诊断 | 造 skill / 蒸馏 XX / Persona Forge / 创建角色 | — |
+| [`second-brain`](skills/second-brain/) | 🟢 | 由 Ensue 驱动的个人知识库，捕捉与检索理解 | save this / remember / my notes on | `ENSUE_API_KEY` |
+| [`mofa-concept`](skills/mofa-concept/) | 🟡 | 8 维概念解剖（历史 / 辩证 / 现象学 / 语言学 / 形式化 / 存在主义 / 美学 / 元哲学），输出 md 报告 | 解剖概念 / 概念解剖 / explain concept | — |
+| [`ljg-roundtable`](skills/ljg-roundtable/) | 🟡 | 结构化多视角辩论框架，主持人邀请代表人物围绕议题展开 | 圆桌讨论 / 圆桌 / roundtable / 辩论 | — |
+| [`elementary-math-teacher-persona`](skills/elementary-math-teacher-persona/) | 🟡 | 小学高年级数学老师人格化AI，温暖鼓励、启发引导、类比可视化教学 | 小学数学老师 / 数学辅导 / 数学题不会做 / 数学思维 | — |
+| [`frame-analysis`](skills/frame-analysis/) | 🟢 | 反路径锁定多框架分析法：先展开多条理解路径，再决定要不要收敛 | cg0x-frame-analysis | — |
 
 ### 🎙 语音 / 播客 / TTS
 
 | Skill | 状态 | 一句话 | 触发词 | 依赖 |
 |------|:--:|------|------|------|
-| [`mofa-fm`](skills/mofa-fm/) | 🚧 | TTS 与声音克隆，内置 9 个预设音色，支持自定义 | voice / TTS / 语音 / 播报 | `mofa-fm` |
-| [`mofa-podcast`](skills/mofa-podcast/) | 🚧 | 多人对话播客（1-5 人），支持情绪标签与 BGM cue | podcast / 播客 / 多人对话 / 锵锵三人行 | `mofa-podcast` |
-| [`agents-skill-podcastifier`](skills/agents-skill-podcastifier/) | 🚧 | 把邮件 / newsletter 切块、TTS 合成、ffmpeg 拼接，做成短播客 | podcastify / 把这封邮件做成播客 | `python3` `ffmpeg` |
-| [`mofa-fm-api`](skills/mofa-fm-api/) | 🚧 | MoFA FM 播客平台的 API 客户端（节目、单集、搜索、热搜） | mofa.fm / fm api / 热搜 | `python3` |
+| [`mofa-fm`](skills/mofa-fm/) | 🟡 | TTS 与声音克隆，内置 9 个预设音色，支持自定义 | voice / TTS / 语音 / 播报 | `mofa-fm` |
+| [`mofa-podcast`](skills/mofa-podcast/) | 🟡 | 多人对话播客（1-5 人），支持情绪标签与 BGM cue | podcast / 播客 / 多人对话 / 锵锵三人行 | `mofa-podcast` |
+| [`agents-skill-podcastifier`](skills/agents-skill-podcastifier/) | 🟡 | 把邮件 / newsletter 切块、TTS 合成、ffmpeg 拼接，做成短播客 | podcastify / 把这封邮件做成播客 | `python3` `ffmpeg` |
+| [`mofa-fm-api`](skills/mofa-fm-api/) | 🟡 | MoFA FM 播客平台的 API 客户端（节目、单集、搜索、热搜） | mofa.fm / fm api / 热搜 | `python3` |
 
 ### 🎬 多模态 / 视频 / 幻灯片
 
 | Skill | 状态 | 一句话 | 触发词 | 依赖 |
 |------|:--:|------|------|------|
-| [`mofa-slides`](skills/mofa-slides/) | 🚧 | AI 整页 Gemini 图幻灯片，17+ 风格，4 种生成模式 | mofa ppt / slides / 幻灯片 / 用 mofa 做 PPT | `mofa` `GEMINI_API_KEY` |
-| [`md-to-video`](skills/md-to-video/) | 🚧 | Markdown → AI 幻灯片 → TTS 旁白 → ffmpeg → MP4 | md to video / 脚本做视频 / 旁白 PPT | `mofa-slides` `mofa-fm` `ffmpeg` `GEMINI_API_KEY` |
-| [`ffmpeg-video-editor`](skills/ffmpeg-video-editor/) | 🚧 | 自然语言 → ffmpeg 命令（剪辑、转码、压缩、提取音频等） | ffmpeg / 视频编辑 / 转码 | `ffmpeg` |
+| [`mofa-slides`](skills/mofa-slides/) | 🟡 | AI 整页 Gemini 图幻灯片，17+ 风格，4 种生成模式 | mofa ppt / slides / 幻灯片 / 用 mofa 做 PPT | `mofa` `GEMINI_API_KEY` |
+| [`md-to-video`](skills/md-to-video/) | 🟡 | Markdown → AI 幻灯片 → TTS 旁白 → ffmpeg → MP4 | md to video / 脚本做视频 / 旁白 PPT | `mofa-slides` `mofa-fm` `ffmpeg` `GEMINI_API_KEY` |
+| [`ffmpeg-video-editor`](skills/ffmpeg-video-editor/) | 🟡 | 自然语言 → ffmpeg 命令（剪辑、转码、压缩、提取音频等） | ffmpeg / 视频编辑 / 转码 | `ffmpeg` |
 
 ### 🎵 音乐
 
 | Skill | 状态 | 一句话 | 触发词 | 依赖 |
 |------|:--:|------|------|------|
-| [`ace-music`](skills/ace-music/) | ✅ | 通过 ACE-Step 1.5 免费 API 生成音乐 / 歌曲 / 配乐 / 翻唱 | ace-music / generate music / create song / 作曲 / 配乐 / 帮我做首歌 | `curl` `python3` `ACE_MUSIC_API_KEY` |
+| [`ace-music`](skills/ace-music/) | 🟢 | 通过 ACE-Step 1.5 免费 API 生成音乐 / 歌曲 / 配乐 / 翻唱 | ace-music / generate music / create song / 作曲 / 配乐 / 帮我做首歌 | `curl` `python3` `ACE_MUSIC_API_KEY` |
 
 ### 🛠 基础设施
 
 | Skill | 状态 | 一句话 | 触发词 | 依赖 |
 |------|:--:|------|------|------|
-| [`mofa-cli`](skills/mofa-cli/) | 🚧 | 所有 MoFA skill 共享的 CLI 二进制（slides / cards / comic / infographic / video） | 非用户触发，被其他 skill 依赖 | Rust toolchain |
-| [`skill-creator`](skills/skill-creator/) | ✅ | 创建、修改、评估和优化 skill 的完整工作流（含 eval 框架与 description 优化） | create skill / 新建 skill / 优化 skill / skill eval | `python3` |
-| [`find-skills`](skills/find-skills/) | ✅ | 在开放 skill 生态中发现和安装 agent skill | find a skill / how do I do X / discover skills / install skill | `npx skills` |
+| [`mofa-cli`](skills/mofa-cli/) | 🟡 | 所有 MoFA skill 共享的 CLI 二进制（slides / cards / comic / infographic / video） | 非用户触发，被其他 skill 依赖 | Rust toolchain |
+| [`skill-creator`](skills/skill-creator/) | 🟢 | 创建、修改、评估和优化 skill 的完整工作流（含 eval 框架与 description 优化） | create skill / 新建 skill / 优化 skill / skill eval | `python3` |
+| [`find-skills`](skills/find-skills/) | 🟢 | 在开放 skill 生态中发现和安装 agent skill | find a skill / how do I do X / discover skills / install skill | `npx skills` |
 
 ---
 

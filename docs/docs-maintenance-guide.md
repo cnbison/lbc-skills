@@ -17,11 +17,13 @@ docs/
 │
 ├── persona-forge/                 # 每个 skill 一个独立目录
 │   ├── README.md                  # 开发总览
+│   ├── STATUS.md                  # 状态标记（staging / active / archived）
 │   ├── CHANGELOG.md               # 版本历史（含过程摘要）
 │   └── DECISIONS.md               # 关键决策（按需创建，不是每次都有）
 │
 ├── daily-news/
 │   ├── README.md
+│   ├── STATUS.md
 │   └── CHANGELOG.md
 │
 └── ...
@@ -69,7 +71,49 @@ docs/
 
 这就是过程记录。不需要再写 sessions/。
 
-### 3. DECISIONS.md — 关键决策
+### 3. STATUS.md — 状态标记
+
+什么时候创建：**新建 skill 时初始化**，状态默认为 `staging`。
+
+内容：
+
+```markdown
+---
+status: staging      # staging | active | archived
+since: 2026-05-22
+---
+
+## 验证检查清单
+
+| 检查项 | 状态 | 日期 | 备注 |
+|--------|------|------|------|
+| SKILL.md 格式正确 | | | |
+| 触发词可识别 | | | |
+| 端到端测试通过 | | | |
+| docs/ 文档已创建 | | | |
+| 无已知阻塞问题 | | | |
+
+## 转为 active 的条件
+
+以上所有检查项通过，且无已知阻塞问题。
+```
+
+什么时候更新：每次验证通过时、状态变更时。
+
+**状态含义**：
+- `staging`（🟡）：功能框架完整，但未经充分验证
+- `active`（🟢）：经过端到端验证，基本可用
+- `archived`（🔴）：已废弃或长期未维护
+
+**状态转换标准**：
+
+| 转换 | 条件 |
+|------|------|
+| staging → active | 验证检查清单全部通过 **或** 用户明确告知可实用 |
+| active → archived | 长期未维护 / 被替代 / 核心依赖不可用 |
+| archived → staging | 重新维护并验证通过 |
+
+### 4. DECISIONS.md — 关键决策
 
 什么时候创建：**做了架构/设计层面的决策时**，按需创建，不是每次都有。
 
@@ -91,10 +135,11 @@ docs/
 
 | 场景 | 必须更新 | 可选更新 |
 |------|---------|---------|
-| 新建 skill | `README.md` + `CHANGELOG.md`（初始条目） | `DECISIONS.md`（如有早期决策） |
+| 新建 skill | `README.md` + `CHANGELOG.md`（初始条目）+ `STATUS.md`（默认 staging） | `DECISIONS.md`（如有早期决策） |
 | bug fix | `CHANGELOG.md` | — |
 | 功能新增 | `CHANGELOG.md` | `DECISIONS.md`（如有设计决策） |
 | 架构/设计决策 | `DECISIONS.md` | — |
+| 状态变更（staging → active 等） | `STATUS.md` + `CHANGELOG.md` | — |
 
 **底线**：每次代码变更，CHANGELOG.md 必须同步更新。这是唯一不可跳过的文件。
 

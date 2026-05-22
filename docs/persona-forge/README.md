@@ -21,6 +21,10 @@
 | `../../skills/persona-forge/references/persona-dimension-library.md` | 角色维度库 |
 | `../../skills/persona-forge/references/extraction-framework.md` | 心智模型三重验证方法论 |
 
+## 当前状态
+
+见 [STATUS.md](./STATUS.md) — 🟢 active
+
 ## 版本历史
 
 见 [CHANGELOG.md](./CHANGELOG.md)

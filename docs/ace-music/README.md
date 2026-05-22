@@ -21,3 +21,7 @@
 ## 版本历史
 
 见 [CHANGELOG.md](./CHANGELOG.md)
+
+## 分析报告
+
+见 [analysis.md](./analysis.md) — skill-creator 框架审查报告

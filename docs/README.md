@@ -28,4 +28,8 @@ docs/
 
 | Skill | 路径 |
 |------|------|
+| ace-music | [`ace-music/`](./ace-music/) |
+| daily-news | [`daily-news/`](./daily-news/) |
+| guwen-translate | [`guwen-translate/`](./guwen-translate/) |
+| mofa-podcast | [`mofa-podcast/`](./mofa-podcast/) |
 | Persona Forge | [`persona-forge/`](./persona-forge/) |

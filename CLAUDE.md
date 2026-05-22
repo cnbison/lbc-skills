@@ -205,6 +205,7 @@ git push origin main          # 4) 立即 push
 4. **任务完成立刻 `git commit && git push`**，不留尾巴。
 5. **新建 skill 后在 `README.md` 的目录里补一行**，保持 README 与 `skills/` 同步。
 6. **每次代码变更需同步更新 `docs/<skill-name>/CHANGELOG.md`**，详细规则见 `docs/docs-maintenance-guide.md`。
+7. **结构性变更后执行全仓库引用检查**：skill 改名、文件/目录移动、删除文件前，先用 `grep -rn` 全仓库扫描旧名称/旧路径，确认无残留后方可提交。检查清单见 `docs/docs-maintenance-guide.md` §6。
 
 当涉及具体代码编写（Python 脚本、Rust 二进制、JS 工具等）时，遵循 [`docs/_shared/claudemd_zh.md`](docs/_shared/claudemd_zh.md) 中的通用原则：**思考先于编码、简洁优先、精准修改、目标导向**。
 

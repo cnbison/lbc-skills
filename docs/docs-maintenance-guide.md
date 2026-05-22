@@ -113,3 +113,41 @@ docs/
 如某个 skill 的 `docs/<skill-name>/` 目录尚未创建，在**下次修改该 skill 时一并初始化**（创建 README.md 和 CHANGELOG.md，并补写历史条目）。
 
 不需要一次性给所有 skill 补建目录，按需逐步进行。
+
+---
+
+## 六、结构性变更检查清单
+
+**硬规则：每次进行结构性变更（改名、移动、删除文件/目录）后，必须执行一次全仓库引用检查，确认无残留旧引用后方可提交。**
+
+### 6.1 变更前必执行的 grep 检查
+
+```bash
+# skill 改名/删除前：检查全仓库是否有旧名称残留
+grep -rn "旧名称" . --include="*.md" --include="*.json"
+
+# 文件/目录移动前：检查全仓库是否有旧路径残留
+grep -rn "旧路径" . --include="*.md" --include="*.json"
+
+# 删除文件前：检查是否有其他文件引用该路径
+grep -rn "被删文件名" . --include="*.md"
+```
+
+### 6.2 常见场景检查点
+
+| 场景 | 必须检查的文件 |
+|------|--------------|
+| skill 改名/品牌重塑 | `README.md`（目录表、触发示例）、`CLAUDE.md`（形态示例、速查引用）、所有 `docs/<name>/` 内部引用 |
+| 文件/目录移动到 `_shared/` | `CLAUDE.md`（速查引用）、`README.md`（文档链接）、所有 SKILL.md 内部引用 |
+| 删除文件 | 全仓库 grep 该文件名，确认无引用 |
+| 修改触发词 | `README.md`（触发示例、目录表）、`SKILL.md`（description） |
+| 修改输出路径 | `CLAUDE.md`（输出约定）、`SKILL.md`（Instructions）、所有相关脚本 |
+
+### 6.3 commit 前快速自检命令
+
+```bash
+# 在仓库根目录执行，检查常见残留问题
+grep -rn "nuwa\|女娲\|TODO\|FIXME\|xxx" skills/ .claude/skills/ docs/ CLAUDE.md README.md
+```
+
+**底线**：结构性变更的 commit 中，如果 grep 检查发现了旧引用残留，必须修复后才能提交。宁可多一次 commit，也不留过时引用。

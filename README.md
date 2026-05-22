@@ -75,7 +75,7 @@ ln -s ~/projects/lbc-skills/skills/daily-news .claude/skills/daily-news
 | Skill | 状态 | 一句话 | 触发词 | 依赖 |
 |------|:--:|------|------|------|
 | [`mofa-fm`](skills/mofa-fm/) | 🟡 | TTS 与声音克隆，内置 9 个预设音色，支持自定义 | voice / TTS / 语音 / 播报 | `mofa-fm` |
-| [`mofa-podcast`](skills/mofa-podcast/) | 🟡 | 多人对话播客（1-5 人），支持情绪标签与 BGM cue | podcast / 播客 / 多人对话 / 锵锵三人行 | `mofa-podcast` |
+| [`mofa-podcast`](skills/mofa-podcast/) | 🟢 | 多人对话播客（1-5 人），支持情绪标签与 BGM cue | podcast / 播客 / 多人对话 / 锵锵三人行 | `mofa-podcast` |
 | [`agents-skill-podcastifier`](skills/agents-skill-podcastifier/) | 🟡 | 把邮件 / newsletter 切块、TTS 合成、ffmpeg 拼接，做成短播客 | podcastify / 把这封邮件做成播客 | `python3` `ffmpeg` |
 | [`mofa-fm-api`](skills/mofa-fm-api/) | 🟡 | MoFA FM 播客平台的 API 客户端（节目、单集、搜索、热搜） | mofa.fm / fm api / 热搜 | `python3` |
 

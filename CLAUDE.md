@@ -35,7 +35,7 @@ This file is the **development guide** for Claude Code (claude.ai/code) when wor
 - Claude Code 只从 `.claude/skills/`（项目级）或 `~/.claude/skills/`（用户级）加载 skill。放在 `skills/` 下的源文件对运行时**不可见**。
 - 但把源码放在 `skills/` 下让仓库在 GitHub 上可浏览、便于跨项目复制、不用区分"install vs source"。软链接是桥。
 
-详见 [`docs/skill-loading-paths.md`](docs/skill-loading-paths.md)。
+详见 [`docs/_shared/skill-loading-paths.md`](docs/_shared/skill-loading-paths.md)。
 
 ---
 
@@ -43,11 +43,11 @@ This file is the **development guide** for Claude Code (claude.ai/code) when wor
 
 | 形态 | 标志 | 代表 |
 |------|------|------|
-| **纯 prompt skill** | 仅 `SKILL.md` + 可选 `references/` | `dou-wentao-perspective`、`ljg-read`、`ljg-roundtable`、`mofa-concept`、`nuwa-skill`、`ljg-roundtable` |
+| **纯 prompt skill** | 仅 `SKILL.md` + 可选 `references/` | `dou-wentao-perspective`、`ljg-read`、`ljg-roundtable`、`mofa-concept`、`persona-forge`、`ljg-roundtable` |
 | **Python 流水线 skill** | 带 `tools/`、`venv/`、`scripts/`、`requirements.txt` | `daily-news`、`follow-builders`、`agents-skill-podcastifier` |
 | **MoFA 类 Rust 二进制 skill** | 带 `manifest.json`、`Cargo.toml`、`src/`、`architecture.dot` | `mofa-slides`、`mofa-fm`、`mofa-podcast-*`、`mofa-cli` |
 
-三类的对比与权衡：见 [`docs/skill-format-comparison.md`](docs/skill-format-comparison.md)。
+三类的对比与权衡：见 [`docs/_shared/skill-format-comparison.md`](docs/_shared/skill-format-comparison.md)。
 
 **选择原则**：能用 prompt 解决的不引入脚本，能用脚本解决的不引入 Rust。脚本类只做**确定性数据工作**（采集、清洗、TTS、ffmpeg 合并等），所有 LLM 生成由 Agent 在 SKILL.md 指导下完成，避免在脚本里硬编码 API key。
 
@@ -212,7 +212,7 @@ git push origin main          # 4) 立即 push
 
 ## 10. 仅与开发相关的速查
 
-- skill 形态对比：[`docs/skill-format-comparison.md`](docs/skill-format-comparison.md)
-- skill 加载路径机制：[`docs/skill-loading-paths.md`](docs/skill-loading-paths.md)
+- skill 形态对比：[`docs/_shared/skill-format-comparison.md`](docs/_shared/skill-format-comparison.md)
+- skill 加载路径机制：[`docs/_shared/skill-loading-paths.md`](docs/_shared/skill-loading-paths.md)
 - 单个 skill 的设计笔记：`docs/<skill-name>/` 目录
 - 终端用户的使用说明：[`README.md`](README.md)

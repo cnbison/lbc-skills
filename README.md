@@ -37,7 +37,7 @@ ln -s ~/projects/lbc-skills/skills/daily-news .claude/skills/daily-news
 > builder digest    → 触发 follow-builders
 > 用窦文涛的视角看…  → 触发 dou-wentao-perspective
 > 陪我读这篇         → 触发 ljg-read
-> 蒸馏 <人物>        → 触发 nuwa-skill
+> 蒸馏 <人物>        → 触发 persona-forge
 > save this          → 触发 second-brain
 ```
 
@@ -63,7 +63,7 @@ ln -s ~/projects/lbc-skills/skills/daily-news .claude/skills/daily-news
 | Skill | 状态 | 一句话 | 触发词 | 依赖 |
 |------|:--:|------|------|------|
 | [`dou-wentao-perspective`](skills/dou-wentao-perspective/) | ✅ | 窦文涛的 5 个心智模型 + 7 条决策启发式，做思维顾问 | 窦文涛视角 / 锵锵模式 / 圆桌派视角 | — |
-| [`nuwa-skill`](skills/nuwa-skill/) | ✅ | 女娲造人：输入人名 / 主题 / 模糊需求，自动调研并蒸馏出人物 skill | 造 skill / 蒸馏 XX / 女娲 / 造人 | — |
+| [`persona-forge`](skills/persona-forge/) | ✅ | Persona Forge 人格化引擎：人物蒸馏 + 角色合成 + 需求诊断 | 造 skill / 蒸馏 XX / Persona Forge / 创建角色 | — |
 | [`second-brain`](skills/second-brain/) | ✅ | 由 Ensue 驱动的个人知识库，捕捉与检索理解 | save this / remember / my notes on | `ENSUE_API_KEY` |
 | [`mofa-concept`](skills/mofa-concept/) | 🚧 | 8 维概念解剖（历史 / 辩证 / 现象学 / 语言学 / 形式化 / 存在主义 / 美学 / 元哲学），输出 md 报告 | 解剖概念 / 概念解剖 / explain concept | — |
 | [`ljg-roundtable`](skills/ljg-roundtable/) | 🚧 | 结构化多视角辩论框架，主持人邀请代表人物围绕议题展开 | 圆桌讨论 / 圆桌 / roundtable / 辩论 | — |
@@ -151,8 +151,8 @@ mofa video --style cinematic --out video.mp4 input.json
 ## 文档
 
 - [`CLAUDE.md`](./CLAUDE.md) — 开发指南（仓库定位、目录约定、skill 形态、新增 skill 的 SOP、Git 工作流）
-- [`docs/skill-loading-paths.md`](./docs/skill-loading-paths.md) — `skills/` 与 `.claude/skills/` 双路径机制详解
-- [`docs/skill-format-comparison.md`](./docs/skill-format-comparison.md) — 三类 skill 形态的对比与权衡
+- [`docs/_shared/skill-loading-paths.md`](./docs/_shared/skill-loading-paths.md) — `skills/` 与 `.claude/skills/` 双路径机制详解
+- [`docs/_shared/skill-format-comparison.md`](./docs/_shared/skill-format-comparison.md) — 三类 skill 形态的对比与权衡
 - `docs/<skill-name>.md` — 部分 skill 的设计笔记
 
 ---

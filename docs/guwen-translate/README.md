@@ -20,6 +20,10 @@
 | `../../skills/guwen-translate/references/yijing.md` | 《易经》风格指南 |
 | `../../skills/guwen-translate/references/jingangjing.md` | 《金刚经》风格指南 |
 | `../../skills/guwen-translate/references/wenyan.md` | 通用文言翻译框架 |
+| `../../skills/guwen-translate/references/lunyu.md` | 《论语》风格指南（仁、礼、学） |
+| `../../skills/guwen-translate/references/zhuangzi.md` | 《庄子》风格指南（逍遥、齐物、解构） |
+| `../../skills/guwen-translate/references/sunzi.md` | 《孙子兵法》风格指南（先胜、奇正、虚实） |
+| `../../skills/guwen-translate/references/tanjing.md` | 《坛经》风格指南（顿悟、不立文字、自性） |
 | `future-classics-analysis.md` | 未来待覆盖经典分析（缺口诊断与优先级） |
 
 ## 当前状态

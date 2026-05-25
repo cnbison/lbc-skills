@@ -3,6 +3,14 @@
 ## [未发布]
 
 ### Added
+- 新增四部经典风格指南，覆盖 guwen-translate 全局缺口
+  - 《论语》`references/lunyu.md`：仁、礼、学核心，还原师徒对话现场
+  - 《庄子》`references/zhuangzi.md`：逍遥、齐物、解构核心，让寓言吞掉你
+  - 《孙子兵法》`references/sunzi.md`：先胜、奇正、虚实、全胜核心，拆解结构
+  - 《坛经》`references/tanjing.md`：顿悟、不立文字、自性核心，机锋翻转
+  - 全部遵循"形式随气而变"原则，无固定输出模块映射
+  - 更新 SKILL.md：description 关键词、4 个新 example、8 类典籍识别、命名格式
+
 - 新增未来待覆盖经典分析文档（`future-classics-analysis.md`）
   - 从使用频率、气质独特性、通用文言盲区三维度诊断 guwen-translate 全局缺口
   - 识别出 T1 优先补充经典：《论语》《庄子》

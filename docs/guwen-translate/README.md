@@ -20,6 +20,7 @@
 | `../../skills/guwen-translate/references/yijing.md` | 《易经》风格指南 |
 | `../../skills/guwen-translate/references/jingangjing.md` | 《金刚经》风格指南 |
 | `../../skills/guwen-translate/references/wenyan.md` | 通用文言翻译框架 |
+| `future-classics-analysis.md` | 未来待覆盖经典分析（缺口诊断与优先级） |
 
 ## 当前状态
 

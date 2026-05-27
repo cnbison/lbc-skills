@@ -77,7 +77,7 @@ This is not role-play. Naval uses his "desire as contract" mental model. Musk us
 ## Install
 
 ```bash
-npx skills add alchaincyf/persona-forge
+npx skills add cnbison/lbc-skills@persona-forge
 ```
 
 Then in Claude Code:

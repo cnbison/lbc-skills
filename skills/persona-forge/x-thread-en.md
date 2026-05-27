@@ -37,4 +37,4 @@ All queryable. All on your side.
 
 Open source. One command to install.
 
-github.com/alchaincyf/persona-forge
+[github.com/cnbison/lbc-skills/tree/main/skills/persona-forge]

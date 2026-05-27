@@ -52,7 +52,7 @@
 - 推文因为他需要公开笔记，newsletter因为他需要可搜索的AI新闻数据库，图表因为他需要解释概念——**受众获益是副产品**
 - 发明了「AI Engineer」这个角色定义
 
-**对花叔的启示**：swyx的策略特别适合有深度但非原始研究者的人。核心是：**你不需要发明新东西，你需要把别人发明的东西解释清楚，并标记原作者**。
+**启示**：swyx的策略特别适合有深度但非原始研究者的人。核心是：**你不需要发明新东西，你需要把别人发明的东西解释清楚，并标记原作者**。
 
 > 来源：[swyx.io: Learn in Public](https://www.swyx.io/learn-in-public) + [swyx.io: Pick Up What They Put Down](https://www.swyx.io/puwtpd) + [swyx.io: How to Thought Lead (2026)](https://www.swyx.io/lead)
 
@@ -387,9 +387,9 @@ Product Hunt/GitHub Launch → 用户获取
 
 ---
 
-## 十、对花叔X策略的具体建议
+## 十、对X策略的具体建议
 
-基于以上调研，结合花叔的身份（AI Native Coder、独立开发者、30万+自媒体粉丝）：
+基于以上调研：
 
 1. **定位清晰**：「中国独立开发者用AI做产品」——这个身份在英文X上有独特价值（一手中国AI生态信息 + 独立开发者叙事）
 2. **内容支柱建议**：Build in Public（产品数据）+ AI工具实测 + 中国AI视角

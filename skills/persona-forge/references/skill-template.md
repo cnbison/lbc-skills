@@ -110,8 +110,8 @@ description: |
 
 ---
 
-> 本Skill由 [Persona Forge · 人格化引擎](https://github.com/alchaincyf/persona-forge) 生成
-> 创建者：[花叔](https://x.com/AlchainHust)
+> 本Skill由 [Persona Forge · 人格化引擎](https://github.com/cnbison/lbc-skills/tree/main/skills/persona-forge) 生成
+
 ```
 
 ---
@@ -197,6 +197,5 @@ description: |
 
 ---
 
-> 本Skill由 [Persona Forge · 人格化引擎](https://github.com/alchaincyf/persona-forge) 生成
-> 创建者：[花叔](https://x.com/AlchainHust)
+> 本Skill由 [Persona Forge · 人格化引擎](https://github.com/cnbison/lbc-skills/tree/main/skills/persona-forge) 生成
 ```

@@ -6,7 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blueviolet)](https://claude.ai/code)
-[![Persona Forge](https://img.shields.io/badge/Made%20with-Persona Forge.skill-orange)](https://github.com/alchaincyf/persona-forge)
+[![Persona Forge](https://img.shields.io/badge/Made%20with-Persona Forge.skill-orange)](https://github.com/cnbison/lbc-skills/tree/main/skills/persona-forge)
 
 <br>
 
@@ -217,14 +217,14 @@ SEC Case No. 1:23-cv-02340 · The Verge调查系列 2022 · Bloomberg「From Par
 
 ## 这个Skill是怎么造出来的
 
-由 [Persona Forge.skill](https://github.com/alchaincyf/persona-forge) 自动生成。
+由 [Persona Forge.skill](https://github.com/cnbison/lbc-skills/tree/main/skills/persona-forge) 自动生成。
 
 Persona Forge的工作流程：输入一个名字 → 6个Agent并行调研 → 交叉验证提炼心智模型 → 构建SKILL.md → 质量验证 → 3轮自动优化（60分→91分）。
 
 想蒸馏其他人？安装Persona Forge：
 
 ```bash
-npx skills add alchaincyf/persona-forge
+npx skills add cnbison/lbc-skills@persona-forge
 ```
 
 然后说「蒸馏一个XXX」就行了。
@@ -264,7 +264,7 @@ Persona Forge已蒸馏的其他人物，每个都可独立安装：
 | [纳瓦尔.skill](https://github.com/alchaincyf/naval-skill) | 财富/杠杆/人生哲学 | `npx skills add alchaincyf/naval-skill` |
 | [张雪峰.skill](https://github.com/alchaincyf/zhangxuefeng-skill) | 教育/职业规划/阶层流动 | `npx skills add alchaincyf/zhangxuefeng-skill` |
 
-想蒸馏更多人？用 [Persona Forge.skill](https://github.com/alchaincyf/persona-forge)，输入任何名字即可。
+想蒸馏更多人？用 [Persona Forge.skill](https://github.com/cnbison/lbc-skills/tree/main/skills/persona-forge)，输入任何名字即可。
 
 ## 许可证
 
@@ -272,27 +272,12 @@ MIT — 随便用，随便改，随便蒸馏。
 
 ---
 
-## 关于作者
-
-**花叔 Huashu** — AI Native Coder，独立开发者，代表作：小猫补光灯（AppStore 付费榜 Top1）
-
-| 平台 | 链接 |
-|------|------|
-| 🌐 官网 | [bookai.top](https://bookai.top) · [huasheng.ai](https://www.huasheng.ai) |
-| 𝕏 Twitter | [@AlchainHust](https://x.com/AlchainHust) |
-| 📺 B站 | [花叔](https://space.bilibili.com/14097567) |
-| ▶️ YouTube | [@Alchain](https://www.youtube.com/@Alchain) |
-| 📕 小红书 | [花叔](https://www.xiaohongshu.com/user/profile/5abc6f17e8ac2b109179dfdf) |
-| 💬 公众号 | 微信搜「花叔」|
-
 <div align="center">
 
 *争议就是流量，流量就是钱。你骂我的时候，TRX又涨了。*
 
 <br>
 
-MIT License © [花叔 Huashu](https://github.com/alchaincyf)
-
-Made with [Persona Forge.skill](https://github.com/alchaincyf/persona-forge)
+Made with [Persona Forge.skill](https://github.com/cnbison/lbc-skills/tree/main/skills/persona-forge)
 
 </div>

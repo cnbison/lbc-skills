@@ -77,7 +77,7 @@ Persona Forge ❯ 已生成「耐心数学老师」角色。
 ## 安装
 
 ```bash
-npx skills add alchaincyf/persona-forge
+npx skills add cnbison/lbc-skills@persona-forge
 ```
 
 然后在 Claude Code 里：
